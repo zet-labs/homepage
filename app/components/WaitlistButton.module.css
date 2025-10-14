@@ -1,0 +1,225 @@
+.ctaButton {
+    position: relative;
+    padding: 1.4rem 4rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgb(var(--foreground-rgb));
+    background: var(--cta-gradient);
+    border: 1px solid rgba(var(--foreground-soft-rgb), 0.35);
+    border-radius: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow:
+        0 10px 40px rgba(var(--accent-indigo-rgb), 0.35),
+        0 0 60px rgba(var(--accent-purple-rgb), 0.18),
+        inset 0 1px 0 rgba(var(--spotlight-1-rgb), 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 1s ease-out 0.3s both, pulse 3s ease-in-out infinite;
+}
+
+.ctaButton:hover {
+    transform: translateY(-3px) scale(1.02);
+    background: var(--cta-gradient-hover);
+    border-color: rgba(var(--foreground-soft-rgb), 0.5);
+    box-shadow:
+        0 15px 60px rgba(var(--accent-indigo-rgb), 0.45),
+        0 0 80px rgba(var(--accent-purple-rgb), 0.28),
+        inset 0 1px 0 rgba(var(--spotlight-1-rgb), 0.25),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.ctaButton:active {
+    transform: translateY(0);
+}
+
+.buttonGlass {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(var(--spotlight-1-rgb), 0.2),
+            transparent);
+    transition: left 0.5s;
+}
+
+.ctaButton:hover .buttonGlass {
+    left: 100%;
+}
+
+.buttonText {
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.02em;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 10px 40px rgba(var(--accent-indigo-rgb), 0.35),
+            0 0 60px rgba(var(--accent-purple-rgb), 0.18),
+            inset 0 1px 0 rgba(var(--spotlight-1-rgb), 0.15),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    50% {
+        box-shadow:
+            0 10px 40px rgba(var(--accent-indigo-rgb), 0.45),
+            0 0 80px rgba(var(--accent-purple-rgb), 0.28),
+            inset 0 1px 0 rgba(var(--spotlight-1-rgb), 0.15),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    }
+}
+
+@media (max-width: 768px) {
+    .ctaButton {
+        padding: 1rem 2.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ctaButton {
+        padding: 0.875rem 2rem;
+        font-size: 0.95rem;
+    }
+}
+
+.emailForm {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.emailInput {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: inherit;
+    color: rgb(var(--foreground-rgb));
+    background: rgba(var(--overlay-rgb), 0.05);
+    border: 1px solid rgba(var(--foreground-soft-rgb), 0.3);
+    border-radius: 12px;
+    outline: none;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    min-width: 280px;
+    box-shadow: 0 4px 20px rgba(var(--accent-indigo-rgb), 0.15);
+}
+
+.emailInput::placeholder {
+    color: rgba(var(--foreground-muted-rgb), 0.5);
+}
+
+.emailInput:focus {
+    border-color: rgba(var(--foreground-soft-rgb), 0.6);
+    box-shadow: 0 0 0 3px rgba(var(--accent-indigo-rgb), 0.1);
+}
+
+.submitButton {
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: rgb(var(--foreground-rgb));
+    background: var(--cta-gradient);
+    border: 1px solid rgba(var(--foreground-soft-rgb), 0.35);
+    border-radius: 12px;
+    cursor: pointer;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow:
+        0 8px 24px rgba(var(--accent-indigo-rgb), 0.3),
+        0 0 40px rgba(var(--accent-purple-rgb), 0.15);
+}
+
+.submitButton:hover {
+    background: var(--cta-gradient-hover);
+    border-color: rgba(var(--foreground-soft-rgb), 0.5);
+    transform: translateY(-2px);
+    box-shadow:
+        0 12px 32px rgba(var(--accent-indigo-rgb), 0.4),
+        0 0 60px rgba(var(--accent-purple-rgb), 0.2);
+}
+
+.submitButton:active {
+    transform: translateY(0);
+}
+
+.thankYou {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(var(--accent-indigo-rgb), 0.85);
+    animation: fadeInUp 0.6s ease-out;
+    text-align: center;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    background: rgba(var(--accent-indigo-rgb), 0.08);
+    border-radius: 12px;
+    border: 1px solid rgba(var(--accent-indigo-rgb), 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .emailForm {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .emailInput {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .submitButton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .emailInput {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    .submitButton {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.875rem;
+    }
+
+    .thankYou {
+        font-size: 0.7rem;
+        padding: 0.65rem 1.25rem;
+        white-space: normal;
+        max-width: 90%;
+    }
+}

@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import styles from './WaitlistButton.module.css';
+import { Button } from './ui/Button';
+import { Input } from './ui/Input';
+import { Badge } from './ui/Badge';
 
 export default function WaitlistButton() {
   const { t } = useTranslation();
@@ -21,35 +23,33 @@ export default function WaitlistButton() {
 
   if (state === 'submitted') {
     return (
-      <div className={styles.thankYou}>
+      <Badge variant="success" className="text-center">
         {t('thankYou')}
-      </div>
+      </Badge>
     );
   }
 
   if (state === 'input') {
     return (
-      <form className={styles.emailForm} onSubmit={handleSubmit}>
-        <input
+      <form className="flex gap-3 items-center animate-[fade-in-up_0.4s_ease-out] max-md:flex-col max-md:gap-2" onSubmit={handleSubmit}>
+        <Input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={t('emailPlaceholder')}
-          className={styles.emailInput}
           autoFocus
           required
         />
-        <button type="submit" className={styles.submitButton}>
+        <Button type="submit" variant="secondary" size="md" className="max-md:w-full">
           {t('submit')}
-        </button>
+        </Button>
       </form>
     );
   }
 
   return (
-    <button className={styles.ctaButton} onClick={handleButtonClick}>
-      <span className={styles.buttonGlass}></span>
-      <span className={styles.buttonText}>{t('joinWaitlist')}</span>
-    </button>
+    <Button size="lg" withGlowEffect onClick={handleButtonClick}>
+      {t('joinWaitlist')}
+    </Button>
   );
 }

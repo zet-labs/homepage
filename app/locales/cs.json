@@ -1,10 +1,10 @@
 {
-  "comingSoon": "Již brzy",
+  "comingSoon": "Brzy spouštíme",
   "brandName": "Zet AI",
-  "tagline": "Kde se inteligence setkává s možnostmi",
-  "joinWaitlist": "Připojit se k čekací listině",
-  "emailPlaceholder": "Zadejte váš email",
-  "submit": "Odeslat",
-  "thankYou": "Děkujeme, dáme vám vědět jako prvním",
-  "footer": "© 2025 Zet Labs s.r.o. Všechna práva vyhrazena."
+  "tagline": "Nová generace AI. Výkonná, elegantní, vaše.",
+  "joinWaitlist": "Získat přednostní přístup",
+  "emailPlaceholder": "vy@firma.cz",
+  "submit": "Rezervovat místo",
+  "thankYou": "Jste vnitř! Brzy se ozveme.",
+  "footer": "© 2025 Zet Labs · Budujeme budoucnost AI"
 }

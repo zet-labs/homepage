@@ -1,10 +1,10 @@
 {
-  "comingSoon": "Coming soon",
+  "comingSoon": "Coming Soon",
   "brandName": "Zet AI",
-  "tagline": "Where intelligence meets possibility, our most advanced AI model family yet.",
-  "joinWaitlist": "Join Waitlist",
-  "emailPlaceholder": "Enter your email",
-  "submit": "Submit",
-  "thankYou": "Thank you, we will let you know first",
-  "footer": "© 2025 Zet Labs s.r.o. All rights reserved."
+  "tagline": "The next generation of AI agents. Powerful, elegant, yours.",
+  "joinWaitlist": "Get Early Access",
+  "emailPlaceholder": "you@company.com",
+  "submit": "Reserve My Spot",
+  "thankYou": "You're in! We'll be in touch soon.",
+  "footer": "© 2025 Zet Labs · Building the future of AI"
 }

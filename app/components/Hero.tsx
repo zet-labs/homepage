@@ -7,7 +7,7 @@ export default function Hero() {
 
   return (
     <>
-      <h1 className="text-[clamp(4rem,15vw,11rem)] font-thin leading-[1.1] tracking-[-0.03em] m-0 animate-[fade-in-up_1s_ease-out] md:text-[clamp(4rem,15vw,11rem)] max-md:text-[clamp(3.5rem,14vw,5.5rem)] max-[480px]:text-[clamp(3rem,13vw,4.5rem)]">
+      <h1 className="text-[clamp(4rem,15vw,11rem)] font-thin leading-[1.1] tracking-[-0.03em] m-0 animate-[fade-in-up_1s_ease-out] md:text-[clamp(4rem,15vw,11rem)] max-md:text-[clamp(4.5rem,16vw,6.5rem)] max-[480px]:text-[clamp(4rem,18vw,6rem)]">
         <span className="bg-gradient-to-br from-[rgb(var(--color-hero-gradient-from))] via-[rgb(var(--color-hero-gradient-via))] to-[rgb(var(--color-hero-gradient-to))] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradient-shift_8s_ease_infinite,fade-in-up_1s_ease-out] inline-block font-thin">
           {t("brandName")}
         </span>

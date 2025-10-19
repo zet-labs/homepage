@@ -1,8 +1,9 @@
 import { z } from "zod";
-import { sql } from "@/lib/db";
+import { generateId, sql } from "@/lib/db";
 
 const schema = z.object({
   email: z.string().email().max(255),
+  language: z.enum(["cs", "en"]),
   honeypot: z.string().max(0),
   timestamp: z.number(),
 });
@@ -46,7 +47,7 @@ function checkRateLimit(ip: string): boolean {
 
 export async function POST(request: Request) {
   try {
-    const { email, honeypot, timestamp } = schema.parse(await request.json());
+    const { email, language, honeypot, timestamp } = schema.parse(await request.json());
 
     if (honeypot) {
       return Response.json({ success: true });
@@ -59,8 +60,8 @@ export async function POST(request: Request) {
     }
 
     await sql`
-      INSERT INTO waitlist (email, created_at)
-      VALUES (${email.toLowerCase()}, NOW())
+      INSERT INTO waitlist (id, email, language, created_at)
+      VALUES (${generateId()}, ${email.toLowerCase()}, ${language}, NOW())
       ON CONFLICT (email) DO NOTHING
     `;
 

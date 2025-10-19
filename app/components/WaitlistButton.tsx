@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
@@ -9,15 +9,42 @@ export default function WaitlistButton() {
   const { t } = useTranslation();
   const [state, setState] = useState<"button" | "input" | "submitted">("button");
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  const timestampRef = useRef<number>(Date.now());
 
   const handleButtonClick = () => {
     setState("input");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email submitted:", email);
-    setState("submitted");
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          honeypot, // Should be empty
+          timestamp: timestampRef.current, // When component mounted
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("Error:", data.error);
+        // You might want to show an error message to the user
+        return;
+      }
+
+      setState("submitted");
+    } catch (error) {
+      console.error("Failed to submit email:", error);
+      // You might want to show an error message to the user
+    }
   };
 
   useEffect(() => {
@@ -43,6 +70,22 @@ export default function WaitlistButton() {
           className="flex gap-3 items-center animate-[fade-in-up_0.4s_ease-out] max-md:flex-col max-md:gap-2"
           onSubmit={handleSubmit}
         >
+          <input
+            type="text"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            style={{
+              position: "absolute",
+              left: "-9999px",
+              width: "1px",
+              height: "1px",
+              opacity: 0,
+            }}
+            aria-hidden="true"
+          />
           <Input
             type="email"
             value={email}

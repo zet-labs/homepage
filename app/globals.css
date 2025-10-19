@@ -8,18 +8,24 @@
   --color-foreground: 227 232 255;
   --color-foreground-muted: 172 182 235;
   --color-foreground-soft: 200 208 255;
-  --color-background-start: 5 8 25;
-  --color-background-end: 10 14 35;
-  --color-surface: 4 6 21;
+  --color-background-start: 0 0 0;
+  --color-background-end: 3 5 12;
+  --color-surface: 1 2 8;
   --color-overlay: 0 0 0;
   --color-accent-indigo: 99 102 241;
   --color-accent-purple: 139 92 246;
   --color-accent-blue: 59 130 246;
   --color-accent-pink: 236 72 153;
-  --color-spotlight-1: 255 255 255;
-  --color-spotlight-2: 168 162 255;
-  --color-spotlight-3: 147 197 253;
+  --color-spotlight-1: 250 250 255;
+  --color-spotlight-2: 198 190 255;
+  --color-spotlight-3: 182 214 255;
   --color-footer-muted: 160 170 210;
+  --color-hero-gradient-from: 255 255 255;
+  --color-hero-gradient-via: 99 102 241;
+  --color-hero-gradient-to: 139 92 246;
+  --spotlight-alpha-strong: 0.45;
+  --spotlight-alpha-medium: 0.25;
+  --spotlight-alpha-soft: 0.06;
 
   --animate-gradient-shift: gradient-shift 8s ease infinite;
   --animate-fade-in-up: fade-in-up 1s ease-out;
@@ -111,61 +117,61 @@
   }
 
   @keyframes spotlight-1-move {
-    0%,
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+
+    20% {
+      transform: translate(40px, -30px) scale(1.08);
+      opacity: 1;
+    }
+
+    40% {
+      transform: translate(-25px, 50px) scale(0.95);
+      opacity: 1;
+    }
+
+    60% {
+      transform: translate(60px, 40px) scale(1.05);
+      opacity: 1;
+    }
+
+    80% {
+      transform: translate(-40px, -20px) scale(0.98);
+      opacity: 1;
+    }
+
     100% {
-      transform: translate(0, 0);
-      opacity: 0.15;
-    }
-
-    25% {
-      transform: translate(100px, -50px);
-      opacity: 0.25;
-    }
-
-    50% {
-      transform: translate(50px, 80px);
-      opacity: 0.12;
-    }
-
-    75% {
-      transform: translate(-80px, 30px);
-      opacity: 0.2;
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
     }
   }
 
   @keyframes spotlight-2-move {
-    0%,
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+
+    25% {
+      transform: translate(-50px, 35px) scale(1.06);
+      opacity: 1;
+    }
+
+    50% {
+      transform: translate(30px, -45px) scale(0.96);
+      opacity: 1;
+    }
+
+    75% {
+      transform: translate(-35px, -25px) scale(1.04);
+      opacity: 1;
+    }
+
     100% {
-      transform: translate(0, 0);
-      opacity: 0.15;
-    }
-
-    30% {
-      transform: translate(-120px, 60px);
-      opacity: 0.22;
-    }
-
-    60% {
-      transform: translate(80px, -40px);
-      opacity: 0.18;
-    }
-  }
-
-  @keyframes spotlight-3-move {
-    0%,
-    100% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 0.15;
-    }
-
-    33% {
-      transform: translate(-50%, -50%) translate(60px, -80px) scale(1.2);
-      opacity: 0.2;
-    }
-
-    66% {
-      transform: translate(-50%, -50%) translate(-70px, 50px) scale(0.9);
-      opacity: 0.12;
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
     }
   }
 }
@@ -180,14 +186,20 @@
     --color-foreground: 18 26 52;
     --color-foreground-muted: 88 104 150;
     --color-foreground-soft: 58 76 130;
-    --color-background-start: 241 245 255;
-    --color-background-end: 224 234 255;
-    --color-surface: 248 250 255;
+    --color-background-start: 252 253 255;
+    --color-background-end: 245 248 255;
+    --color-surface: 254 254 255;
     --color-overlay: 255 255 255;
-    --color-spotlight-1: 210 220 255;
-    --color-spotlight-2: 176 188 255;
-    --color-spotlight-3: 168 206 255;
+    --color-spotlight-1: 8 12 45;
+    --color-spotlight-2: 20 8 55;
+    --color-spotlight-3: 6 28 65;
     --color-footer-muted: 120 134 170;
+    --color-hero-gradient-from: 31 37 70;
+    --color-hero-gradient-via: 60 85 164;
+    --color-hero-gradient-to: 106 136 255;
+    --spotlight-alpha-strong: 0.7;
+    --spotlight-alpha-medium: 0.42;
+    --spotlight-alpha-soft: 0.2;
   }
 }
 
@@ -210,6 +222,106 @@ body {
   color: rgb(var(--color-foreground));
   background: linear-gradient(to bottom, transparent, rgb(var(--color-background-end)))
     rgb(var(--color-background-start));
+}
+
+.spotlight-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.spotlight {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.spotlight-1 {
+  width: 500px;
+  height: 500px;
+  filter: blur(150px);
+  background: radial-gradient(
+    circle at center,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-strong)) 0%,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-strong)) 3%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.9)) 8%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.75)) 15%,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-medium)) 25%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.8)) 35%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.6)) 45%,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-soft)) 55%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.7)) 65%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.4)) 75%,
+    rgb(var(--color-spotlight-1) / 0.05) 85%,
+    transparent 95%
+  );
+  top: 6%;
+  left: 12%;
+  animation: spotlight-1-move 15s ease-in-out infinite;
+}
+
+.spotlight-2 {
+  width: 450px;
+  height: 450px;
+  filter: blur(140px);
+  background: radial-gradient(
+    circle at center,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-strong)) 0%,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-strong)) 3%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.9)) 8%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.75)) 15%,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-medium)) 25%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.8)) 35%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.6)) 45%,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-soft)) 55%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.7)) 65%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.4)) 75%,
+    rgb(var(--color-spotlight-1) / 0.05) 85%,
+    transparent 95%
+  );
+  bottom: 12%;
+  right: 10%;
+  animation: spotlight-2-move 18s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .spotlight-1 {
+    width: 350px;
+    height: 350px;
+    top: 5%;
+    left: 5%;
+  }
+
+  .spotlight-2 {
+    width: 320px;
+    height: 320px;
+    bottom: 8%;
+    right: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .spotlight-1 {
+    width: 280px;
+    height: 280px;
+    filter: blur(100px);
+    top: 3%;
+    left: 0%;
+  }
+
+  .spotlight-2 {
+    width: 260px;
+    height: 260px;
+    filter: blur(90px);
+    bottom: 5%;
+    right: 0%;
+  }
 }
 
 a {

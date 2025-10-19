@@ -7,13 +7,13 @@ export default function Hero() {
 
   return (
     <>
-      <h1 className="text-[clamp(4rem,15vw,11rem)] font-thin leading-[1.1] tracking-[-0.03em] m-0 animate-[fade-in-up_1s_ease-out] max-md:text-[clamp(2.5rem,12vw,5rem)]">
-        <span className="bg-gradient-to-br from-white via-indigo-100 to-indigo-400 bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradient-shift_8s_ease_infinite,fade-in-up_1s_ease-out] inline-block font-thin dark:from-white dark:via-indigo-200 dark:to-indigo-400 light:from-[#1f2546] light:via-[#3c55a4] light:to-[#6a88ff]">
+      <h1 className="text-[clamp(4rem,15vw,11rem)] font-thin leading-[1.1] tracking-[-0.03em] m-0 animate-[fade-in-up_1s_ease-out] md:text-[clamp(4rem,15vw,11rem)] max-md:text-[clamp(3.5rem,14vw,5.5rem)] max-[480px]:text-[clamp(3rem,13vw,4.5rem)]">
+        <span className="bg-gradient-to-br from-[rgb(var(--color-hero-gradient-from))] via-[rgb(var(--color-hero-gradient-via))] to-[rgb(var(--color-hero-gradient-to))] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradient-shift_8s_ease_infinite,fade-in-up_1s_ease-out] inline-block font-thin">
           {t("brandName")}
         </span>
       </h1>
 
-      <p className="text-[rgb(var(--color-foreground-soft)/0.65)] font-extralight text-[clamp(0.875rem,1.8vw,1.05rem)] leading-[1.7] tracking-[0.01em] max-w-[650px] mx-auto my-0 animate-[fade-in-up_1s_ease-out_0.2s_both] max-md:text-[clamp(0.8rem,1.8vw,0.95rem)] max-md:max-w-[85%] max-[480px]:text-[0.75rem] max-[480px]:max-w-[90%] [text-shadow:0_0_40px_rgb(var(--color-accent-indigo)_/_0.15)]">
+      <p className="text-[rgb(var(--color-foreground-soft)/0.65)] font-extralight text-[clamp(0.875rem,1.8vw,1.05rem)] leading-[1.7] tracking-[0.01em] max-w-[650px] mx-auto my-0 animate-[fade-in-up_1s_ease-out_0.2s_both] md:text-[clamp(0.875rem,1.8vw,1.05rem)] max-md:text-[1rem] max-md:max-w-[85%] max-[480px]:text-[0.95rem] max-[480px]:max-w-[90%] max-[480px]:leading-[1.6] [text-shadow:0_0_40px_rgb(var(--color-accent-indigo)_/_0.15)]">
         {t("tagline")}
       </p>
     </>

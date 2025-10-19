@@ -6,5 +6,6 @@
   "emailPlaceholder": "you@company.com",
   "submit": "Reserve My Spot",
   "thankYou": "You're in! We'll be in touch soon.",
+  "error": "Something went wrong. Please try again.",
   "footer": "© 2025 Zet Labs · Building the future of AI"
 }

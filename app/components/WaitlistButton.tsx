@@ -1,20 +1,18 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 
+type State = "button" | "input" | "submitted" | "error";
+
 export default function WaitlistButton() {
   const { t } = useTranslation();
-  const [state, setState] = useState<"button" | "input" | "submitted">("button");
+  const [state, setState] = useState<State>("button");
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
-  const timestampRef = useRef<number>(Date.now());
-
-  const handleButtonClick = () => {
-    setState("input");
-  };
+  const timestampRef = useRef(Date.now());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,33 +20,27 @@ export default function WaitlistButton() {
     try {
       const response = await fetch("/api/waitlist", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email,
-          honeypot, // Should be empty
-          timestamp: timestampRef.current, // When component mounted
+          honeypot,
+          timestamp: timestampRef.current,
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        console.error("Error:", data.error);
-        // You might want to show an error message to the user
+        setState("error");
         return;
       }
 
       setState("submitted");
-    } catch (error) {
-      console.error("Failed to submit email:", error);
-      // You might want to show an error message to the user
+    } catch {
+      setState("error");
     }
   };
 
   useEffect(() => {
-    if (state === "submitted") {
+    if (state === "submitted" || state === "error") {
       const timer = setTimeout(() => {
         setState("button");
         setEmail("");
@@ -57,13 +49,14 @@ export default function WaitlistButton() {
     }
   }, [state]);
 
+  const messageClass =
+    "text-sm font-light text-[rgb(var(--color-foreground-soft)/0.75)] tracking-[0.02em] animate-[fade-in-up_0.6s_ease-out] text-center";
+
   return (
     <div className="min-h-[5.5rem] flex items-center justify-center">
-      {state === "submitted" && (
-        <div className="text-sm font-light text-[rgb(var(--color-foreground-soft)/0.75)] tracking-[0.02em] animate-[fade-in-up_0.6s_ease-out] text-center">
-          {t("thankYou")}
-        </div>
-      )}
+      {state === "submitted" && <div className={messageClass}>{t("thankYou")}</div>}
+
+      {state === "error" && <div className={messageClass}>{t("error")}</div>}
 
       {state === "input" && (
         <form
@@ -77,13 +70,7 @@ export default function WaitlistButton() {
             onChange={(e) => setHoneypot(e.target.value)}
             tabIndex={-1}
             autoComplete="off"
-            style={{
-              position: "absolute",
-              left: "-9999px",
-              width: "1px",
-              height: "1px",
-              opacity: 0,
-            }}
+            className="absolute -left-[9999px] w-px h-px opacity-0"
             aria-hidden="true"
           />
           <Input
@@ -101,7 +88,7 @@ export default function WaitlistButton() {
       )}
 
       {state === "button" && (
-        <Button size="lg" withGlowEffect onClick={handleButtonClick}>
+        <Button size="lg" withGlowEffect onClick={() => setState("input")}>
           {t("joinWaitlist")}
         </Button>
       )}

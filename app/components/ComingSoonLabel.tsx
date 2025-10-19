@@ -8,7 +8,6 @@ export default function ComingSoonLabel() {
 
   return (
     <Badge
-      variant="default"
       size="md"
       className="-mb-4 animate-[fade-in-down_1s_ease-out,gentle-float_3s_ease-in-out_infinite] [animation-delay:0s,1s]"
     >

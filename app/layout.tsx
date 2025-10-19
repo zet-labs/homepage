@@ -1,7 +1,10 @@
-"use client";
-
 import "./globals.css";
-import "./i18n";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ZetLabs",
+  description: "Coming soon",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

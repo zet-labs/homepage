@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ZetLabs",
-  description: "Coming soon",
+  title: "Zet AI | Zet Labs",
+  description: "The next generation of AI agents. Powerful, elegant, yours.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

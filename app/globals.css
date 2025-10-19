@@ -37,7 +37,6 @@
   --animate-spotlight-3: spotlight-3-move 20s ease-in-out infinite;
 
   @keyframes gradient-shift {
-
     0%,
     100% {
       background-position: 0% 50%;
@@ -73,7 +72,6 @@
   }
 
   @keyframes gentle-float {
-
     0%,
     100% {
       transform: translateY(0px);
@@ -85,7 +83,6 @@
   }
 
   @keyframes float {
-
     0%,
     100% {
       transform: translate(0, 0) scale(1);
@@ -101,7 +98,6 @@
   }
 
   @keyframes pulse-glow {
-
     0%,
     100% {
       box-shadow:
@@ -225,7 +221,8 @@ body {
 body {
   color: rgb(var(--color-foreground));
   background:
-    linear-gradient(to bottom,
+    linear-gradient(
+      to bottom,
       rgb(var(--color-background-start)) 0%,
       rgb(var(--color-background-start) / 0.98) 10%,
       rgb(var(--color-background-start) / 0.95) 20%,
@@ -236,20 +233,19 @@ body {
       rgb(var(--color-background-start) / 0.38) 70%,
       rgb(var(--color-background-start) / 0.2) 80%,
       rgb(var(--color-background-start) / 0.08) 90%,
-      transparent 100%),
-    rgb(var(--color-background-end));
+      transparent 100%
+    ), rgb(var(--color-background-end));
   position: relative;
 }
 
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   opacity: 0.015;
   pointer-events: none;
   z-index: 1;
@@ -278,36 +274,38 @@ body::before {
   width: 500px;
   height: 500px;
   filter: blur(150px);
-  background: radial-gradient(circle at center,
-      rgb(var(--color-spotlight-1) / var(--spotlight-alpha-strong)) 0%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.98)) 2%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.95)) 4%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.92)) 6%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.88)) 8%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.84)) 10%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.79)) 13%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.73)) 16%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.67)) 20%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 1.1)) 24%,
-      rgb(var(--color-spotlight-1) / var(--spotlight-alpha-medium)) 28%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.92)) 32%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.84)) 36%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.76)) 40%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.68)) 44%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.6)) 48%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.4)) 52%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.2)) 56%,
-      rgb(var(--color-spotlight-1) / var(--spotlight-alpha-soft)) 60%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.85)) 64%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.7)) 68%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.55)) 72%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.4)) 76%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.28)) 80%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.18)) 84%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.1)) 88%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.05)) 92%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.02)) 95%,
-      transparent 100%);
+  background: radial-gradient(
+    circle at center,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-strong)) 0%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.98)) 2%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.95)) 4%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.92)) 6%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.88)) 8%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.84)) 10%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.79)) 13%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.73)) 16%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.67)) 20%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 1.1)) 24%,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-medium)) 28%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.92)) 32%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.84)) 36%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.76)) 40%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.68)) 44%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.6)) 48%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.4)) 52%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.2)) 56%,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-soft)) 60%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.85)) 64%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.7)) 68%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.55)) 72%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.4)) 76%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.28)) 80%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.18)) 84%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.1)) 88%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.05)) 92%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.02)) 95%,
+    transparent 100%
+  );
   top: 6%;
   left: 12%;
   animation: spotlight-1-move 15s ease-in-out infinite;
@@ -317,36 +315,38 @@ body::before {
   width: 450px;
   height: 450px;
   filter: blur(140px);
-  background: radial-gradient(circle at center,
-      rgb(var(--color-spotlight-1) / var(--spotlight-alpha-strong)) 0%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.98)) 2%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.95)) 4%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.92)) 6%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.88)) 8%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.84)) 10%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.79)) 13%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.73)) 16%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.67)) 20%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 1.1)) 24%,
-      rgb(var(--color-spotlight-1) / var(--spotlight-alpha-medium)) 28%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.92)) 32%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.84)) 36%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.76)) 40%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.68)) 44%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.6)) 48%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.4)) 52%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.2)) 56%,
-      rgb(var(--color-spotlight-1) / var(--spotlight-alpha-soft)) 60%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.85)) 64%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.7)) 68%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.55)) 72%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.4)) 76%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.28)) 80%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.18)) 84%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.1)) 88%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.05)) 92%,
-      rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.02)) 95%,
-      transparent 100%);
+  background: radial-gradient(
+    circle at center,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-strong)) 0%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.98)) 2%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.95)) 4%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.92)) 6%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.88)) 8%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.84)) 10%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.79)) 13%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.73)) 16%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.67)) 20%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 1.1)) 24%,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-medium)) 28%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.92)) 32%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.84)) 36%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.76)) 40%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.68)) 44%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.6)) 48%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.4)) 52%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.2)) 56%,
+    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-soft)) 60%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.85)) 64%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.7)) 68%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.55)) 72%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.4)) 76%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.28)) 80%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.18)) 84%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.1)) 88%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.05)) 92%,
+    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.02)) 95%,
+    transparent 100%
+  );
   bottom: 12%;
   right: 10%;
   animation: spotlight-2-move 18s ease-in-out infinite;

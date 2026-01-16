@@ -1,11 +1,47 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:rgb(139,92,246);stop-opacity:1" />
-      <stop offset="50%" style="stop-color:rgb(99,102,241);stop-opacity:1" />
-      <stop offset="100%" style="stop-color:rgb(59,130,246);stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <rect width="32" height="32" rx="6" fill="#0a0a0f"/>
-  <path d="M8 11 L22 11 L8 21 L14 21 M14 21 L24 21 L24 19" stroke="url(#grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width="24"
+  height="24"
+>
+
+  <!-- Black background -->
+  <rect
+    x="0"
+    y="0"
+    width="24"
+    height="24"
+    fill="rgb(0, 0, 0)"
+  />
+
+  <!-- Outer hexagon -->
+  <polygon
+    points="12 2.5 20.5 7.5 20.5 16.5 12 21.5 3.5 16.5 3.5 7.5"
+    fill="none"
+    stroke="rgb(227, 232, 255)"
+    stroke-width="1.6"
+    stroke-linejoin="round"
+  />
+
+  <!-- Inner hexagon -->
+  <polygon
+    points="12 5.5 18 9 18 15 12 18.5 6 15 6 9"
+    fill="none"
+    stroke="rgb(227, 232, 255)"
+    stroke-width="1"
+    stroke-linejoin="round"
+    opacity="0.5"
+  />
+
+  <!-- Side rectangle (cut / notch) -->
+  <rect
+    x="19.4"
+    y="9.4"
+    width="2"
+    height="5.2"
+    rx="1"
+    fill="rgb(0, 0, 0)"
+  />
+
 </svg>

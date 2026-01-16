@@ -20,6 +20,11 @@ export default function JobsPageClient() {
   const t = useTranslations("jobs");
   const common = useTranslations("common");
   const roles = t.raw("roles") as Job[];
+  const stack = t.raw("stack") as {
+    title: string;
+    subtitle: string;
+    groups: { title: string; items: string[] }[];
+  };
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [activeId, setActiveId] = useState<string | null>(null);
 
@@ -65,6 +70,51 @@ export default function JobsPageClient() {
             </span>
           </div>
         </div>
+
+        <section className="mt-12 relative overflow-hidden rounded-[30px] border border-[rgb(var(--color-foreground)/0.1)] bg-[radial-gradient(900px_circle_at_15%_-20%,rgb(var(--color-accent-indigo)/0.18),transparent_55%),radial-gradient(700px_circle_at_85%_0%,rgb(var(--color-accent-purple)/0.16),transparent_60%),linear-gradient(160deg,rgb(var(--color-surface)/0.75)_0%,rgb(var(--color-surface)/0.4)_60%,rgb(var(--color-surface)/0.2)_100%)] backdrop-blur-2xl p-7 md:p-9 shadow-[0_30px_80px_rgb(0_0_0/0.22)]">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(99,102,241,0.6),rgba(139,92,246,0.6),transparent)] opacity-70" />
+          <div className="pointer-events-none absolute -top-24 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgb(var(--color-foreground)/0.18),transparent_70%)] blur-3xl" />
+          <div className="relative flex flex-col gap-7">
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <h2 className="text-[rgb(var(--color-foreground))] text-2xl md:text-3xl font-semibold tracking-tight">
+                  {stack.title}
+                </h2>
+                <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[rgb(var(--color-foreground)/0.15)] bg-[rgb(var(--color-foreground)/0.04)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-[rgb(var(--color-foreground-muted)/0.85)]">
+                  {stack.kicker}
+                </span>
+              </div>
+              <p className="text-[rgb(var(--color-foreground-soft)/0.9)] text-[1rem] max-w-[760px]">
+                {stack.subtitle}
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {stack.groups.map((group) => (
+                <div
+                  key={group.title}
+                  className="group rounded-2xl border border-[rgb(var(--color-foreground)/0.1)] bg-[linear-gradient(160deg,rgb(var(--color-surface)/0.6),rgb(var(--color-surface)/0.25))] p-5 shadow-[inset_0_1px_0_rgb(255_255_255/0.08)] transition-transform duration-300 hover:-translate-y-1"
+                >
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-[11px] font-semibold tracking-[0.24em] uppercase text-[rgb(var(--color-foreground-muted)/0.75)]">
+                      {group.title}
+                    </h3>
+                    <span className="h-px flex-1 ml-3 bg-[linear-gradient(90deg,transparent,rgb(var(--color-foreground)/0.2),transparent)]" />
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <span
+                        key={item}
+                        className="px-3 py-1 rounded-full text-[12px] font-medium text-[rgb(var(--color-foreground))] bg-[rgb(var(--color-foreground)/0.06)] border border-[rgb(var(--color-foreground)/0.12)] shadow-[0_8px_16px_rgb(0_0_0/0.08)]"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <div className="mt-10 flex flex-col gap-12">
           {[

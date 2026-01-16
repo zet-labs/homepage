@@ -95,6 +95,45 @@
     "heroTitle": "Budujte s námi budoucnost AI",
     "heroSubtitle": "Jsme malý tým, který jde rychle po velkých problémech. Pokud vás baví výkon, odpovědnost a doručování reálných systémů, budete tu jako doma.",
     "status": "Jedeme naplno. Pokud vám role sedí, ozvěte se.",
+    "stack": {
+      "kicker": "Engineering",
+      "title": "Náš stack",
+      "subtitle": "Technologie, se kterými stavíme každý den. Volíme je pro rychlost, spolehlivost a doručování reálných systémů.",
+      "groups": [
+        {
+          "title": "Databáze a úložiště",
+          "items": [
+            "ClickHouse",
+            "Meilisearch",
+            "Qdrant",
+            "SurrealDB",
+            "Valkey",
+            "SeaweedFS",
+            "StarRocks"
+          ]
+        },
+        {
+          "title": "Jazyky a formáty",
+          "items": ["Go", "TypeScript", "Rust", "Python", "Protobuf", "JSON"]
+        },
+        {
+          "title": "Messaging & streaming",
+          "items": ["NATS", "Kafka"]
+        },
+        {
+          "title": "Infrastruktura",
+          "items": ["Docker", "Kubernetes", "REST API"]
+        },
+        {
+          "title": "Frontend",
+          "items": ["React", "Tailwind", "Next.js", "TanStack Start"]
+        },
+        {
+          "title": "ML stack",
+          "items": ["TensorFlow", "PyTorch", "JAX", "Hugging Face", "ONNX", "CUDA / Triton", "vLLM"]
+        }
+      ]
+    },
     "sections": {
       "responsibilities": "Co budete dělat",
       "requirements": "Klíčové požadavky"
@@ -258,6 +297,27 @@
       "title": "Integrace",
       "subtitle": "AI pro váš stack",
       "desc": "Zapojujeme inteligenci do existujících systémů. Vaše data, vaše infrastruktura, naše modely. Production-ready od prvního dne."
+    }
+  },
+  "diagram": {
+    "subtitle": "Jak to funguje",
+    "title": "AI Agent v jádru",
+    "description": "Jeden inteligentní hub, který propojuje vaše datové zdroje s vašimi firemními systémy. Automatizuje workflow, synchronizuje data a rozhoduje v reálném čase. Tiše na pozadí ubírá rutinní, zdlouhavou práci.",
+    "agentLabel": "Zet Flow",
+    "inputsLabel": "Datové zdroje",
+    "outputsLabel": "Firemní systémy",
+    "inputs": {
+      "email": "E-mail",
+      "chat": "Chat",
+      "calendar": "Kalendář",
+      "docs": "Dokumenty",
+      "forms": "Formuláře"
+    },
+    "outputs": {
+      "crm": "CRM",
+      "warehouse": "Sklad",
+      "ledger": "Účetnictví",
+      "database": "Databáze"
     }
   },
   "models": {

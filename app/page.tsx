@@ -12,6 +12,7 @@ import ScrollIndicator from "./components/ScrollIndicator";
 import ScrollRevealHandler from "./components/ScrollRevealHandler";
 import SecurityBadges from "./components/SecurityBadges";
 import Services from "./components/Services";
+import AIAgentDiagram from "./components/AIAgentDiagram";
 import {
   BottomCTASkeleton,
   FooterSkeleton,
@@ -77,6 +78,10 @@ export default function Home() {
           <Suspense fallback={<ServicesSkeleton />}>
             <Services />
           </Suspense>
+        </section>
+
+        <section className="w-full max-w-[1200px]">
+          <AIAgentDiagram />
         </section>
 
         <section id="models" className="py-16 w-full max-w-[1200px] max-md:py-12 scroll-mt-16">

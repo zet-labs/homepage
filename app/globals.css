@@ -565,3 +565,39 @@ a {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* AI Agent Diagram Animations */
+.diagram-line {
+  stroke-dasharray: 8 4;
+  animation: diagram-line-flow 1.5s linear infinite;
+}
+
+.diagram-hub-pulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: diagram-hub-pulse 4.8s ease-in-out infinite;
+}
+
+@keyframes diagram-line-flow {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes diagram-hub-pulse {
+  0% {
+    opacity: 0.28;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.28;
+    transform: scale(1);
+  }
+}

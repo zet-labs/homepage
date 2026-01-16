@@ -95,6 +95,45 @@
     "heroTitle": "Build the future of AI, with us",
     "heroSubtitle": "We are a small team moving fast on ambitious problems. If you care about performance, ownership, and shipping real systems, you will love it here.",
     "status": "We are moving fast. If a role clicks with you, just reach out.",
+    "stack": {
+      "kicker": "Engineering",
+      "title": "Our stack",
+      "subtitle": "Tools we build with every day, chosen for speed, reliability, and shipping real systems.",
+      "groups": [
+        {
+          "title": "Databases & Storage",
+          "items": [
+            "ClickHouse",
+            "Meilisearch",
+            "Qdrant",
+            "SurrealDB",
+            "Valkey",
+            "SeaweedFS",
+            "StarRocks"
+          ]
+        },
+        {
+          "title": "Languages & Formats",
+          "items": ["Go", "TypeScript", "Rust", "Python", "Protobuf", "JSON"]
+        },
+        {
+          "title": "Messaging & Streaming",
+          "items": ["NATS", "Kafka"]
+        },
+        {
+          "title": "Infrastructure",
+          "items": ["Docker", "Kubernetes", "REST API"]
+        },
+        {
+          "title": "Frontend",
+          "items": ["React", "Tailwind", "Next.js", "TanStack Start"]
+        },
+        {
+          "title": "ML Stack",
+          "items": ["TensorFlow", "PyTorch", "JAX", "Hugging Face", "ONNX", "CUDA / Triton", "vLLM"]
+        }
+      ]
+    },
     "sections": {
       "responsibilities": "What you will do",
       "requirements": "Key requirements"
@@ -258,6 +297,27 @@
       "title": "Integration",
       "subtitle": "AI for your stack",
       "desc": "We plug intelligence into existing systems. Your data, your infrastructure, our models. Production-ready from day one."
+    }
+  },
+  "diagram": {
+    "subtitle": "How It Works",
+    "title": "AI Agent at the Core",
+    "description": "One intelligent hub that connects your data sources to your business systems. Automate workflows, sync data, and make decisions in real-time. It quietly takes repetitive work off your plate so your team stays focused.",
+    "agentLabel": "Zet Flow",
+    "inputsLabel": "Data Sources",
+    "outputsLabel": "Business Systems",
+    "inputs": {
+      "email": "Email",
+      "chat": "Chat",
+      "calendar": "Calendar",
+      "docs": "Documents",
+      "forms": "Forms"
+    },
+    "outputs": {
+      "crm": "CRM",
+      "warehouse": "Warehouse",
+      "ledger": "Ledger",
+      "database": "Database"
     }
   },
   "models": {

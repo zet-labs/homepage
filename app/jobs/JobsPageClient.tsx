@@ -21,6 +21,7 @@ export default function JobsPageClient() {
   const common = useTranslations("common");
   const roles = t.raw("roles") as Job[];
   const stack = t.raw("stack") as {
+    kicker: string;
     title: string;
     subtitle: string;
     groups: { title: string; items: string[] }[];

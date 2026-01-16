@@ -13,6 +13,10 @@
   "common": {
     "separator": "•"
   },
+  "scrollIndicator": {
+    "explore": "Explore",
+    "scroll": "Scroll"
+  },
   "nav": {
     "services": "What We Do",
     "models": "Models",

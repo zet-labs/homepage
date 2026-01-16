@@ -13,6 +13,10 @@
   "common": {
     "separator": "•"
   },
+  "scrollIndicator": {
+    "explore": "Prozkoumejte",
+    "scroll": "Posuňte"
+  },
   "nav": {
     "services": "Co děláme",
     "models": "Modely",

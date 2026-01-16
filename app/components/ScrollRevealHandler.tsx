@@ -12,13 +12,17 @@ export default function ScrollRevealHandler() {
   useEffect(() => {
     if (!hydrated) return;
 
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const hash = window.location.hash;
     if (!hash) return;
 
     const timeoutId = setTimeout(() => {
       const element = document.querySelector(hash);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        element.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+          block: "start",
+        });
       }
 
       if (hash === "#waitlist") {
@@ -32,11 +36,20 @@ export default function ScrollRevealHandler() {
   useEffect(() => {
     if (!hydrated) return;
 
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!window.location.hash) {
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";
       }
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+
+    if (prefersReducedMotion) {
+      const elements = document.querySelectorAll(".reveal-on-scroll");
+      for (const el of elements) {
+        el.classList.add("revealed");
+      }
+      return;
     }
 
     let observer: IntersectionObserver | null = null;

@@ -1,18 +1,44 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslations } from "next-intl";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 
 type State = "button" | "input" | "submitted" | "error";
 
-export default function WaitlistButton() {
-  const { t } = useTranslation();
+type WaitlistButtonProps = {
+  variant?: "primary" | "secondary";
+  size?: "sm" | "md" | "lg";
+  withGlowEffect?: boolean;
+};
+
+export default function WaitlistButton({
+  variant = "primary",
+  size = "lg",
+  withGlowEffect = true,
+}: WaitlistButtonProps) {
+  const t = useTranslations();
   const [state, setState] = useState<State>("button");
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
-  const timestampRef = useRef(Date.now());
+  const timestampRef = useRef(0);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const focusInput = () => {
+    const input = inputRef.current;
+    if (!input) return;
+    try {
+      input.focus({ preventScroll: true });
+    } catch {
+      input.focus();
+    }
+  };
+
+  useEffect(() => {
+    if (state === "input" && timestampRef.current === 0) {
+      timestampRef.current = Date.now();
+    }
+  }, [state]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,6 +75,22 @@ export default function WaitlistButton() {
     }
   }, [state]);
 
+  useEffect(() => {
+    if (state === "input") {
+      focusInput();
+    }
+  }, [state]);
+
+  useEffect(() => {
+    const handleOpen = () => {
+      setState("input");
+      setTimeout(() => focusInput(), 0);
+    };
+
+    window.addEventListener("open-waitlist", handleOpen);
+    return () => window.removeEventListener("open-waitlist", handleOpen);
+  }, []);
+
   const messageClass =
     "text-sm font-light text-[rgb(var(--color-foreground-soft)/0.75)] tracking-[0.02em] animate-[fade-in-up_0.6s_ease-out] text-center";
 
@@ -78,8 +120,8 @@ export default function WaitlistButton() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={t("emailPlaceholder")}
-            autoFocus
             required
+            ref={inputRef}
           />
           <Button type="submit" variant="secondary" size="md" className="max-md:w-full">
             {t("submit")}
@@ -88,7 +130,12 @@ export default function WaitlistButton() {
       )}
 
       {state === "button" && (
-        <Button size="lg" withGlowEffect onClick={() => setState("input")}>
+        <Button
+          size={size}
+          variant={variant}
+          withGlowEffect={withGlowEffect}
+          onClick={() => setState("input")}
+        >
           {t("joinWaitlist")}
         </Button>
       )}

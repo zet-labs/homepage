@@ -1,22 +1,27 @@
 "use client";
 
-import { useTranslation } from "react-i18next";
+import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 export default function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const locale = useLocale();
+  const t = useTranslations("languageSwitcher");
+  const router = useRouter();
+  const nextLocale = locale === "en" ? "cs" : "en";
 
   const toggleLanguage = () => {
-    const newLang = i18n.language === "en" ? "cs" : "en";
-    i18n.changeLanguage(newLang);
+    document.cookie = `NEXT_LOCALE=${nextLocale};path=/;max-age=31536000`;
+    router.refresh();
   };
 
   return (
     <button
       type="button"
-      className="fixed top-6 right-6 z-[5] px-[0.8rem] py-2 text-[0.7rem] font-medium text-[rgb(var(--color-foreground-muted)/0.6)] bg-transparent border-none cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] tracking-[0.05em] opacity-60 hover:text-[rgb(var(--color-foreground-muted)/0.95)] hover:opacity-100 active:translate-y-0 max-md:top-4 max-md:right-4 max-md:px-[0.7rem] max-md:py-[0.4rem] max-md:text-[0.65rem]"
+      className="inline-flex items-center justify-center w-8 h-8 max-md:w-7 max-md:h-7 text-xs font-medium text-[rgb(var(--color-foreground-muted)/0.6)] bg-transparent border-none cursor-pointer transition-all duration-300 tracking-wide opacity-60 hover:opacity-100 leading-none shrink-0"
       onClick={toggleLanguage}
+      aria-label={nextLocale === "cs" ? t("ariaToCs") : t("ariaToEn")}
     >
-      {i18n.language === "en" ? "CS" : "EN"}
+      <span className="block">{nextLocale === "cs" ? t("toCs") : t("toEn")}</span>
     </button>
   );
 }

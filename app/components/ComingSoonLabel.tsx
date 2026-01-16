@@ -1,10 +1,8 @@
-"use client";
-
-import { useTranslation } from "react-i18next";
+import { getTranslations } from "next-intl/server";
 import { Badge } from "./ui/Badge";
 
-export default function ComingSoonLabel() {
-  const { t } = useTranslation();
+export default async function ComingSoonLabel() {
+  const t = await getTranslations();
 
   return (
     <Badge

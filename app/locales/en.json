@@ -1,11 +1,449 @@
 {
   "comingSoon": "Coming Soon",
-  "brandName": "Zet AI",
-  "tagline": "The next generation of AI agents. Powerful, elegant, yours.",
+  "labBadge": "Now in private beta",
+  "brandName": "Zet Labs",
+  "tagline": "We build AI with impact.",
   "joinWaitlist": "Get Early Access",
   "emailPlaceholder": "you@company.com",
-  "submit": "Reserve My Spot",
+  "submit": "Join",
   "thankYou": "You're in! We'll be in touch soon.",
   "error": "Something went wrong. Please try again.",
-  "footer": "© 2025 Zet Labs · Building the future of AI"
+  "readyToStart": "Ready to get started?",
+  "trustedBy": "Trusted by",
+  "common": {
+    "separator": "•"
+  },
+  "nav": {
+    "services": "What We Do",
+    "models": "Models",
+    "contact": "Contact",
+    "jobs": "Jobs",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "languageSwitcher": {
+    "toCs": "CS",
+    "toEn": "EN",
+    "ariaToCs": "Switch language to Czech",
+    "ariaToEn": "Switch language to English"
+  },
+  "themeSwitcher": {
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode"
+  },
+  "meta": {
+    "siteName": "Zet Labs",
+    "defaultTitle": "Zet AI | Zet Labs",
+    "defaultDescription": "The next generation of AI agents. Powerful, elegant, yours.",
+    "home": {
+      "title": "Zet Labs | AI Agents for Teams",
+      "description": "The next generation of AI agents. Powerful, elegant, yours."
+    },
+    "jobs": {
+      "title": "Jobs | Zet Labs",
+      "description": "Join Zet Labs and build high-performance AI systems. Explore open roles in Prague."
+    },
+    "contact": {
+      "title": "Contact | Zet Labs",
+      "description": "Get in touch with Zet Labs."
+    },
+    "privacy": {
+      "title": "Privacy Policy | Zet Labs",
+      "description": "How Zet Labs collects, uses, and protects your information."
+    },
+    "terms": {
+      "title": "Terms of Service | Zet Labs",
+      "description": "Terms and conditions for using the Zet Labs website and waitlist."
+    }
+  },
+  "contact": {
+    "kicker": "Contact",
+    "title": "Tell us what you're building",
+    "subtitle": "Share a few details and we will get back to you with the right next step.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Work email",
+    "emailPlaceholder": "you@company.com",
+    "companyLabel": "Company",
+    "companyPlaceholder": "Company name (optional)",
+    "reasonLabel": "Reason",
+    "messageLabel": "Message",
+    "messagePlaceholder": "What do you want to build? Share context and timeline.",
+    "submit": "Send message",
+    "submitting": "Sending...",
+    "success": "Thanks for reaching out. We will reply shortly.",
+    "error": "Something went wrong. Please try again.",
+    "responseTime": "We reply within 1-2 business days.",
+    "privacyNote": "By sending this message you agree to our",
+    "privacyLink": "Privacy Policy",
+    "reasons": {
+      "default": "General inquiry",
+      "options": ["General inquiry", "Partnership", "Enterprise", "Press", "Careers"]
+    }
+  },
+  "contactCta": {
+    "kicker": "Contact",
+    "title": "Tell us your use case",
+    "subtitle": "Share what you want to build and we will help you shape the right solution.",
+    "button": "Contact us"
+  },
+  "jobs": {
+    "heroTitle": "Build the future of AI, with us",
+    "heroSubtitle": "We are a small team moving fast on ambitious problems. If you care about performance, ownership, and shipping real systems, you will love it here.",
+    "status": "We are moving fast. If a role clicks with you, just reach out.",
+    "sections": {
+      "responsibilities": "What you will do",
+      "requirements": "Key requirements"
+    },
+    "categories": {
+      "aiMl": "AI / ML",
+      "frontendBackend": "Frontend / Backend"
+    },
+    "actions": {
+      "copyLink": "Copy link",
+      "copied": "Copied",
+      "apply": "Apply"
+    },
+    "roles": [
+      {
+        "id": "backend-ai-systems",
+        "title": "Systems Maker",
+        "formalTitle": "Backend Engineer, AI Systems",
+        "seniority": "Mid-Senior",
+        "location": "On-site · Prague",
+        "category": "frontend-backend",
+        "summary": "Build fast, reliable backend systems that power our local AI models and client deployments. You will own core infrastructure end-to-end, handle ambiguous problems, and ship performance-first services.",
+        "responsibilities": [
+          "Design high-throughput services for AI workloads with minimal guidance.",
+          "Own APIs from schema to production reliability.",
+          "Optimize inference, data pipelines, and system efficiency.",
+          "Build resilient service communication and failure handling.",
+          "Make systems observable: metrics, logs, tracing."
+        ],
+        "requirements": [
+          "Strong backend experience in microservice architectures.",
+          "Proficiency in TypeScript/Node, Go, Rust, C#, or Python.",
+          "Experience with modern databases (Postgres, Mongo, Qdrant, ClickHouse).",
+          "Solid Docker + Kubernetes know-how.",
+          "Hands-on with NATS or RabbitMQ.",
+          "REST API design, JWT/OAuth2 familiarity.",
+          "Performance- and reliability-focused mindset.",
+          "Comfort owning ambiguous problems end-to-end.",
+          "Bonus: Protobufs or Next/React/Tailwind exposure."
+        ]
+      },
+      {
+        "id": "agent-platform-engineer",
+        "title": "Agent Runtime Architect",
+        "formalTitle": "Agent Platform Engineer",
+        "seniority": "Senior",
+        "location": "On-site · Prague",
+        "category": "ai-ml",
+        "summary": "Own the runtime that powers our agents end-to-end. You will define the platform, make hard trade-offs, and ship systems that keep workflows fast and safe.",
+        "responsibilities": [
+          "Build agent execution runtimes with strong isolation and observability.",
+          "Design tool and connector interfaces for external systems.",
+          "Implement scheduling, retries, and guardrails for long-running tasks.",
+          "Ship performance improvements across orchestration and memory layers.",
+          "Define platform primitives from fuzzy requirements."
+        ],
+        "requirements": [
+          "Experience building distributed systems or orchestration platforms.",
+          "Strong TypeScript/Node, Go, or Rust background.",
+          "Familiarity with event-driven systems, queues, or pub/sub.",
+          "Comfort with profiling, benchmarking, and performance tuning.",
+          "Security-first mindset around data access and isolation.",
+          "Ownership mindset in ambiguous environments."
+        ]
+      },
+      {
+        "id": "applied-ml-engineer",
+        "title": "Model Performance Lead",
+        "formalTitle": "Applied ML Engineer",
+        "seniority": "Mid-Senior",
+        "location": "On-site · Prague",
+        "category": "ai-ml",
+        "summary": "Ship model improvements that matter in production. You will own experiments end-to-end and push them into real client workflows.",
+        "responsibilities": [
+          "Run experiments on fine-tuning, retrieval, and evaluation.",
+          "Build tooling for model benchmarking and regression testing.",
+          "Optimize inference performance and memory usage.",
+          "Collaborate with engineers to ship model updates safely.",
+          "Translate customer feedback into measurable model goals."
+        ],
+        "requirements": [
+          "Hands-on experience with LLMs and modern ML toolchains.",
+          "Strong Python skills and familiarity with PyTorch or JAX.",
+          "Experience with evaluation frameworks and dataset curation.",
+          "Comfort deploying models to production environments.",
+          "Clear communication of experimental results and trade-offs.",
+          "Comfort owning ambiguous problems end-to-end."
+        ]
+      },
+      {
+        "id": "junior-ml-engineer",
+        "title": "ML Apprentice",
+        "formalTitle": "Junior ML Engineer",
+        "seniority": "Junior",
+        "location": "On-site · Prague",
+        "category": "ai-ml",
+        "summary": "Work alongside senior engineers on model tuning, data pipelines, and client deployments. You will learn fast, take ownership of scoped projects, and grow into full stack ML work.",
+        "responsibilities": [
+          "Assist with dataset preparation, evaluation, and analysis.",
+          "Implement experiments and track results in a reproducible way.",
+          "Help ship model updates and monitor quality in production.",
+          "Build small tools and scripts that improve our workflows.",
+          "Ask questions early and close feedback loops quickly."
+        ],
+        "requirements": [
+          "Solid Python fundamentals and basic ML knowledge.",
+          "Familiarity with Git and reproducible workflows.",
+          "Curiosity and ability to learn fast.",
+          "Clear communication and ownership of tasks.",
+          "Bonus: exposure to PyTorch, JAX, or data pipelines."
+        ]
+      },
+      {
+        "id": "frontend-engineer",
+        "title": "Product Interface Maker",
+        "formalTitle": "Frontend Engineer",
+        "seniority": "Mid-Level",
+        "location": "On-site · Prague",
+        "category": "frontend-backend",
+        "summary": "Craft fast, elegant frontends for our AI products and client deployments. You will own UI features end-to-end and turn ambiguous product goals into polished experiences.",
+        "responsibilities": [
+          "Build responsive UI components with React and Next.js.",
+          "Ship production-ready interfaces with Tailwind CSS.",
+          "Own frontend performance, accessibility, and UX polish.",
+          "Collaborate closely with product and backend engineers.",
+          "Turn rough ideas into clear, shippable UI."
+        ],
+        "requirements": [
+          "Strong React and TypeScript fundamentals.",
+          "Experience with Next.js and Tailwind CSS.",
+          "Good eye for UX and visual quality.",
+          "Comfort owning ambiguous problems end-to-end.",
+          "Bonus: familiarity with design systems or Figma."
+        ]
+      }
+    ],
+    "footer": {
+      "title": "Not seeing your role?",
+      "body": "We are always looking for exceptional engineers. Send a short intro and what you want to build with us.",
+      "cta": "Contact us"
+    }
+  },
+  "security": {
+    "soc2": "No Data Retention",
+    "gdpr": "GDPR Ready",
+    "encrypted": "End-to-End Encrypted"
+  },
+  "services": {
+    "title": "What We Do",
+    "research": {
+      "title": "Research",
+      "subtitle": "Pushing the frontier",
+      "desc": "We explore novel architectures, improve reasoning, and optimize inference. Applied research that ships to production."
+    },
+    "agentic": {
+      "title": "Agents",
+      "subtitle": "AI that executes",
+      "desc": "Autonomous systems that don't just respond - they act. Built for complex workflows, tool use, and real-world decision making."
+    },
+    "solutions": {
+      "title": "Integration",
+      "subtitle": "AI for your stack",
+      "desc": "We plug intelligence into existing systems. Your data, your infrastructure, our models. Production-ready from day one."
+    }
+  },
+  "models": {
+    "title": "Our Models",
+    "subtitle": "Fine-tuned for performance",
+    "description": "Optimized in-house for speed and reliability. No wrappers, no external APIs - just fast inference tuned for real-world workloads.",
+    "bestForTitle": "Best for",
+    "nano": {
+      "name": "Nano",
+      "badge": "Edge-Ready",
+      "subtitle": "Small. Fast. Everywhere.",
+      "desc": "Optimized for resource-constrained environments. Runs on-device, in-browser, at the edge. Sub-100ms latency, minimal memory footprint. Intelligence without the infrastructure.",
+      "bestFor": ["Edge devices", "Browser assistants", "Low-latency tasks"]
+    },
+    "flow": {
+      "name": "Flow",
+      "badge": "Agentic",
+      "subtitle": "Less talk. More work.",
+      "desc": "Purpose-built for autonomous execution. Excels at multi-step reasoning, tool orchestration, and long-horizon tasks. The model that gets things done.",
+      "bestFor": ["Workflow automation", "Tool orchestration", "Multi-step agents"]
+    },
+    "one": {
+      "name": "One",
+      "badge": "Flagship",
+      "subtitle": "Maximum capability.",
+      "desc": "Our most powerful model. State-of-the-art reasoning, deep domain expertise, complex problem solving. When the task demands the best, this is it.",
+      "bestFor": ["Complex reasoning", "Domain expert tasks", "High-stakes decisions"]
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Zet Labs",
+    "github": "GitHub",
+    "twitter": "X",
+    "twitterAria": "X (Twitter)",
+    "contact": "Contact",
+    "email": "Email",
+    "tagline": "Made with mass amounts of ☕ and 🔥 GPUs in Czechia.",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "legal": {
+    "privacy": {
+      "kicker": "Legal",
+      "title": "Privacy Policy",
+      "updated": "Effective date: January 1, 2026",
+      "intro": "We respect your privacy. This policy explains what we collect when you use the Zet Labs website and waitlist form, and how we use that information.",
+      "sections": {
+        "data": {
+          "title": "Information we collect",
+          "body": [
+            "Contact details you provide, such as your email when joining the waitlist.",
+            "Basic usage data (page views and interactions) to improve the site.",
+            "Essential cookies required for site functionality."
+          ]
+        },
+        "use": {
+          "title": "How we use your information",
+          "body": [
+            "Operate, maintain, and improve the website and waitlist experience.",
+            "Respond to inquiries and send waitlist updates.",
+            "Protect against abuse and keep the site secure."
+          ]
+        },
+        "sharing": {
+          "title": "Sharing",
+          "body": [
+            "We do not sell your data.",
+            "We may share data with trusted service providers who help us run the site.",
+            "We may disclose information if required by law."
+          ]
+        },
+        "security": {
+          "title": "Security",
+          "body": [
+            "We use reasonable safeguards to protect your data.",
+            "No method of transmission or storage is 100% secure."
+          ]
+        },
+        "choices": {
+          "title": "Your choices",
+          "body": [
+            "You can request access, correction, or deletion of your data.",
+            "You can opt out of waitlist emails at any time."
+          ]
+        },
+        "contact": {
+          "title": "Contact",
+          "body": "Questions? Email us at hello@zetlabs.ai."
+        }
+      }
+    },
+    "terms": {
+      "kicker": "Legal",
+      "title": "Terms of Service",
+      "updated": "Effective date: January 1, 2026",
+      "intro": "By using the Zet Labs website, you agree to these terms. If you do not agree, please do not use the site.",
+      "sections": {
+        "use": {
+          "title": "Use of the site",
+          "body": [
+            "Do not misuse the site or attempt unauthorized access.",
+            "You must comply with applicable laws when using the site."
+          ]
+        },
+        "ip": {
+          "title": "Intellectual property",
+          "body": [
+            "All content on this site is owned by Zet Labs or its licensors.",
+            "You may not copy, modify, or distribute content without permission."
+          ]
+        },
+        "waitlist": {
+          "title": "Waitlist",
+          "body": [
+            "Submitting the waitlist form does not guarantee access.",
+            "We may contact you about the product and availability."
+          ]
+        },
+        "disclaimer": {
+          "title": "Disclaimers",
+          "body": [
+            "The site is provided on an \"as is\" basis without warranties.",
+            "We do not guarantee the site will be available or error-free."
+          ]
+        },
+        "liability": {
+          "title": "Limitation of liability",
+          "body": [
+            "Zet Labs is not liable for indirect or consequential damages.",
+            "Our total liability is limited to the maximum extent permitted by law."
+          ]
+        },
+        "law": {
+          "title": "Governing law",
+          "body": ["These terms are governed by the laws of the Czech Republic."]
+        },
+        "contact": {
+          "title": "Contact",
+          "body": "Questions? Email us at hello@zetlabs.ai."
+        }
+      }
+    }
+  },
+  "demo": {
+    "terminalTitle": "zet",
+    "promptSymbol": ">",
+    "thinkingSymbol": "●",
+    "resultPrimarySymbol": "✓",
+    "resultSecondarySymbol": "→",
+    "docs": {
+      "prompt": "summarize q3 earnings report",
+      "thinking": "Reading 47 pages...",
+      "result1": "Revenue +23%, costs -12%. Beat expectations.",
+      "result2": "Top driver: EU enterprise renewals at 91%.",
+      "result3": "Action: increase hiring in data platform."
+    },
+    "code": {
+      "prompt": "refactor auth module to use JWT",
+      "thinking": "Analyzing 12 files...",
+      "result1": "Auth flow updated. 847 lines changed.",
+      "result2": "JWT rotation enabled; refresh path added.",
+      "result3": "All unit and integration tests passing."
+    },
+    "data": {
+      "prompt": "find anomalies in sales data",
+      "thinking": "Scanning 2.3M rows...",
+      "result1": "Found 3 outliers. Region EU-West, Q2 spike.",
+      "result2": "Root cause: duplicate reseller orders.",
+      "result3": "Cleanup script generated for 1,204 rows."
+    },
+    "email": {
+      "prompt": "draft response to investor update",
+      "thinking": "Matching tone from previous threads...",
+      "result1": "Draft ready. Professional, 142 words.",
+      "result2": "Highlights: margin expansion, ARR growth.",
+      "result3": "Subject line options included."
+    },
+    "supply": {
+      "prompt": "optimize weekly inventory plan for 12 warehouses",
+      "thinking": "Simulating demand shifts and lead times...",
+      "result1": "Stockouts reduced by 38% with no extra spend.",
+      "result2": "Rebalanced safety stock across 4 regions.",
+      "result3": "Plan approved. On-time fulfillment protected."
+    },
+    "finance": {
+      "prompt": "reconcile Q4 cash flow and flag risks",
+      "thinking": "Reconciling 1,284 ledger entries...",
+      "result1": "Detected 2 anomalies in vendor payments.",
+      "result2": "Adjusted forecast for 3 late receivables.",
+      "result3": "Cash runway confirmed. No action needed."
+    }
+  }
 }

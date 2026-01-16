@@ -1,12 +1,12 @@
 import { forwardRef } from "react";
-import type { InputHTMLAttributes } from "react";
+import type { TextareaHTMLAttributes } from "react";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
+interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className = "", ...props }, ref) => {
     return (
-      <input
+      <textarea
         ref={ref}
         className={`!px-6 !py-4 text-base font-normal font-[inherit] text-[rgb(var(--color-foreground))] bg-[rgb(var(--color-surface)/0.8)] border border-[rgb(var(--color-foreground-soft)/0.3)] rounded-xl outline-none backdrop-blur-[20px] transition-all duration-300 min-w-[280px] shadow-[0_4px_20px_rgb(var(--color-accent-indigo)/0.15)] placeholder:text-[rgb(var(--color-foreground-muted)/0.5)] focus:border-[rgb(var(--color-foreground-soft)/0.6)] focus:shadow-[0_0_0_3px_rgb(var(--color-accent-indigo)/0.1)] max-md:min-w-full max-md:w-full max-[480px]:!px-5 max-[480px]:!py-[0.875rem] max-[480px]:text-[0.9rem] ${className}`}
         {...props}
@@ -15,4 +15,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   },
 );
 
-Input.displayName = "Input";
+Textarea.displayName = "Textarea";

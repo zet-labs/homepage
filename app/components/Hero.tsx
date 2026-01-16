@@ -1,21 +1,31 @@
-"use client";
+import { getTranslations } from "next-intl/server";
+import TerminalDemoLoader from "./TerminalDemoLoader";
 
-import { useTranslation } from "react-i18next";
-
-export default function Hero() {
-  const { t } = useTranslation();
+export default async function Hero() {
+  const t = await getTranslations();
 
   return (
-    <>
-      <h1 className="text-[clamp(4rem,15vw,11rem)] font-thin leading-[1.1] tracking-[-0.03em] m-0 animate-[fade-in-up_1s_ease-out] md:text-[clamp(4rem,15vw,11rem)] max-md:text-[clamp(4.5rem,16vw,6.5rem)] max-[480px]:text-[clamp(4rem,18vw,6rem)]">
-        <span className="bg-gradient-to-br from-[rgb(var(--color-hero-gradient-from))] via-[rgb(var(--color-hero-gradient-via))] to-[rgb(var(--color-hero-gradient-to))] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradient-shift_8s_ease_infinite,fade-in-up_1s_ease-out] inline-block font-thin">
+    <div className="w-full flex flex-col items-center gap-6 max-md:gap-4">
+      <div className="flex items-center gap-3 animate-[fade-in-down_0.6s_ease-out]">
+        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+        <span className="text-[rgb(var(--color-foreground-muted)/0.6)] text-xs tracking-[0.15em] uppercase font-medium">
+          {t("labBadge")}
+        </span>
+      </div>
+
+      <h1 className="text-[clamp(3rem,10vw,7rem)] font-medium leading-[1.1] tracking-[-0.04em] animate-[fade-in-up_0.6s_ease-out] max-md:text-[clamp(2.5rem,12vw,4rem)] font-[family-name:var(--font-geist-sans)]">
+        <span className="bg-gradient-to-br from-[rgb(var(--color-hero-gradient-from))] via-[rgb(var(--color-hero-gradient-via))] to-[rgb(var(--color-hero-gradient-to))] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradient-shift_8s_ease_infinite] inline-block">
           {t("brandName")}
         </span>
       </h1>
 
-      <p className="text-[rgb(var(--color-foreground-soft)/0.65)] font-extralight text-[clamp(0.875rem,1.8vw,1.05rem)] leading-[1.7] tracking-[0.01em] max-w-[650px] mx-auto my-0 animate-[fade-in-up_1s_ease-out_0.2s_both] md:text-[clamp(0.875rem,1.8vw,1.05rem)] max-md:text-[1rem] max-md:max-w-[85%] max-[480px]:text-[0.95rem] max-[480px]:max-w-[90%] max-[480px]:leading-[1.6] [text-shadow:0_0_40px_rgb(var(--color-accent-indigo)_/_0.15)]">
+      <p className="text-[rgb(var(--color-foreground-soft)/0.8)] font-normal text-[clamp(1.1rem,2.5vw,1.5rem)] leading-[1.4] max-w-[600px] mx-auto animate-[fade-in-up_0.6s_ease-out_0.1s_both] max-md:text-[1.1rem] max-md:max-w-[90%] max-[480px]:text-[1rem]">
         {t("tagline")}
       </p>
-    </>
+
+      <div className="animate-[fade-in-up_0.6s_ease-out_0.2s_both] w-full">
+        <TerminalDemoLoader />
+      </div>
+    </div>
   );
 }

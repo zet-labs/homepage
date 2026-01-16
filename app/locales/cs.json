@@ -1,11 +1,449 @@
 {
   "comingSoon": "Brzy spouštíme",
-  "brandName": "Zet AI",
-  "tagline": "Nová generace AI agentů. Výkonná, elegantní, tvá.",
+  "labBadge": "Právě v private beta",
+  "brandName": "Zet Labs",
+  "tagline": "Stavíme AI s dopadem.",
   "joinWaitlist": "Získat přednostní přístup",
   "emailPlaceholder": "vy@firma.cz",
-  "submit": "Rezervovat místo",
+  "submit": "Jdu do toho",
   "thankYou": "Jste vnitř! Brzy se ozveme.",
   "error": "Něco se pokazilo. Zkuste to prosím znovu.",
-  "footer": "© 2025 Zet Labs · Budujeme budoucnost AI"
+  "readyToStart": "Připraveni začít?",
+  "trustedBy": "Důvěřují nám",
+  "common": {
+    "separator": "•"
+  },
+  "nav": {
+    "services": "Co děláme",
+    "models": "Modely",
+    "contact": "Kontakt",
+    "jobs": "Kariéra",
+    "openMenu": "Otevřít menu",
+    "closeMenu": "Zavřít menu"
+  },
+  "languageSwitcher": {
+    "toCs": "CS",
+    "toEn": "EN",
+    "ariaToCs": "Přepnout jazyk na češtinu",
+    "ariaToEn": "Přepnout jazyk na angličtinu"
+  },
+  "themeSwitcher": {
+    "toLight": "Přepnout na světlý režim",
+    "toDark": "Přepnout na tmavý režim"
+  },
+  "meta": {
+    "siteName": "Zet Labs",
+    "defaultTitle": "Zet AI | Zet Labs",
+    "defaultDescription": "Nová generace AI agentů. Výkonná, elegantní, vaše.",
+    "home": {
+      "title": "Zet Labs | AI agenti pro týmy",
+      "description": "Nová generace AI agentů. Výkonná, elegantní, vaše."
+    },
+    "jobs": {
+      "title": "Kariéra | Zet Labs",
+      "description": "Přidejte se k Zet Labs a budujte vysoce výkonné AI systémy. Prozkoumejte otevřené pozice v Praze."
+    },
+    "contact": {
+      "title": "Kontakt | Zet Labs",
+      "description": "Kontaktujte Zet Labs."
+    },
+    "privacy": {
+      "title": "Zásady ochrany soukromí | Zet Labs",
+      "description": "Jak Zet Labs shromažďuje, používá a chrání vaše informace."
+    },
+    "terms": {
+      "title": "Podmínky služby | Zet Labs",
+      "description": "Podmínky a pravidla používání webu Zet Labs a waitlistu."
+    }
+  },
+  "contact": {
+    "kicker": "Kontakt",
+    "title": "Řekněte nám, co stavíte",
+    "subtitle": "Pošlete pár detailů a ozveme se s dalším krokem.",
+    "nameLabel": "Jméno",
+    "namePlaceholder": "Vaše jméno",
+    "emailLabel": "Pracovní email",
+    "emailPlaceholder": "vy@firma.cz",
+    "companyLabel": "Firma",
+    "companyPlaceholder": "Název firmy (volitelné)",
+    "reasonLabel": "Důvod",
+    "messageLabel": "Zpráva",
+    "messagePlaceholder": "Co chcete stavět? Sdílejte kontext a timeline.",
+    "submit": "Odeslat zprávu",
+    "submitting": "Odesílám...",
+    "success": "Díky za zprávu. Brzy se ozveme.",
+    "error": "Něco se pokazilo. Zkuste to znovu.",
+    "responseTime": "Odpovíme do 1-2 pracovních dnů.",
+    "privacyNote": "Odesláním zprávy souhlasíte s našimi",
+    "privacyLink": "Zásadami ochrany soukromí",
+    "reasons": {
+      "default": "Obecný dotaz",
+      "options": ["Obecný dotaz", "Partnerství", "Enterprise", "Tisk", "Kariéra"]
+    }
+  },
+  "contactCta": {
+    "kicker": "Kontakt",
+    "title": "Řekněte nám váš use case",
+    "subtitle": "Sdílejte, co chcete stavět, a pomůžeme vám zvolit správné řešení.",
+    "button": "Kontaktujte nás"
+  },
+  "jobs": {
+    "heroTitle": "Budujte s námi budoucnost AI",
+    "heroSubtitle": "Jsme malý tým, který jde rychle po velkých problémech. Pokud vás baví výkon, odpovědnost a doručování reálných systémů, budete tu jako doma.",
+    "status": "Jedeme naplno. Pokud vám role sedí, ozvěte se.",
+    "sections": {
+      "responsibilities": "Co budete dělat",
+      "requirements": "Klíčové požadavky"
+    },
+    "categories": {
+      "aiMl": "AI / ML",
+      "frontendBackend": "Frontend / Backend"
+    },
+    "actions": {
+      "copyLink": "Kopírovat odkaz",
+      "copied": "Zkopírováno",
+      "apply": "Přihlásit se"
+    },
+    "roles": [
+      {
+        "id": "backend-ai-systems",
+        "title": "System Maker",
+        "formalTitle": "Backend Engineer, AI Systems",
+        "seniority": "Mid-Senior",
+        "location": "On-site · Praha",
+        "category": "frontend-backend",
+        "summary": "Budujte rychlé a spolehlivé backend systémy pro lokální AI modely a klientské nasazení. Budete vlastnit core infrastrukturu end-to-end, řešit nejasné problémy a doručovat výkonově laděné služby.",
+        "responsibilities": [
+          "Navrhovat vysokovýkonné služby pro AI workloady i bez detailního zadání.",
+          "Vlastnit API od návrhu po spolehlivý provoz.",
+          "Optimalizovat inferenci, datové pipeline a efektivitu systému.",
+          "Budovat odolnou komunikaci mezi službami a ošetření chyb.",
+          "Zajišťovat observabilitu: metriky, logy, tracing."
+        ],
+        "requirements": [
+          "Silná backend zkušenost v microservice architekturách.",
+          "Znalost TypeScript/Node, Go, Rust, C# nebo Pythonu.",
+          "Zkušenost s moderními databázemi (Postgres, Mongo, Qdrant, ClickHouse).",
+          "Dobrá znalost Dockeru a Kubernetes.",
+          "Zkušenost s NATS nebo RabbitMQ.",
+          "Návrh REST API, znalost JWT/OAuth2.",
+          "Důraz na výkon a spolehlivost.",
+          "Schopnost dotahovat nejasné problémy end-to-end.",
+          "Bonus: Protobufs nebo Next/React/Tailwind."
+        ]
+      },
+      {
+        "id": "agent-platform-engineer",
+        "title": "Architekt agentního runtime",
+        "formalTitle": "Inženýr agentní platformy",
+        "seniority": "Senior",
+        "location": "On-site · Praha",
+        "category": "ai-ml",
+        "summary": "Budeš vlastnit runtime, který pohání naše agenty end-to-end. Definuješ platformu, budeš dělat těžké trade-offy a dodáš systém pro rychlé a bezpečné workflow.",
+        "responsibilities": [
+          "Stavět runtime pro agenty se silnou izolací a observability.",
+          "Navrhovat rozhraní pro nástroje a konektory externích systémů.",
+          "Implementovat scheduling, retry a guardrails pro dlouhé úlohy.",
+          "Zlepšovat výkon orchestrace a memory vrstev.",
+          "Definovat platformní primitiva z nejasných zadání."
+        ],
+        "requirements": [
+          "Zkušenost s distribuovanými systémy nebo orchestration platformami.",
+          "Silné TypeScript/Node, Go nebo Rust.",
+          "Znalost event-driven systémů, front nebo pub/sub.",
+          "Schopnost profilování, benchmarkingu a ladění výkonu.",
+          "Security-first přístup k přístupu k datům a izolaci.",
+          "Ownership mindset v nejasném prostředí."
+        ]
+      },
+      {
+        "id": "applied-ml-engineer",
+        "title": "Lead výkonu modelů",
+        "formalTitle": "Inženýr aplikovaného ML",
+        "seniority": "Mid-Senior",
+        "location": "On-site · Praha",
+        "category": "ai-ml",
+        "summary": "Budeš doručovat zlepšení modelů, která mají dopad v produkci. Vlastníš experimenty end-to-end a dostaneš je do reálných workflow klientů.",
+        "responsibilities": [
+          "Experimentovat s fine-tuningem, retrieval a evaluací.",
+          "Stavět tooling pro benchmarking a regresní testy modelů.",
+          "Optimalizovat inference výkon a paměťové nároky.",
+          "Spolupracovat s engineeringem na bezpečných updatech modelů.",
+          "Překládat feedback zákazníků do měřitelných cílů."
+        ],
+        "requirements": [
+          "Praktická zkušenost s LLM a moderními ML toolchainy.",
+          "Silné Python dovednosti a znalost PyTorch nebo JAX.",
+          "Zkušenost s evaluací a tvorbou datasetů.",
+          "Schopnost nasazovat modely do produkce.",
+          "Srozumitelná komunikace výsledků experimentů a trade-offů.",
+          "Schopnost dotahovat nejasné problémy end-to-end."
+        ]
+      },
+      {
+        "id": "junior-ml-engineer",
+        "title": "ML junior",
+        "formalTitle": "Junior ML Engineer",
+        "seniority": "Junior",
+        "location": "On-site · Praha",
+        "category": "ai-ml",
+        "summary": "Budeš pracovat se seniory na ladění modelů, datových pipeline a nasazení u klientů. Rychle se učíš, přebíráš menší projekty a postupně rosteš do full‑stack ML práce.",
+        "responsibilities": [
+          "Pomáhat s přípravou dat, evaluací a analýzou výsledků.",
+          "Implementovat experimenty a udržovat je reprodukovatelné.",
+          "Pomáhat s nasazením a sledováním kvality v produkci.",
+          "Vytvářet malé nástroje a skripty pro zlepšení workflow.",
+          "Ptát se včas a rychle uzavírat zpětnou vazbu."
+        ],
+        "requirements": [
+          "Dobré Python základy a základní ML znalosti.",
+          "Znalost Git a reprodukovatelných workflow.",
+          "Zvídavost a schopnost rychle se učit.",
+          "Jasná komunikace a ownership menších úkolů.",
+          "Bonus: PyTorch, JAX nebo data pipeline."
+        ]
+      },
+      {
+        "id": "frontend-engineer",
+        "title": "Product Interface Maker",
+        "formalTitle": "Frontend Engineer",
+        "seniority": "Mid-Level",
+        "location": "On-site · Praha",
+        "category": "frontend-backend",
+        "summary": "Navrhuj rychlé a elegantní frontendy pro naše AI produkty a klientská nasazení. Vlastníš UI funkce end-to-end a převádíš nejasné cíle do vyladěných zkušeností.",
+        "responsibilities": [
+          "Stavět responzivní UI komponenty v Reactu a Next.js.",
+          "Dodávat produkční rozhraní s Tailwind CSS.",
+          "Vlastnit výkon, přístupnost a UX detail.",
+          "Úzce spolupracovat s produktem a backendem.",
+          "Převádět hrubé nápady do jasného UI."
+        ],
+        "requirements": [
+          "Silné základy Reactu a TypeScriptu.",
+          "Zkušenost s Next.js a Tailwind CSS.",
+          "Cit pro UX a vizuální kvalitu.",
+          "Schopnost dotahovat nejasné problémy end-to-end.",
+          "Bonus: zkušenost s design systémy nebo Figmou."
+        ]
+      }
+    ],
+    "footer": {
+      "title": "Nevidíte svou roli?",
+      "body": "Hledáme výjimečné inženýry neustále. Napište krátké intro a co s námi chcete stavět.",
+      "cta": "Kontaktujte nás"
+    }
+  },
+  "security": {
+    "soc2": "Bez uchovávání dat",
+    "gdpr": "GDPR Ready",
+    "encrypted": "End-to-End šifrování"
+  },
+  "services": {
+    "title": "Co děláme",
+    "research": {
+      "title": "Výzkum",
+      "subtitle": "Posouváme hranice",
+      "desc": "Zkoumáme nové architektury, vylepšujeme reasoning a optimalizujeme inferenci. Aplikovaný výzkum, který jde do produkce."
+    },
+    "agentic": {
+      "title": "Agenti",
+      "subtitle": "AI, která vykonává",
+      "desc": "Autonomní systémy, které nejen odpovídají - jednají. Stavěné pro komplexní workflow, práci s nástroji a reálné rozhodování."
+    },
+    "solutions": {
+      "title": "Integrace",
+      "subtitle": "AI pro váš stack",
+      "desc": "Zapojujeme inteligenci do existujících systémů. Vaše data, vaše infrastruktura, naše modely. Production-ready od prvního dne."
+    }
+  },
+  "models": {
+    "title": "Naše modely",
+    "subtitle": "Laděno pro výkon",
+    "description": "Optimalizováno in-house pro rychlost a spolehlivost. Žádné wrappery, žádné externí API - rychlá inference laděná pro reálné workloady.",
+    "bestForTitle": "Nejlepší pro",
+    "nano": {
+      "name": "Nano",
+      "badge": "Edge-Ready",
+      "subtitle": "Malý. Rychlý. Všude.",
+      "desc": "Optimalizovaný pro prostředí s omezenými zdroji. Běží na zařízení, v prohlížeči, na edge. Latence pod 100ms, minimální paměťová stopa. Inteligence bez infrastruktury.",
+      "bestFor": ["Edge zařízení", "Asistenti v prohlížeči", "Nízká latence"]
+    },
+    "flow": {
+      "name": "Flow",
+      "badge": "Agentický",
+      "subtitle": "Méně řečí. Více práce.",
+      "desc": "Navržený pro autonomní exekuci. Vyniká v multi-step reasoning, orchestraci nástrojů a dlouhodobých úlohách. Model, který věci dotáhne.",
+      "bestFor": ["Automatizace workflow", "Orchestrace nástrojů", "Multi-step agenti"]
+    },
+    "one": {
+      "name": "One",
+      "badge": "Vlajková loď",
+      "subtitle": "Maximální schopnosti.",
+      "desc": "Náš nejsilnější model. State-of-the-art reasoning, hluboká doménová expertíza, komplexní řešení problémů. Když úkol vyžaduje to nejlepší.",
+      "bestFor": ["Komplexní reasoning", "Doménová expertíza", "Rozhodování s vysokou mírou rizika"]
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Zet Labs",
+    "github": "GitHub",
+    "twitter": "X",
+    "twitterAria": "X (Twitter)",
+    "contact": "Kontakt",
+    "email": "E-mail",
+    "tagline": "Postaveno na mass amounts of ☕ a 🔥 GPU v Česku.",
+    "privacy": "Soukromí",
+    "terms": "Podmínky"
+  },
+  "legal": {
+    "privacy": {
+      "kicker": "Právní",
+      "title": "Zásady ochrany soukromí",
+      "updated": "Platné od: 1. ledna 2026",
+      "intro": "Respektujeme vaše soukromí. Tyto zásady vysvětlují, co sbíráme při používání webu Zet Labs a waitlist formuláře a jak s těmito informacemi nakládáme.",
+      "sections": {
+        "data": {
+          "title": "Jaké informace sbíráme",
+          "body": [
+            "Kontaktní údaje, které zadáte, například email při přihlášení do waitlistu.",
+            "Základní data o používání (návštěvy a interakce) pro vylepšení webu.",
+            "Nezbytné cookies pro funkčnost webu."
+          ]
+        },
+        "use": {
+          "title": "Jak informace používáme",
+          "body": [
+            "Provoz, údržba a zlepšování webu a waitlistu.",
+            "Odpovědi na dotazy a zasílání updateů k waitlistu.",
+            "Ochrana před zneužitím a zabezpečení webu."
+          ]
+        },
+        "sharing": {
+          "title": "Sdílení",
+          "body": [
+            "Vaše data neprodáváme.",
+            "Můžeme sdílet data s ověřenými poskytovateli služeb, kteří nám pomáhají provozovat web.",
+            "Informace můžeme sdělit, pokud to vyžaduje zákon."
+          ]
+        },
+        "security": {
+          "title": "Zabezpečení",
+          "body": [
+            "Používáme přiměřená opatření k ochraně vašich dat.",
+            "Žádný způsob přenosu nebo ukládání není 100% bezpečný."
+          ]
+        },
+        "choices": {
+          "title": "Vaše možnosti",
+          "body": [
+            "Můžete požádat o přístup, opravu nebo smazání svých dat.",
+            "Z waitlist emailů se můžete kdykoli odhlásit."
+          ]
+        },
+        "contact": {
+          "title": "Kontakt",
+          "body": "Dotazy? Napište nám na hello@zetlabs.ai."
+        }
+      }
+    },
+    "terms": {
+      "kicker": "Právní",
+      "title": "Podmínky používání",
+      "updated": "Platné od: 1. ledna 2026",
+      "intro": "Používáním webu Zet Labs souhlasíte s těmito podmínkami. Pokud nesouhlasíte, web nepoužívejte.",
+      "sections": {
+        "use": {
+          "title": "Používání webu",
+          "body": [
+            "Nezneužívejte web ani se nepokoušejte o neautorizovaný přístup.",
+            "Při používání webu musíte dodržovat platné zákony."
+          ]
+        },
+        "ip": {
+          "title": "Duševní vlastnictví",
+          "body": [
+            "Veškerý obsah na webu patří Zet Labs nebo jeho poskytovatelům licence.",
+            "Obsah nesmíte kopírovat, upravovat ani šířit bez svolení."
+          ]
+        },
+        "waitlist": {
+          "title": "Waitlist",
+          "body": [
+            "Odeslání formuláře nezaručuje přístup.",
+            "Můžeme vás kontaktovat ohledně produktu a dostupnosti."
+          ]
+        },
+        "disclaimer": {
+          "title": "Vyloučení odpovědnosti",
+          "body": [
+            "Web je poskytován \"tak jak je\" bez záruk.",
+            "Nezaručujeme dostupnost webu ani bezchybnost."
+          ]
+        },
+        "liability": {
+          "title": "Omezení odpovědnosti",
+          "body": [
+            "Zet Labs nenese odpovědnost za nepřímé nebo následné škody.",
+            "Naše celková odpovědnost je omezena v maximálním rozsahu povoleném zákonem."
+          ]
+        },
+        "law": {
+          "title": "Rozhodné právo",
+          "body": ["Tyto podmínky se řídí právem České republiky."]
+        },
+        "contact": {
+          "title": "Kontakt",
+          "body": "Dotazy? Napište nám na hello@zetlabs.ai."
+        }
+      }
+    }
+  },
+  "demo": {
+    "terminalTitle": "zet",
+    "promptSymbol": ">",
+    "thinkingSymbol": "●",
+    "resultPrimarySymbol": "✓",
+    "resultSecondarySymbol": "→",
+    "docs": {
+      "prompt": "shrň Q3 finanční zprávu",
+      "thinking": "Čtu 47 stran...",
+      "result1": "Tržby +23%, náklady -12%. Překonali očekávání.",
+      "result2": "Hlavní driver: EU enterprise renewals 91%.",
+      "result3": "Akce: posílit hiring v data platformě."
+    },
+    "code": {
+      "prompt": "refaktoruj auth modul na JWT",
+      "thinking": "Analyzuji 12 souborů...",
+      "result1": "Auth flow aktualizován. 847 řádků změněno.",
+      "result2": "Zapnuta rotace JWT, přidán refresh flow.",
+      "result3": "Všechny unit i integrační testy prošly."
+    },
+    "data": {
+      "prompt": "najdi anomálie v prodejních datech",
+      "thinking": "Procházím 2.3M řádků...",
+      "result1": "Nalezeny 3 anomálie. Region EU-West, Q2 skok.",
+      "result2": "Příčina: duplicitní reseller objednávky.",
+      "result3": "Vygenerován cleanup skript pro 1 204 řádků."
+    },
+    "email": {
+      "prompt": "napiš odpověď na investor update",
+      "thinking": "Přizpůsobuji tón předchozí komunikace...",
+      "result1": "Koncept připraven. Profesionální, 142 slov.",
+      "result2": "Zvýrazněno: růst ARR a marží.",
+      "result3": "Přidány varianty subject line."
+    },
+    "supply": {
+      "prompt": "optimalizuj týdenní zásobování pro 12 skladů",
+      "thinking": "Simuluji výkyvy poptávky a lead time...",
+      "result1": "Stockouty sníženy o 38 % bez navýšení nákladů.",
+      "result2": "Bezpečnostní zásoby přerozděleny ve 4 regionech.",
+      "result3": "Plán schválen. Doručení včas zajištěno."
+    },
+    "finance": {
+      "prompt": "sesouladit Q4 cash flow a označit rizika",
+      "thinking": "Páruji 1 284 účetních položek...",
+      "result1": "Odhaleny 2 anomálie ve vendor platbách.",
+      "result2": "Upraven forecast pro 3 opožděné pohledávky.",
+      "result3": "Cash runway potvrzen. Akce nejsou potřeba."
+    }
+  }
 }

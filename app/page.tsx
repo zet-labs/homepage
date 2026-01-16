@@ -57,7 +57,7 @@ export default function Home() {
       <main className="relative z-[4] flex flex-col items-center px-6 max-md:px-4 max-[480px]:px-3 flex-1">
         <section
           id="waitlist"
-          className="min-h-[100dvh] flex flex-col items-center justify-center py-12 w-full max-w-[1400px] relative"
+          className="min-h-[100dvh] flex flex-col items-center justify-center py-12 w-full max-w-[1400px] relative max-md:pt-20"
         >
           <div className="text-center w-full flex flex-col items-center justify-center gap-6 max-md:gap-5">
             <Suspense fallback={<HeroSkeleton />}>

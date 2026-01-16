@@ -95,23 +95,23 @@ export default function JobsPageClient() {
                     >
                       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(800px_circle_at_20%_-15%,rgb(var(--color-accent-indigo)/0.16),transparent_55%),radial-gradient(700px_circle_at_90%_0%,rgb(var(--color-accent-purple)/0.14),transparent_55%)] opacity-80" />
                       <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(99,102,241,0.6),rgba(139,92,246,0.6),transparent)] opacity-80" />
-                      <div className="absolute right-4 top-4 z-[2] flex flex-wrap items-center gap-2 md:right-6 md:top-6">
-                        <span className="px-3 py-1 rounded-full text-[10px] tracking-[0.2em] uppercase text-[rgb(var(--color-foreground-muted)/0.9)] border border-[rgb(var(--color-foreground)/0.15)] bg-[rgb(var(--color-foreground)/0.03)]">
-                          {job.seniority}
-                        </span>
-                        <span className="px-3 py-1 rounded-full text-[10px] tracking-[0.2em] uppercase text-[rgb(var(--color-foreground-muted)/0.9)] border border-[rgb(var(--color-foreground)/0.15)] bg-[rgb(var(--color-foreground)/0.03)]">
-                          {job.location}
-                        </span>
-                      </div>
                       <div className="relative z-[1] flex flex-col gap-7">
                         <div className="flex flex-col gap-4">
-                          <div className="flex flex-wrap items-center gap-3">
+                          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                             <div className="flex flex-col gap-1">
                               <h3 className="text-xl md:text-2xl font-semibold text-[rgb(var(--color-foreground))] tracking-[-0.01em]">
                                 {job.title}
                               </h3>
                               <span className="text-[11px] uppercase tracking-[0.22em] text-[rgb(var(--color-foreground-muted)/0.6)]">
                                 {job.formalTitle}
+                              </span>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-2 md:justify-end">
+                              <span className="px-3 py-1 rounded-full text-[10px] tracking-[0.2em] uppercase text-[rgb(var(--color-foreground-muted)/0.9)] border border-[rgb(var(--color-foreground)/0.15)] bg-[rgb(var(--color-foreground)/0.03)]">
+                                {job.seniority}
+                              </span>
+                              <span className="px-3 py-1 rounded-full text-[10px] tracking-[0.2em] uppercase text-[rgb(var(--color-foreground-muted)/0.9)] border border-[rgb(var(--color-foreground)/0.15)] bg-[rgb(var(--color-foreground)/0.03)]">
+                                {job.location}
                               </span>
                             </div>
                           </div>

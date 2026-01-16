@@ -8,15 +8,19 @@ import { Textarea } from "../components/ui/Textarea";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
+const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
 export default function ContactForm() {
   const t = useTranslations("contact");
   const [state, setState] = useState<FormState>("idle");
+  const [validationMessage, setValidationMessage] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [reason, setReason] = useState(t("reasons.default"));
   const [message, setMessage] = useState("");
   const [honeypot, setHoneypot] = useState("");
+  const submittingRef = useRef(false);
   const timestampRef = useRef(0);
   const reasonOptions = t.raw("reasons.options") as string[];
 
@@ -26,12 +30,31 @@ export default function ContactForm() {
     }
   }, []);
 
-  const isValid = name.trim().length >= 2 && email.includes("@") && message.trim().length >= 10;
+  const trimmedName = name.trim();
+  const trimmedEmail = email.trim();
+  const trimmedMessage = message.trim();
+  const isValid =
+    trimmedName.length >= 2 && isValidEmail(trimmedEmail) && trimmedMessage.length >= 10;
+  const emailInvalid = Boolean(validationMessage) && !isValidEmail(trimmedEmail);
+
+  const getValidationMessage = () => {
+    if (trimmedName.length < 2) return t("validationName");
+    if (!isValidEmail(trimmedEmail)) return t("validationEmail");
+    if (trimmedMessage.length < 10) return t("validationMessage");
+    return t("validationRequired");
+  };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!isValid || state === "submitting") return;
+    if (state === "submitting" || submittingRef.current) return;
 
+    if (!isValid) {
+      setValidationMessage(getValidationMessage());
+      return;
+    }
+
+    setValidationMessage(null);
+    submittingRef.current = true;
     setState("submitting");
 
     try {
@@ -54,9 +77,18 @@ export default function ContactForm() {
         return;
       }
 
+      setName("");
+      setEmail("");
+      setCompany("");
+      setReason(t("reasons.default"));
+      setMessage("");
+      setHoneypot("");
+      timestampRef.current = Date.now();
       setState("success");
     } catch {
       setState("error");
+    } finally {
+      submittingRef.current = false;
     }
   };
 
@@ -86,9 +118,17 @@ export default function ContactForm() {
           <Input
             type="email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) => {
+              setEmail(event.target.value);
+              setValidationMessage(null);
+            }}
             placeholder={t("emailPlaceholder")}
             required
+            className={
+              emailInvalid
+                ? "border-rose-500/60 focus:border-rose-500/70 focus:shadow-[0_0_0_3px_rgba(244,63,94,0.2)]"
+                : ""
+            }
           />
         </div>
       </div>
@@ -100,7 +140,10 @@ export default function ContactForm() {
           </label>
           <Input
             value={company}
-            onChange={(event) => setCompany(event.target.value)}
+            onChange={(event) => {
+              setCompany(event.target.value);
+              setValidationMessage(null);
+            }}
             placeholder={t("companyPlaceholder")}
           />
         </div>
@@ -110,7 +153,10 @@ export default function ContactForm() {
           </label>
           <select
             value={reason}
-            onChange={(event) => setReason(event.target.value)}
+            onChange={(event) => {
+              setReason(event.target.value);
+              setValidationMessage(null);
+            }}
             className="!px-6 !py-4 text-base font-normal font-[inherit] text-[rgb(var(--color-foreground))] bg-[rgb(var(--color-surface)/0.8)] border border-[rgb(var(--color-foreground-soft)/0.3)] rounded-xl outline-none backdrop-blur-[20px] transition-all duration-300 shadow-[0_4px_20px_rgb(var(--color-accent-indigo)/0.15)] focus:border-[rgb(var(--color-foreground-soft)/0.6)] max-md:w-full"
           >
             {reasonOptions.map((option) => (
@@ -128,7 +174,10 @@ export default function ContactForm() {
         </label>
         <Textarea
           value={message}
-          onChange={(event) => setMessage(event.target.value)}
+          onChange={(event) => {
+            setMessage(event.target.value);
+            setValidationMessage(null);
+          }}
           placeholder={t("messagePlaceholder")}
           rows={6}
           required
@@ -153,21 +202,25 @@ export default function ContactForm() {
             {t("privacyLink")}
           </a>
         </p>
-        <Button
-          type="submit"
-          size="md"
-          withGlowEffect
-          disabled={!isValid || state === "submitting"}
-        >
+        <Button type="submit" size="md" withGlowEffect disabled={state === "submitting"}>
           {state === "submitting" ? t("submitting") : t("submit")}
         </Button>
       </div>
 
+      {validationMessage && (
+        <p className="mt-4 text-sm rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-rose-200">
+          {validationMessage}
+        </p>
+      )}
       {state === "success" && (
-        <p className="mt-4 text-sm text-[rgb(var(--color-foreground-soft)/0.9)]">{t("success")}</p>
+        <p className="mt-4 text-sm rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-emerald-200">
+          {t("success")}
+        </p>
       )}
       {state === "error" && (
-        <p className="mt-4 text-sm text-[rgb(var(--color-foreground-soft)/0.9)]">{t("error")}</p>
+        <p className="mt-4 text-sm rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-rose-200">
+          {t("error")}
+        </p>
       )}
     </form>
   );

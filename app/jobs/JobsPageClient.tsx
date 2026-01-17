@@ -64,10 +64,12 @@ export default function JobsPageClient() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <div className="w-full max-w-[820px] rounded-full bg-[linear-gradient(135deg,rgb(16_185_129/0.95),rgb(52_211_153/0.95))] px-6 py-3 text-sm text-white shadow-[0_0_35px_rgb(16_185_129/0.6)] max-md:rounded-2xl max-md:px-4 max-md:py-2 max-md:text-[0.8rem] max-md:leading-snug max-md:text-center">
-            <span className="inline-flex items-center gap-2">
+          <div className="w-full max-w-[820px] rounded-full bg-[linear-gradient(135deg,rgb(16_185_129/0.95),rgb(52_211_153/0.95))] px-6 py-3 text-sm text-white shadow-[0_0_35px_rgb(16_185_129/0.6)] max-md:rounded-2xl max-md:px-4 max-md:py-2 max-md:text-[0.78rem] max-md:leading-snug max-md:text-center">
+            <span className="inline-flex items-center gap-2 max-md:w-full max-md:justify-center max-md:min-w-0">
               <span className="w-2 h-2 rounded-full bg-white/90 shadow-[0_0_10px_rgb(255_255_255/0.8)]" />
-              {t("status")}
+              <span className="block max-md:truncate max-md:max-w-full max-md:min-w-0">
+                {t("status")}
+              </span>
             </span>
           </div>
         </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { type MouseEvent, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { cn } from "../../lib/cn";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeSwitcher from "./ThemeSwitcher";
 
@@ -47,9 +48,11 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
+      const next = window.scrollY > 100;
+      setScrolled((prev) => (prev === next ? prev : next));
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -72,21 +75,24 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[10] transition-all duration-300 border-b ${
+      className={cn(
+        "fixed top-0 left-0 right-0 z-[10] transition-all duration-300 border-b",
         scrolled
           ? "bg-[rgb(var(--color-background-start)/0.45)] backdrop-blur-2xl backdrop-saturate-200 border-[rgb(var(--color-foreground)/0.08)] shadow-[0_12px_40px_rgb(0_0_0/0.25)] shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]"
-          : "bg-transparent border-transparent"
-      }`}
+          : "bg-transparent border-transparent",
+      )}
     >
       <div
-        className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgb(var(--color-foreground)/0.2)] to-transparent transition-opacity duration-300 ${
-          scrolled ? "opacity-70" : "opacity-0"
-        }`}
+        className={cn(
+          "absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgb(var(--color-foreground)/0.2)] to-transparent transition-opacity duration-300",
+          scrolled ? "opacity-70" : "opacity-0",
+        )}
       />
       <div
-        className={`pointer-events-none absolute inset-0 rounded-b-2xl bg-[radial-gradient(circle_at_top,rgb(var(--color-foreground)/0.08),transparent_55%)] transition-opacity duration-300 ${
-          scrolled ? "opacity-100" : "opacity-0"
-        }`}
+        className={cn(
+          "pointer-events-none absolute inset-0 rounded-b-2xl bg-[radial-gradient(circle_at_top,rgb(var(--color-foreground)/0.08),transparent_55%)] transition-opacity duration-300",
+          scrolled ? "opacity-100" : "opacity-0",
+        )}
       />
       <div className="max-w-[1200px] mx-auto px-6 max-md:px-4 h-14 flex items-center justify-between">
         <Link

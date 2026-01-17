@@ -9,8 +9,10 @@ export default function ScrollIndicator() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY < 100);
+      const next = window.scrollY < 100;
+      setVisible((prev) => (prev === next ? prev : next));
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

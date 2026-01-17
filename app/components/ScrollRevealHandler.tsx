@@ -1,43 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function ScrollRevealHandler() {
-  const [hydrated, setHydrated] = useState(false);
-
   useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!hydrated) return;
-
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const hash = window.location.hash;
-    if (!hash) return;
+    let hashTimeout: ReturnType<typeof setTimeout> | null = null;
 
-    const timeoutId = setTimeout(() => {
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({
-          behavior: prefersReducedMotion ? "auto" : "smooth",
-          block: "start",
-        });
-      }
+    if (hash) {
+      hashTimeout = setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+            block: "start",
+          });
+        }
 
-      if (hash === "#waitlist") {
-        window.dispatchEvent(new Event("open-waitlist"));
-      }
-    }, 100);
-
-    return () => clearTimeout(timeoutId);
-  }, [hydrated]);
-
-  useEffect(() => {
-    if (!hydrated) return;
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!window.location.hash) {
+        if (hash === "#waitlist") {
+          window.dispatchEvent(new Event("open-waitlist"));
+        }
+      }, 100);
+    } else {
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";
       }
@@ -49,12 +34,13 @@ export default function ScrollRevealHandler() {
       for (const el of elements) {
         el.classList.add("revealed");
       }
-      return;
+      return () => {
+        if (hashTimeout) clearTimeout(hashTimeout);
+      };
     }
 
     let observer: IntersectionObserver | null = null;
-
-    const timeoutId = setTimeout(() => {
+    const revealTimeout = setTimeout(() => {
       observer = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {
@@ -73,10 +59,11 @@ export default function ScrollRevealHandler() {
     }, 50);
 
     return () => {
-      clearTimeout(timeoutId);
+      if (hashTimeout) clearTimeout(hashTimeout);
+      clearTimeout(revealTimeout);
       observer?.disconnect();
     };
-  }, [hydrated]);
+  }, []);
 
   return null;
 }

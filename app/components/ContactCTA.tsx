@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 export default async function ContactCTA() {
@@ -20,13 +21,14 @@ export default async function ContactCTA() {
               {t("contactCta.subtitle")}
             </p>
           </div>
-          <a
+          <Link
             href="/contact"
+            prefetch
             className="inline-flex items-center justify-center px-6 h-11 rounded-full text-sm font-semibold bg-[rgb(var(--color-accent-indigo))] !text-white hover:bg-[rgb(var(--color-accent-purple))] transition-colors"
             style={{ color: "white" }}
           >
             {t("contactCta.button")}
-          </a>
+          </Link>
         </div>
       </div>
     </section>

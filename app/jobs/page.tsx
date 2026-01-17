@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
-import BackgroundEffects from "../components/BackgroundEffects";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import { FooterSkeleton } from "../components/Skeletons";
@@ -34,7 +33,6 @@ export default function JobsPage() {
   return (
     <div className="min-h-screen w-screen relative overflow-x-hidden bg-[rgb(var(--color-background-start))] flex flex-col">
       <Navigation />
-      <BackgroundEffects />
       <JobsPageClient />
       <Suspense fallback={<FooterSkeleton />}>
         <Footer />

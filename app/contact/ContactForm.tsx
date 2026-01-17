@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
@@ -198,9 +199,13 @@ export default function ContactForm() {
       <div className="mt-8 flex flex-col md:flex-row items-center md:justify-between gap-4 border-t border-[rgb(var(--color-foreground)/0.08)] px-4 py-5 bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.02))] rounded-2xl">
         <p className="text-xs text-[rgb(var(--color-foreground-muted)/0.7)]">
           {t("privacyNote")}{" "}
-          <a href="/privacy" className="text-[rgb(var(--color-accent-indigo))] hover:opacity-80">
+          <Link
+            href="/privacy"
+            prefetch
+            className="text-[rgb(var(--color-accent-indigo))] hover:opacity-80"
+          >
             {t("privacyLink")}
-          </a>
+          </Link>
         </p>
         <Button type="submit" size="md" withGlowEffect disabled={state === "submitting"}>
           {state === "submitting" ? t("submitting") : t("submit")}

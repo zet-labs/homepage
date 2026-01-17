@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
-import BackgroundEffects from "./components/BackgroundEffects";
 import BottomCTA from "./components/BottomCTA";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
@@ -53,7 +52,6 @@ export default function Home() {
     <div className="min-h-screen w-screen relative overflow-x-hidden bg-[rgb(var(--color-background-start))] flex flex-col">
       <ScrollRevealHandler />
       <Navigation />
-      <BackgroundEffects />
 
       <main className="relative z-[4] flex flex-col items-center px-6 max-md:px-4 max-[480px]:px-3 flex-1">
         <section

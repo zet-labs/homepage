@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { SITE_EMAIL } from "../../lib/site";
 
@@ -50,13 +51,21 @@ export default async function Footer() {
             {t("footer.tagline")}
           </p>
           <div className="flex items-center gap-3 text-[rgb(var(--color-foreground-muted))] text-[11px] opacity-60">
-            <a href="/privacy" className="hover:opacity-100 transition-opacity duration-200">
+            <Link
+              href="/privacy"
+              prefetch
+              className="hover:opacity-100 transition-opacity duration-200"
+            >
               {t("footer.privacy")}
-            </a>
+            </Link>
             <span className="opacity-40">{t("common.separator")}</span>
-            <a href="/terms" className="hover:opacity-100 transition-opacity duration-200">
+            <Link
+              href="/terms"
+              prefetch
+              className="hover:opacity-100 transition-opacity duration-200"
+            >
               {t("footer.terms")}
-            </a>
+            </Link>
           </div>
         </div>
 

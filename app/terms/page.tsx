@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
-import BackgroundEffects from "../components/BackgroundEffects";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import { FooterSkeleton } from "../components/Skeletons";
@@ -65,7 +64,6 @@ export default async function TermsPage() {
   return (
     <div className="min-h-screen w-screen relative overflow-x-hidden bg-[rgb(var(--color-background-start))] flex flex-col">
       <Navigation />
-      <BackgroundEffects />
 
       <main className="relative z-[4] flex flex-col items-center px-6 max-md:px-4 max-[480px]:px-3 flex-1">
         <section className="py-28 w-full max-w-[900px] max-md:py-20">

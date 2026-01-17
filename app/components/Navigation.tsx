@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { type MouseEvent, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeSwitcher from "./ThemeSwitcher";
@@ -14,6 +16,8 @@ const navItems = [
 
 export default function Navigation() {
   const t = useTranslations();
+  const router = useRouter();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuLabel = menuOpen ? t("nav.closeMenu") : t("nav.openMenu");
@@ -27,17 +31,18 @@ export default function Navigation() {
     window.scrollTo({ top, behavior: "smooth" });
   };
 
-  const handleAnchorClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.startsWith("#")) return;
-    if (typeof window === "undefined") return;
     event.preventDefault();
 
-    if (window.location.pathname !== "/") {
-      window.location.href = `/${href}`;
+    if (pathname !== "/") {
+      router.push(`/${href}`);
+      setMenuOpen(false);
       return;
     }
 
     scrollToId(href.replace("#", ""));
+    setMenuOpen(false);
   };
 
   useEffect(() => {
@@ -84,9 +89,10 @@ export default function Navigation() {
         }`}
       />
       <div className="max-w-[1200px] mx-auto px-6 max-md:px-4 h-14 flex items-center justify-between">
-        <a
+        <Link
           href="/"
           className="text-[rgb(var(--color-foreground))] font-semibold text-lg tracking-tight font-[family-name:var(--font-geist-sans)] flex items-center gap-2"
+          prefetch
         >
           <span className="relative inline-flex w-5 h-5 items-center justify-center">
             <svg viewBox="0 0 24 24" className="w-5 h-5 text-[rgb(var(--color-foreground)/0.7)]">
@@ -116,32 +122,44 @@ export default function Navigation() {
             </svg>
           </span>
           {t("brandName")}
-        </a>
+        </Link>
 
         <div className="flex items-center gap-6 max-md:gap-3">
           <div className="flex items-center gap-6 max-md:hidden">
-            {navItems.map(({ key, href }) => (
-              <a
-                key={key}
-                href={href}
-                onClick={(event) => handleAnchorClick(event, href)}
-                className="text-[rgb(var(--color-foreground-muted))] hover:text-[rgb(var(--color-foreground))] text-sm transition-colors duration-200"
-              >
-                {t(`nav.${key}`)}
-              </a>
-            ))}
+            {navItems.map(({ key, href }) =>
+              href.startsWith("#") ? (
+                <a
+                  key={key}
+                  href={href}
+                  onClick={(event) => handleAnchorClick(event, href)}
+                  className="text-[rgb(var(--color-foreground-muted))] hover:text-[rgb(var(--color-foreground))] text-sm transition-colors duration-200"
+                >
+                  {t(`nav.${key}`)}
+                </a>
+              ) : (
+                <Link
+                  key={key}
+                  href={href}
+                  prefetch
+                  onClick={() => setMenuOpen(false)}
+                  className="text-[rgb(var(--color-foreground-muted))] hover:text-[rgb(var(--color-foreground))] text-sm transition-colors duration-200"
+                >
+                  {t(`nav.${key}`)}
+                </Link>
+              ),
+            )}
           </div>
 
           <div className="flex items-center gap-2 max-md:gap-1">
             <a
               href="#waitlist"
               onClick={(event) => {
-                if (typeof window === "undefined") return;
-                if (window.location.pathname !== "/") {
-                  window.location.href = "/#waitlist";
+                event.preventDefault();
+                if (pathname !== "/") {
+                  router.push("/#waitlist");
+                  setMenuOpen(false);
                   return;
                 }
-                event.preventDefault();
                 scrollToId("waitlist");
                 setTimeout(() => window.dispatchEvent(new Event("open-waitlist")), 250);
                 setMenuOpen(false);
@@ -193,19 +211,30 @@ export default function Navigation() {
       {menuOpen && (
         <div className="md:hidden px-4 pb-4 pt-3 border-t border-[rgb(var(--color-foreground)/0.06)] bg-[rgb(var(--color-background-start)/0.5)] backdrop-blur-2xl shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]">
           <div className="flex flex-col gap-3">
-            {navItems.map(({ key, href }) => (
-              <a
-                key={key}
-                href={href}
-                onClick={(event) => {
-                  setMenuOpen(false);
-                  handleAnchorClick(event, href);
-                }}
-                className="text-[rgb(var(--color-foreground))] text-sm font-medium px-3 py-2 rounded-xl bg-[rgb(var(--color-surface)/0.3)] border border-[rgb(var(--color-foreground)/0.08)] hover:border-[rgb(var(--color-foreground)/0.2)] transition-colors"
-              >
-                {t(`nav.${key}`)}
-              </a>
-            ))}
+            {navItems.map(({ key, href }) =>
+              href.startsWith("#") ? (
+                <a
+                  key={key}
+                  href={href}
+                  onClick={(event) => {
+                    handleAnchorClick(event, href);
+                  }}
+                  className="text-[rgb(var(--color-foreground))] text-sm font-medium px-3 py-2 rounded-xl bg-[rgb(var(--color-surface)/0.3)] border border-[rgb(var(--color-foreground)/0.08)] hover:border-[rgb(var(--color-foreground)/0.2)] transition-colors"
+                >
+                  {t(`nav.${key}`)}
+                </a>
+              ) : (
+                <Link
+                  key={key}
+                  href={href}
+                  prefetch
+                  onClick={() => setMenuOpen(false)}
+                  className="text-[rgb(var(--color-foreground))] text-sm font-medium px-3 py-2 rounded-xl bg-[rgb(var(--color-surface)/0.3)] border border-[rgb(var(--color-foreground)/0.08)] hover:border-[rgb(var(--color-foreground)/0.2)] transition-colors"
+                >
+                  {t(`nav.${key}`)}
+                </Link>
+              ),
+            )}
           </div>
         </div>
       )}

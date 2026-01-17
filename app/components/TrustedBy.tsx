@@ -11,7 +11,7 @@ export default async function TrustedBy() {
   const t = await getTranslations();
 
   return (
-    <section className="w-full max-w-[600px] mx-auto reveal-on-scroll">
+    <section className="w-full max-w-[600px] mx-auto reveal-on-scroll revealed">
       <p className="text-center text-[rgb(var(--color-foreground-muted))] text-xs tracking-wide uppercase opacity-40 mb-4 max-md:text-[10px] max-md:mb-2">
         {t("trustedBy")}
       </p>

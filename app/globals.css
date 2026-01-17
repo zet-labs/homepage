@@ -332,106 +332,6 @@ body::before {
   mix-blend-mode: overlay;
 }
 
-.spotlight-layer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.spotlight {
-  position: absolute;
-  border-radius: 9999px;
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-.spotlight-1 {
-  width: 500px;
-  height: 500px;
-  filter: blur(150px);
-  background: radial-gradient(
-    circle at center,
-    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-strong)) 0%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.98)) 2%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.95)) 4%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.92)) 6%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.88)) 8%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.84)) 10%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.79)) 13%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.73)) 16%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.67)) 20%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 1.1)) 24%,
-    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-medium)) 28%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.92)) 32%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.84)) 36%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.76)) 40%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.68)) 44%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.6)) 48%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.4)) 52%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.2)) 56%,
-    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-soft)) 60%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.85)) 64%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.7)) 68%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.55)) 72%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.4)) 76%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.28)) 80%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.18)) 84%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.1)) 88%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.05)) 92%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.02)) 95%,
-    transparent 100%
-  );
-  top: 6%;
-  left: 12%;
-  animation: spotlight-1-move 15s ease-in-out infinite;
-}
-
-.spotlight-2 {
-  width: 450px;
-  height: 450px;
-  filter: blur(140px);
-  background: radial-gradient(
-    circle at center,
-    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-strong)) 0%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.98)) 2%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.95)) 4%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.92)) 6%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.88)) 8%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.84)) 10%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.79)) 13%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.73)) 16%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-strong) * 0.67)) 20%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 1.1)) 24%,
-    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-medium)) 28%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.92)) 32%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.84)) 36%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.76)) 40%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.68)) 44%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-medium) * 0.6)) 48%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.4)) 52%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 1.2)) 56%,
-    rgb(var(--color-spotlight-1) / var(--spotlight-alpha-soft)) 60%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.85)) 64%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.7)) 68%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.55)) 72%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.4)) 76%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.28)) 80%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.18)) 84%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.1)) 88%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.05)) 92%,
-    rgb(var(--color-spotlight-1) / calc(var(--spotlight-alpha-soft) * 0.02)) 95%,
-    transparent 100%
-  );
-  bottom: 12%;
-  right: 10%;
-  animation: spotlight-2-move 18s ease-in-out infinite;
-}
-
 @media (max-width: 768px) {
   .spotlight-1 {
     width: 350px;
@@ -468,8 +368,8 @@ body::before {
 
 .grid-overlay {
   background-image:
-    linear-gradient(to right, rgb(var(--color-foreground) / 0.075) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(var(--color-foreground) / 0.075) 1px, transparent 1px);
+    linear-gradient(to right, rgb(var(--color-foreground) / 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--color-foreground) / 0.12) 1px, transparent 1px);
   background-size: 88px 88px;
   mask-image: radial-gradient(circle at 50% 15%, black 0%, transparent 70%);
   opacity: 0.5;
@@ -496,11 +396,11 @@ body::before {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(700px circle at 50% 20%, rgb(var(--color-foreground) / 0.08), transparent 60%),
-    radial-gradient(1200px circle at 50% 0%, rgb(var(--color-foreground) / 0.04), transparent 70%),
-    radial-gradient(900px circle at 50% 100%, rgb(0 0 0 / 0.25), transparent 60%);
+    radial-gradient(700px circle at 50% 20%, rgb(var(--color-foreground) / 0.14), transparent 60%),
+    radial-gradient(1200px circle at 50% 0%, rgb(var(--color-foreground) / 0.08), transparent 70%),
+    radial-gradient(900px circle at 50% 100%, rgb(0 0 0 / 0.28), transparent 60%);
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 :root[data-theme="light"] .grid-overlay::after {
@@ -564,6 +464,12 @@ a {
 .reveal-on-scroll.revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+.background-blur-layer {
+  transition:
+    background-color 150ms ease,
+    opacity 150ms ease;
 }
 
 /* AI Agent Diagram Animations */

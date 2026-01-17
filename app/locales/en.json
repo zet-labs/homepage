@@ -2,7 +2,7 @@
   "labBadge": "Now in private beta",
   "brandName": "Zet Labs",
   "tagline": "We build AI with impact.",
-  "joinWaitlist": "Get Access",
+  "joinWaitlist": "Join beta",
   "emailPlaceholder": "you@company.com",
   "submit": "Join",
   "thankYou": "You're in! We'll be in touch soon.",
@@ -94,6 +94,25 @@
     "subtitle": "Share what you want to build and we will help you shape the right solution.",
     "button": "Contact us"
   },
+  "responsible": {
+    "kicker": "Our Principles",
+    "title": "Responsible AI, by design",
+    "subtitle": "We show our work with clear standards, visible safeguards, and honest answers when people ask how your AI behaves.",
+    "principles": [
+      {
+        "title": "Safe by default",
+        "body": "We engineer oversight, monitoring, and fail-safes so agents behave predictably in real-world workflows."
+      },
+      {
+        "title": "Privacy-respecting",
+        "body": "Your data stays yours. We minimize collection, encrypt in transit, and keep access auditable."
+      },
+      {
+        "title": "Sustainable",
+        "body": "We optimize models and infrastructure to cut compute waste without sacrificing quality."
+      }
+    ]
+  },
   "jobs": {
     "heroTitle": "Build the future of AI, with us",
     "heroSubtitle": "We are a small team moving fast on ambitious problems. If you care about performance, ownership, and shipping real systems, you will love it here.",
@@ -158,12 +177,10 @@
         "seniority": "Mid-Senior",
         "location": "On-site · Prague",
         "category": "frontend-backend",
-        "summary": "Build fast, reliable backend systems that power our local AI models and client deployments. You will own core infrastructure end-to-end, handle ambiguous problems, and ship performance-first services.",
+        "summary": "Build fast, reliable backend systems for our local AI models and client deployments. Own core infrastructure and ship performance-first services.",
         "responsibilities": [
-          "Design high-throughput services for AI workloads with minimal guidance.",
+          "Design high-throughput services for AI workloads.",
           "Own APIs from schema to production reliability.",
-          "Optimize inference, data pipelines, and system efficiency.",
-          "Build resilient service communication and failure handling.",
           "Make systems observable: metrics, logs, tracing."
         ],
         "requirements": [
@@ -171,11 +188,7 @@
           "Proficiency in TypeScript/Node, Go, Rust, C#, or Python.",
           "Experience with modern databases (Postgres, Mongo, Qdrant, ClickHouse).",
           "Solid Docker + Kubernetes know-how.",
-          "Hands-on with NATS or RabbitMQ.",
-          "REST API design, JWT/OAuth2 familiarity.",
-          "Performance- and reliability-focused mindset.",
-          "Comfort owning ambiguous problems end-to-end.",
-          "Bonus: Protobufs or Next/React/Tailwind exposure."
+          "Performance- and reliability-focused mindset."
         ]
       },
       {
@@ -185,21 +198,18 @@
         "seniority": "Senior",
         "location": "On-site · Prague",
         "category": "ai-ml",
-        "summary": "Own the runtime that powers our agents end-to-end. You will define the platform, make hard trade-offs, and ship systems that keep workflows fast and safe.",
+        "summary": "Own the runtime that powers our agents. Define the platform and ship systems that keep workflows fast and safe.",
         "responsibilities": [
           "Build agent execution runtimes with strong isolation and observability.",
-          "Design tool and connector interfaces for external systems.",
           "Implement scheduling, retries, and guardrails for long-running tasks.",
-          "Ship performance improvements across orchestration and memory layers.",
-          "Define platform primitives from fuzzy requirements."
+          "Ship performance improvements across orchestration and memory layers."
         ],
         "requirements": [
           "Experience building distributed systems or orchestration platforms.",
           "Strong TypeScript/Node, Go, or Rust background.",
           "Familiarity with event-driven systems, queues, or pub/sub.",
           "Comfort with profiling, benchmarking, and performance tuning.",
-          "Security-first mindset around data access and isolation.",
-          "Ownership mindset in ambiguous environments."
+          "Security-first mindset around data access and isolation."
         ]
       },
       {
@@ -209,21 +219,18 @@
         "seniority": "Mid-Senior",
         "location": "On-site · Prague",
         "category": "ai-ml",
-        "summary": "Ship model improvements that matter in production. You will own experiments end-to-end and push them into real client workflows.",
+        "summary": "Ship model improvements that matter in production. Own experiments end-to-end and push them into client workflows.",
         "responsibilities": [
           "Run experiments on fine-tuning, retrieval, and evaluation.",
           "Build tooling for model benchmarking and regression testing.",
-          "Optimize inference performance and memory usage.",
-          "Collaborate with engineers to ship model updates safely.",
-          "Translate customer feedback into measurable model goals."
+          "Optimize inference performance and memory usage."
         ],
         "requirements": [
           "Hands-on experience with LLMs and modern ML toolchains.",
           "Strong Python skills and familiarity with PyTorch or JAX.",
           "Experience with evaluation frameworks and dataset curation.",
           "Comfort deploying models to production environments.",
-          "Clear communication of experimental results and trade-offs.",
-          "Comfort owning ambiguous problems end-to-end."
+          "Clear communication of experimental results and trade-offs."
         ]
       },
       {
@@ -233,20 +240,17 @@
         "seniority": "Junior",
         "location": "On-site · Prague",
         "category": "ai-ml",
-        "summary": "Work alongside senior engineers on model tuning, data pipelines, and client deployments. You will learn fast, take ownership of scoped projects, and grow into full stack ML work.",
+        "summary": "Work alongside senior engineers on model tuning, data pipelines, and deployments. Grow into full-stack ML work.",
         "responsibilities": [
           "Assist with dataset preparation, evaluation, and analysis.",
           "Implement experiments and track results in a reproducible way.",
-          "Help ship model updates and monitor quality in production.",
-          "Build small tools and scripts that improve our workflows.",
-          "Ask questions early and close feedback loops quickly."
+          "Help ship model updates and monitor quality in production."
         ],
         "requirements": [
           "Solid Python fundamentals and basic ML knowledge.",
           "Familiarity with Git and reproducible workflows.",
           "Curiosity and ability to learn fast.",
-          "Clear communication and ownership of tasks.",
-          "Bonus: exposure to PyTorch, JAX, or data pipelines."
+          "Clear communication and ownership of tasks."
         ]
       },
       {
@@ -256,20 +260,17 @@
         "seniority": "Mid-Level",
         "location": "On-site · Prague",
         "category": "frontend-backend",
-        "summary": "Craft fast, elegant frontends for our AI products and client deployments. You will own UI features end-to-end and turn ambiguous product goals into polished experiences.",
+        "summary": "Craft fast, elegant frontends for our AI products. Own UI features end-to-end and ship polished experiences.",
         "responsibilities": [
           "Build responsive UI components with React and Next.js.",
           "Ship production-ready interfaces with Tailwind CSS.",
-          "Own frontend performance, accessibility, and UX polish.",
-          "Collaborate closely with product and backend engineers.",
-          "Turn rough ideas into clear, shippable UI."
+          "Own frontend performance, accessibility, and UX polish."
         ],
         "requirements": [
           "Strong React and TypeScript fundamentals.",
           "Experience with Next.js and Tailwind CSS.",
           "Good eye for UX and visual quality.",
-          "Comfort owning ambiguous problems end-to-end.",
-          "Bonus: familiarity with design systems or Figma."
+          "Comfort owning ambiguous problems end-to-end."
         ]
       }
     ],
@@ -351,13 +352,13 @@
     }
   },
   "footer": {
-    "copyright": "© 2025 Zet Labs",
+    "copyright": "© 2026 Zet Labs",
     "github": "GitHub",
     "twitter": "X",
     "twitterAria": "X (Twitter)",
     "contact": "Contact",
     "email": "Email",
-    "tagline": "Made with mass amounts of ☕ and 🔥 GPUs in Czechia.",
+    "tagline": "Made with lots of ☕ and 🔥 GPUs in Czechia.",
     "privacy": "Privacy",
     "terms": "Terms"
   },

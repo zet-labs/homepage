@@ -2,7 +2,7 @@
   "labBadge": "Právě v private beta",
   "brandName": "Zet Labs",
   "tagline": "Stavíme AI s dopadem.",
-  "joinWaitlist": "Získat přístup",
+  "joinWaitlist": "Beta přístup",
   "emailPlaceholder": "vy@firma.cz",
   "submit": "Jdu do toho",
   "thankYou": "Jste vnitř! Brzy se ozveme.",
@@ -94,6 +94,25 @@
     "subtitle": "Sdílejte, co chcete stavět, a pomůžeme vám zvolit správné řešení.",
     "button": "Kontaktujte nás"
   },
+  "responsible": {
+    "kicker": "Naše principy",
+    "title": "Odpovědná AI od základu",
+    "subtitle": "Ukazujeme, jak to děláme: jasné standardy, viditelné pojistky a férové odpovědi, když se někdo ptá, jak se AI chová.",
+    "principles": [
+      {
+        "title": "Bezpečná ve výchozím nastavení",
+        "body": "Navrhujeme dohled, monitoring a pojistky, aby se agenti v produkci chovali předvídatelně."
+      },
+      {
+        "title": "Respektující soukromí",
+        "body": "Data zůstávají vaše. Sbíráme jen minimum, šifrujeme přenos a přístupy jsou auditovatelné."
+      },
+      {
+        "title": "Udržitelná",
+        "body": "Optimalizujeme modely i infrastrukturu, abychom omezili zbytečné výpočty bez ztráty kvality."
+      }
+    ]
+  },
   "jobs": {
     "heroTitle": "Budujte s námi budoucnost AI",
     "heroSubtitle": "Jsme malý tým, který jde rychle po velkých problémech. Pokud vás baví výkon, odpovědnost a doručování reálných systémů, budete tu jako doma.",
@@ -158,24 +177,18 @@
         "seniority": "Mid-Senior",
         "location": "On-site · Praha",
         "category": "frontend-backend",
-        "summary": "Budujte rychlé a spolehlivé backend systémy pro lokální AI modely a klientské nasazení. Budete vlastnit core infrastrukturu end-to-end, řešit nejasné problémy a doručovat výkonově laděné služby.",
+        "summary": "Stavte rychlé a spolehlivé backendy pro lokální AI modely a nasazení u klientů. Vlastníte klíčovou infrastrukturu a doručujete výkonově laděné služby.",
         "responsibilities": [
-          "Navrhovat vysokovýkonné služby pro AI workloady i bez detailního zadání.",
-          "Vlastnit API od návrhu po spolehlivý provoz.",
-          "Optimalizovat inferenci, datové pipeline a efektivitu systému.",
-          "Budovat odolnou komunikaci mezi službami a ošetření chyb.",
-          "Zajišťovat observabilitu: metriky, logy, tracing."
+          "Navrhujte vysoce průtočné služby pro AI workloady.",
+          "Vlastněte API od návrhu po spolehlivý provoz.",
+          "Zajišťujte observabilitu: metriky, logy, tracing."
         ],
         "requirements": [
-          "Silná backend zkušenost v microservice architekturách.",
-          "Znalost TypeScript/Node, Go, Rust, C# nebo Pythonu.",
+          "Silné backend zkušenosti s architekturou microservices.",
+          "Zkušenost s TypeScript/Node, Go, Rust, C# nebo Python.",
           "Zkušenost s moderními databázemi (Postgres, Mongo, Qdrant, ClickHouse).",
-          "Dobrá znalost Dockeru a Kubernetes.",
-          "Zkušenost s NATS nebo RabbitMQ.",
-          "Návrh REST API, znalost JWT/OAuth2.",
-          "Důraz na výkon a spolehlivost.",
-          "Schopnost dotahovat nejasné problémy end-to-end.",
-          "Bonus: Protobufs nebo Next/React/Tailwind."
+          "Solidní znalost Dockeru a Kubernetes.",
+          "Mindset zaměřený na výkon a spolehlivost."
         ]
       },
       {
@@ -185,21 +198,18 @@
         "seniority": "Senior",
         "location": "On-site · Praha",
         "category": "ai-ml",
-        "summary": "Budeš vlastnit runtime, který pohání naše agenty end-to-end. Definuješ platformu, budeš dělat těžké trade-offy a dodáš systém pro rychlé a bezpečné workflow.",
+        "summary": "Vlastníte runtime, který pohání naše agenty. Definujete platformu a doručujete systémy, které drží workflow rychlé a bezpečné.",
         "responsibilities": [
-          "Stavět runtime pro agenty se silnou izolací a observability.",
-          "Navrhovat rozhraní pro nástroje a konektory externích systémů.",
-          "Implementovat scheduling, retry a guardrails pro dlouhé úlohy.",
-          "Zlepšovat výkon orchestrace a memory vrstev.",
-          "Definovat platformní primitiva z nejasných zadání."
+          "Stavte runtime pro agenty se silnou izolací a observabilitou.",
+          "Implementujte plánování, retry a guardrails pro dlouhé úlohy.",
+          "Doručujte výkonová zlepšení v orchestrace a paměťových vrstvách."
         ],
         "requirements": [
-          "Zkušenost s distribuovanými systémy nebo orchestration platformami.",
-          "Silné TypeScript/Node, Go nebo Rust.",
+          "Zkušenost s distribuovanými systémy nebo orchestrací.",
+          "Silný TypeScript/Node, Go nebo Rust.",
           "Znalost event-driven systémů, front nebo pub/sub.",
-          "Schopnost profilování, benchmarkingu a ladění výkonu.",
-          "Security-first přístup k přístupu k datům a izolaci.",
-          "Ownership mindset v nejasném prostředí."
+          "Komfort s profilingem, benchmarkingem a laděním výkonu.",
+          "Security-first přístup k práci s daty a izolaci."
         ]
       },
       {
@@ -209,21 +219,18 @@
         "seniority": "Mid-Senior",
         "location": "On-site · Praha",
         "category": "ai-ml",
-        "summary": "Budeš doručovat zlepšení modelů, která mají dopad v produkci. Vlastníš experimenty end-to-end a dostaneš je do reálných workflow klientů.",
+        "summary": "Doručujte modelová zlepšení, která se projeví v produkci. Vlastníte experimenty end-to-end a posouváte je do klientských workflow.",
         "responsibilities": [
-          "Experimentovat s fine-tuningem, retrieval a evaluací.",
-          "Stavět tooling pro benchmarking a regresní testy modelů.",
-          "Optimalizovat inference výkon a paměťové nároky.",
-          "Spolupracovat s engineeringem na bezpečných updatech modelů.",
-          "Překládat feedback zákazníků do měřitelných cílů."
+          "Provádějte experimenty s fine-tuningem, retrieval a evaluací.",
+          "Stavte tooling pro benchmarking modelů a regresní testy.",
+          "Optimalizujte výkon inference a spotřebu paměti."
         ],
         "requirements": [
-          "Praktická zkušenost s LLM a moderními ML toolchainy.",
-          "Silné Python dovednosti a znalost PyTorch nebo JAX.",
-          "Zkušenost s evaluací a tvorbou datasetů.",
-          "Schopnost nasazovat modely do produkce.",
-          "Srozumitelná komunikace výsledků experimentů a trade-offů.",
-          "Schopnost dotahovat nejasné problémy end-to-end."
+          "Hands-on zkušenost s LLMs a moderním ML stackem.",
+          "Silný Python a znalost PyTorch nebo JAX.",
+          "Zkušenost s eval frameworky a kurací datasetů.",
+          "Komfort s nasazováním modelů do produkce.",
+          "Jasná komunikace výsledků a trade-offů."
         ]
       },
       {
@@ -233,20 +240,17 @@
         "seniority": "Junior",
         "location": "On-site · Praha",
         "category": "ai-ml",
-        "summary": "Budeš pracovat se seniory na ladění modelů, datových pipeline a nasazení u klientů. Rychle se učíš, přebíráš menší projekty a postupně rosteš do full‑stack ML práce.",
+        "summary": "Pracujte se seniory na ladění modelů, pipelinech a nasazeních. Porostete do full-stack ML.",
         "responsibilities": [
-          "Pomáhat s přípravou dat, evaluací a analýzou výsledků.",
-          "Implementovat experimenty a udržovat je reprodukovatelné.",
-          "Pomáhat s nasazením a sledováním kvality v produkci.",
-          "Vytvářet malé nástroje a skripty pro zlepšení workflow.",
-          "Ptát se včas a rychle uzavírat zpětnou vazbu."
+          "Pomáhejte s přípravou datasetů, evaluací a analýzou.",
+          "Implementujte experimenty a sledujte výsledky reprodukovatelně.",
+          "Pomáhejte nasazovat modely a hlídat kvalitu v produkci."
         ],
         "requirements": [
-          "Dobré Python základy a základní ML znalosti.",
+          "Solidní Python základy a základní ML znalosti.",
           "Znalost Git a reprodukovatelných workflow.",
           "Zvídavost a schopnost rychle se učit.",
-          "Jasná komunikace a ownership menších úkolů.",
-          "Bonus: PyTorch, JAX nebo data pipeline."
+          "Jasná komunikace a ownership úkolů."
         ]
       },
       {
@@ -256,20 +260,17 @@
         "seniority": "Mid-Level",
         "location": "On-site · Praha",
         "category": "frontend-backend",
-        "summary": "Navrhuj rychlé a elegantní frontendy pro naše AI produkty a klientská nasazení. Vlastníš UI funkce end-to-end a převádíš nejasné cíle do vyladěných zkušeností.",
+        "summary": "Tvořte rychlé a elegantní frontendy pro naše AI produkty. Vlastníte UI funkce end-to-end a doručujete vyladěné zážitky.",
         "responsibilities": [
-          "Stavět responzivní UI komponenty v Reactu a Next.js.",
-          "Dodávat produkční rozhraní s Tailwind CSS.",
-          "Vlastnit výkon, přístupnost a UX detail.",
-          "Úzce spolupracovat s produktem a backendem.",
-          "Převádět hrubé nápady do jasného UI."
+          "Vytvářejte responzivní UI komponenty v Reactu a Next.js.",
+          "Doručujte produkční UI s Tailwind CSS.",
+          "Vlastněte výkon frontendu, přístupnost a UX detail."
         ],
         "requirements": [
           "Silné základy Reactu a TypeScriptu.",
           "Zkušenost s Next.js a Tailwind CSS.",
-          "Cit pro UX a vizuální kvalitu.",
-          "Schopnost dotahovat nejasné problémy end-to-end.",
-          "Bonus: zkušenost s design systémy nebo Figmou."
+          "Dobrý cit pro UX a vizuální kvalitu.",
+          "Komfort vlastnit nejasné problémy end-to-end."
         ]
       }
     ],
@@ -351,13 +352,13 @@
     }
   },
   "footer": {
-    "copyright": "© 2025 Zet Labs",
+    "copyright": "© 2026 Zet Labs",
     "github": "GitHub",
     "twitter": "X",
     "twitterAria": "X (Twitter)",
     "contact": "Kontakt",
     "email": "E-mail",
-    "tagline": "Postaveno na mass amounts of ☕ a 🔥 GPU v Česku.",
+    "tagline": "Postaveno na spoustě ☕ a 🔥 GPU v Česku.",
     "privacy": "Soukromí",
     "terms": "Podmínky"
   },

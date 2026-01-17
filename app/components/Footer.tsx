@@ -41,32 +41,31 @@ export default async function Footer() {
   return (
     <footer className="relative z-[5] pt-10 pb-6 w-full max-w-[1000px] mx-auto max-md:pt-8 max-md:pb-4">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgb(var(--color-foreground)/0.12)] to-transparent" />
-      <div className="flex items-center justify-between max-md:flex-col max-md:gap-6">
+      <div className="flex items-center justify-between gap-6 max-md:flex-col max-md:gap-4">
         <span className="text-[rgb(var(--color-foreground-muted))] text-xs tracking-wide opacity-60 max-md:order-3">
           {t("footer.copyright")}
         </span>
 
-        <div className="flex flex-col items-center gap-2 max-md:order-1">
-          <p className="text-[rgb(var(--color-foreground-muted))] text-xs text-center whitespace-nowrap opacity-50 max-md:whitespace-normal">
+        <div className="flex items-center gap-3 text-[rgb(var(--color-foreground-muted))] text-xs opacity-60 max-md:order-1 max-md:flex-col max-md:gap-2">
+          <span className="text-center whitespace-nowrap opacity-70 max-md:whitespace-normal">
             {t("footer.tagline")}
-          </p>
-          <div className="flex items-center gap-3 text-[rgb(var(--color-foreground-muted))] text-[11px] opacity-60">
-            <Link
-              href="/privacy"
-              prefetch
-              className="hover:opacity-100 transition-opacity duration-200"
-            >
-              {t("footer.privacy")}
-            </Link>
-            <span className="opacity-40">{t("common.separator")}</span>
-            <Link
-              href="/terms"
-              prefetch
-              className="hover:opacity-100 transition-opacity duration-200"
-            >
-              {t("footer.terms")}
-            </Link>
-          </div>
+          </span>
+          <span className="opacity-30 max-md:hidden">{t("common.separator")}</span>
+          <Link
+            href="/privacy"
+            prefetch
+            className="hover:opacity-100 transition-opacity duration-200"
+          >
+            {t("footer.privacy")}
+          </Link>
+          <span className="opacity-30 max-md:hidden">{t("common.separator")}</span>
+          <Link
+            href="/terms"
+            prefetch
+            className="hover:opacity-100 transition-opacity duration-200"
+          >
+            {t("footer.terms")}
+          </Link>
         </div>
 
         <div className="flex items-center gap-4 max-md:order-2">

@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { SITE_URL } from "../lib/site";
 import BackgroundEffects from "./components/BackgroundEffects";
+import ConsoleEasterEgg from "./components/ConsoleEasterEgg";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
@@ -45,6 +46,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <BackgroundEffects />
+        <ConsoleEasterEgg />
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />

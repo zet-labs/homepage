@@ -205,17 +205,35 @@ export default function JobsPageClient() {
                           </div>
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-3 pt-2">
+                        <div className="flex items-center gap-3 pt-3 w-full max-md:flex-nowrap max-md:justify-start">
                           <button
                             type="button"
                             onClick={() => handleCopy(job.id)}
-                            className="inline-flex items-center justify-center px-4 h-9 rounded-full text-[13px] font-medium border border-[rgb(var(--color-foreground)/0.2)] text-[rgb(var(--color-foreground))] hover:border-[rgb(var(--color-foreground)/0.35)] hover:bg-[rgb(var(--color-foreground)/0.06)] transition-colors"
+                            className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-[rgb(var(--color-foreground)/0.25)] text-[rgb(var(--color-foreground))] bg-[rgb(var(--color-surface)/0.35)] hover:border-[rgb(var(--color-foreground)/0.4)] hover:bg-[rgb(var(--color-foreground)/0.08)] transition-all duration-200 shrink-0"
+                            aria-label={
+                              copiedId === job.id ? t("actions.copied") : t("actions.copyLink")
+                            }
+                            title={
+                              copiedId === job.id ? t("actions.copied") : t("actions.copyLink")
+                            }
                           >
-                            {copiedId === job.id ? t("actions.copied") : t("actions.copyLink")}
+                            <svg
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.7"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="w-4 h-4"
+                              aria-hidden="true"
+                            >
+                              <path d="M10 14a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L10 6" />
+                              <path d="M14 10a5 5 0 0 0-7.07 0l-2.12 2.12a5 5 0 0 0 7.07 7.07L14 18" />
+                            </svg>
                           </button>
                           <a
                             href={`mailto:${SITE_EMAIL_JOBS}?subject=${encodeURIComponent(job.title)}`}
-                            className="inline-flex items-center justify-center px-4 h-9 rounded-full text-[13px] font-semibold bg-[linear-gradient(135deg,rgb(var(--color-accent-indigo)),rgb(var(--color-accent-purple)))] !text-white hover:opacity-90 transition-colors"
+                            className="inline-flex items-center justify-center px-4 h-10 rounded-full text-[13px] font-semibold whitespace-nowrap bg-[linear-gradient(135deg,rgb(var(--color-accent-indigo)),rgb(var(--color-accent-purple)))] !text-white border border-[rgb(var(--color-foreground)/0.18)] shadow-[0_12px_28px_rgb(var(--color-accent-indigo)/0.35),0_0_32px_rgb(var(--color-accent-purple)/0.22)] hover:shadow-[0_14px_34px_rgb(var(--color-accent-indigo)/0.4),0_0_40px_rgb(var(--color-accent-purple)/0.26)] hover:-translate-y-[1px] transition-all duration-200 shrink-0"
                             style={{ color: "white" }}
                           >
                             {t("actions.apply")}

@@ -79,7 +79,7 @@ export default async function Footer() {
             <GitHubIcon />
           </a>
           <a
-            href="https://x.com/zetlabsdev"
+            href="https://x.com/zetlabsai"
             target="_blank"
             rel="noopener noreferrer"
             className="w-9 h-9 rounded-full flex items-center justify-center text-[rgb(var(--color-foreground-muted))] opacity-70 hover:opacity-100 hover:bg-[rgb(var(--color-foreground)/0.06)] transition-all duration-200"

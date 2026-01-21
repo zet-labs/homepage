@@ -16,7 +16,7 @@ type WaitlistButtonProps = {
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 const TURNSTILE_RENDER_OPTIONS = {
-  size: "invisible",
+  size: "compact",
   appearance: "interaction-only",
   execution: "execute",
 } as const;

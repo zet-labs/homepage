@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { generateId, sql } from "../../../lib/db";
+import { checkBotId } from "botid/server";
 
 type Payload = {
   name?: string;
@@ -17,6 +18,17 @@ function isValidEmail(email: string) {
 
 export async function POST(request: Request) {
   let payload: Payload;
+  let verification;
+
+  try {
+    verification = await checkBotId();
+  } catch {
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
+
+  if (verification.isBot) {
+    return NextResponse.json({ error: "Access denied" }, { status: 403 });
+  }
 
   try {
     payload = (await request.json()) as Payload;

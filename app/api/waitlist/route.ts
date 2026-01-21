@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { generateId, sql } from "@/lib/db";
+import { checkBotId } from "botid/server";
 
 const schema = z.object({
   email: z.string().email().max(255),
@@ -47,6 +48,10 @@ function checkRateLimit(ip: string): boolean {
 
 export async function POST(request: Request) {
   try {
+    const verification = await checkBotId();
+    if (verification.isBot) {
+      return Response.json({ error: "Access denied" }, { status: 403 });
+    }
     const { email, language, honeypot, timestamp } = schema.parse(await request.json());
 
     if (honeypot) {

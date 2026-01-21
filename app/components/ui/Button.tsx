@@ -35,10 +35,10 @@ export function Button({
   const base =
     "button-root button-" +
     variant +
-    " group relative inline-flex items-center justify-center font-semibold text-[rgb(var(--color-foreground))] bg-[linear-gradient(135deg,rgb(var(--color-accent-indigo)/0.3),rgb(var(--color-accent-purple)/0.3))] hover:bg-[linear-gradient(135deg,rgb(var(--color-accent-indigo)/0.4),rgb(var(--color-accent-purple)/0.4))] border border-[rgb(var(--color-foreground-soft)/0.35)] hover:border-[rgb(var(--color-foreground-soft)/0.5)] rounded-xl cursor-pointer backdrop-blur-[20px] transition-all duration-300 whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0";
+    " group relative inline-flex items-center justify-center font-semibold text-[rgb(var(--color-foreground))] bg-[linear-gradient(135deg,rgb(var(--color-accent-indigo)/0.3),rgb(var(--color-accent-purple)/0.3))] hover:bg-[linear-gradient(135deg,rgb(var(--color-accent-indigo)/0.4),rgb(var(--color-accent-purple)/0.4))] border border-[rgb(var(--color-foreground-soft)/0.35)] hover:border-[rgb(var(--color-foreground-soft)/0.5)] rounded-xl cursor-pointer backdrop-blur-[20px] transition-all duration-300 whitespace-nowrap hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none disabled:bg-[linear-gradient(135deg,rgb(var(--color-foreground)/0.08),rgb(var(--color-foreground)/0.08))] disabled:border-[rgb(var(--color-foreground-soft)/0.25)] disabled:hover:translate-y-0 disabled:active:translate-y-0";
   const glow =
     withGlowEffect &&
-    "rounded-[20px] overflow-hidden duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] backdrop-blur-[30px] animate-[fade-in-up_1s_ease-out_0.3s_both,pulse-glow_3s_ease-in-out_infinite] hover:-translate-y-[3px] hover:scale-[1.02]";
+    "rounded-[20px] overflow-hidden duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] backdrop-blur-[30px] animate-[fade-in-up_1s_ease-out_0.3s_both,pulse-glow_3s_ease-in-out_infinite] hover:-translate-y-[3px] hover:scale-[1.02] disabled:animate-none disabled:hover:-translate-y-0 disabled:hover:scale-100";
   return (
     <button
       className={cn(base, glow, variantStyles[variant], sizeStyles[size], className)}

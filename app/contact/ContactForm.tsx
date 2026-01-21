@@ -46,10 +46,13 @@ export default function ContactForm() {
   const [reason, setReason] = useState(t("reasons.default"));
   const [message, setMessage] = useState("");
   const [honeypot, setHoneypot] = useState("");
+  const [turnstileReady, setTurnstileReady] = useState(false);
+  const [turnstileFailed, setTurnstileFailed] = useState(false);
   const submittingRef = useRef(false);
   const timestampRef = useRef(0);
   const turnstileRef = useRef<HTMLDivElement>(null);
   const turnstileWidgetId = useRef<string | null>(null);
+  const turnstileFailedRef = useRef(false);
   const formDataRef = useRef<{
     name: string;
     email: string;
@@ -109,7 +112,14 @@ export default function ContactForm() {
   );
 
   const initTurnstile = useCallback(() => {
-    if (!window.turnstile || !turnstileRef.current || turnstileWidgetId.current) return;
+    if (
+      !window.turnstile ||
+      !turnstileRef.current ||
+      turnstileWidgetId.current ||
+      turnstileFailedRef.current
+    ) {
+      return;
+    }
 
     turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
       sitekey: TURNSTILE_SITE_KEY,
@@ -123,6 +133,13 @@ export default function ContactForm() {
         setState("error");
         submittingRef.current = false;
         formDataRef.current = null;
+        turnstileFailedRef.current = true;
+        setTurnstileReady(false);
+        setTurnstileFailed(true);
+        if (turnstileWidgetId.current) {
+          window.turnstile?.remove(turnstileWidgetId.current);
+          turnstileWidgetId.current = null;
+        }
       },
       "expired-callback": () => {
         if (turnstileWidgetId.current) {
@@ -130,6 +147,11 @@ export default function ContactForm() {
         }
       },
     });
+    setTurnstileReady(true);
+
+    if (submittingRef.current && formDataRef.current) {
+      window.turnstile.execute(turnstileWidgetId.current);
+    }
   }, [submitForm]);
 
   useEffect(() => {
@@ -152,6 +174,8 @@ export default function ContactForm() {
       if (turnstileWidgetId.current && window.turnstile) {
         window.turnstile.remove(turnstileWidgetId.current);
       }
+      setTurnstileReady(false);
+      setTurnstileFailed(false);
       delete window.onTurnstileLoad;
     };
   }, [initTurnstile]);
@@ -179,12 +203,13 @@ export default function ContactForm() {
       return;
     }
 
-    if (!turnstileWidgetId.current) {
+    if (turnstileFailedRef.current) {
       setState("error");
       return;
     }
 
     setValidationMessage(null);
+    setTurnstileFailed(false);
     submittingRef.current = true;
     setState("submitting");
 
@@ -197,6 +222,11 @@ export default function ContactForm() {
       honeypot,
       timestamp: timestampRef.current,
     };
+
+    if (!turnstileWidgetId.current) {
+      initTurnstile();
+      return;
+    }
 
     window.turnstile?.execute(turnstileWidgetId.current);
   };
@@ -317,9 +347,21 @@ export default function ContactForm() {
             {t("privacyLink")}
           </Link>
         </p>
-        <Button type="submit" size="md" withGlowEffect disabled={state === "submitting"}>
-          {state === "submitting" ? t("submitting") : t("submit")}
-        </Button>
+        <div className="flex flex-col items-center md:items-end gap-2">
+          <Button
+            type="submit"
+            size="md"
+            withGlowEffect
+            disabled={state === "submitting" || turnstileFailed}
+          >
+            {state === "submitting" ? t("submitting") : t("submit")}
+          </Button>
+          {state === "submitting" && !turnstileReady && (
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[rgb(var(--color-foreground-muted)/0.7)]">
+              {t("verificationLoading")}
+            </span>
+          )}
+        </div>
       </div>
 
       {validationMessage && (
@@ -334,7 +376,7 @@ export default function ContactForm() {
       )}
       {state === "error" && (
         <p className="mt-4 text-sm rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-rose-200">
-          {t("error")}
+          {turnstileFailed ? t("verificationError") : t("error")}
         </p>
       )}
     </form>

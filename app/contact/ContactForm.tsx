@@ -6,35 +6,18 @@ import { useTranslations } from "next-intl";
 import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
 import { Textarea } from "../components/ui/Textarea";
-
-declare global {
-  interface Window {
-    turnstile?: {
-      render: (
-        container: string | HTMLElement,
-        options: {
-          sitekey: string;
-          callback: (token: string) => void;
-          "error-callback"?: () => void;
-          "expired-callback"?: () => void;
-          size?: "normal" | "compact" | "invisible";
-          appearance?: "always" | "execute" | "interaction-only";
-          execution?: "render" | "execute";
-        },
-      ) => string;
-      execute: (container: string | HTMLElement, options?: object) => void;
-      reset: (widgetId: string) => void;
-      remove: (widgetId: string) => void;
-    };
-    onTurnstileLoad?: () => void;
-  }
-}
+import { useTurnstile } from "../../lib/useTurnstile";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
 const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
+const TURNSTILE_RENDER_OPTIONS = {
+  size: "normal",
+  appearance: "interaction-only",
+  execution: "execute",
+} as const;
 
 export default function ContactForm() {
   const t = useTranslations("contact");
@@ -46,13 +29,9 @@ export default function ContactForm() {
   const [reason, setReason] = useState(t("reasons.default"));
   const [message, setMessage] = useState("");
   const [honeypot, setHoneypot] = useState("");
-  const [turnstileReady, setTurnstileReady] = useState(false);
-  const [turnstileFailed, setTurnstileFailed] = useState(false);
   const submittingRef = useRef(false);
   const timestampRef = useRef(0);
-  const turnstileRef = useRef<HTMLDivElement>(null);
-  const turnstileWidgetId = useRef<string | null>(null);
-  const turnstileFailedRef = useRef(false);
+  const resetTurnstileRef = useRef<() => void>(() => {});
   const formDataRef = useRef<{
     name: string;
     email: string;
@@ -103,82 +82,33 @@ export default function ContactForm() {
       } finally {
         submittingRef.current = false;
         formDataRef.current = null;
-        if (turnstileWidgetId.current && window.turnstile) {
-          window.turnstile.reset(turnstileWidgetId.current);
-        }
+        resetTurnstileRef.current();
       }
     },
     [t],
   );
 
-  const initTurnstile = useCallback(() => {
-    if (
-      !window.turnstile ||
-      !turnstileRef.current ||
-      turnstileWidgetId.current ||
-      turnstileFailedRef.current
-    ) {
-      return;
-    }
-
-    turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
-      sitekey: TURNSTILE_SITE_KEY,
-      size: "normal",
-      appearance: "interaction-only",
-      execution: "execute",
-      callback: (token: string) => {
-        submitForm(token);
-      },
-      "error-callback": () => {
-        setState("error");
-        submittingRef.current = false;
-        formDataRef.current = null;
-        turnstileFailedRef.current = true;
-        setTurnstileReady(false);
-        setTurnstileFailed(true);
-        if (turnstileWidgetId.current) {
-          window.turnstile?.remove(turnstileWidgetId.current);
-          turnstileWidgetId.current = null;
-        }
-      },
-      "expired-callback": () => {
-        if (turnstileWidgetId.current) {
-          window.turnstile?.reset(turnstileWidgetId.current);
-        }
-      },
-    });
-    setTurnstileReady(true);
-
-    if (submittingRef.current && formDataRef.current) {
-      window.turnstile.execute(turnstileWidgetId.current);
-    }
-  }, [submitForm]);
+  const {
+    containerRef: turnstileRef,
+    ready: turnstileReady,
+    failed: turnstileFailed,
+    execute: executeTurnstile,
+    reset: resetTurnstile,
+  } = useTurnstile({
+    siteKey: TURNSTILE_SITE_KEY,
+    enabled: Boolean(TURNSTILE_SITE_KEY),
+    renderOptions: TURNSTILE_RENDER_OPTIONS,
+    onSuccess: submitForm,
+    onError: () => {
+      setState("error");
+      submittingRef.current = false;
+      formDataRef.current = null;
+    },
+  });
 
   useEffect(() => {
-    if (!TURNSTILE_SITE_KEY) return;
-
-    if (window.turnstile) {
-      initTurnstile();
-      return;
-    }
-
-    window.onTurnstileLoad = initTurnstile;
-
-    const script = document.createElement("script");
-    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad";
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-
-    return () => {
-      if (turnstileWidgetId.current && window.turnstile) {
-        window.turnstile.remove(turnstileWidgetId.current);
-      }
-      setTurnstileReady(false);
-      setTurnstileFailed(false);
-      delete window.onTurnstileLoad;
-    };
-  }, [initTurnstile]);
+    resetTurnstileRef.current = resetTurnstile;
+  }, [resetTurnstile]);
 
   const trimmedName = name.trim();
   const trimmedEmail = email.trim();
@@ -194,7 +124,7 @@ export default function ContactForm() {
     return t("validationRequired");
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (state === "submitting" || submittingRef.current) return;
 
@@ -203,13 +133,12 @@ export default function ContactForm() {
       return;
     }
 
-    if (turnstileFailedRef.current) {
+    if (turnstileFailed) {
       setState("error");
       return;
     }
 
     setValidationMessage(null);
-    setTurnstileFailed(false);
     submittingRef.current = true;
     setState("submitting");
 
@@ -223,12 +152,12 @@ export default function ContactForm() {
       timestamp: timestampRef.current,
     };
 
-    if (!turnstileWidgetId.current) {
-      initTurnstile();
-      return;
+    const executed = await executeTurnstile();
+    if (!executed) {
+      submittingRef.current = false;
+      formDataRef.current = null;
+      setState("error");
     }
-
-    window.turnstile?.execute(turnstileWidgetId.current);
   };
 
   return (
@@ -354,7 +283,14 @@ export default function ContactForm() {
             withGlowEffect
             disabled={state === "submitting" || turnstileFailed}
           >
-            {state === "submitting" ? t("submitting") : t("submit")}
+            {state === "submitting" ? (
+              <span className="inline-flex items-center gap-2">
+                <span className="h-3.5 w-3.5 animate-spin rounded-full border border-[rgb(var(--color-foreground)/0.35)] border-t-transparent" />
+                {t("submitting")}
+              </span>
+            ) : (
+              t("submit")
+            )}
           </Button>
           {state === "submitting" && !turnstileReady && (
             <span className="text-[10px] uppercase tracking-[0.2em] text-[rgb(var(--color-foreground-muted)/0.7)]">

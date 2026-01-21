@@ -22,6 +22,7 @@ export default function WaitlistButton({
   const [state, setState] = useState<State>("button");
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const timestampRef = useRef(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const focusInput = () => {
@@ -42,7 +43,9 @@ export default function WaitlistButton({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
 
+    setSubmitting(true);
     try {
       const response = await fetch("/api/waitlist", {
         method: "POST",
@@ -62,6 +65,8 @@ export default function WaitlistButton({
       setState("submitted");
     } catch {
       setState("error");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -123,7 +128,13 @@ export default function WaitlistButton({
             required
             ref={inputRef}
           />
-          <Button type="submit" variant="secondary" size="md" className="max-md:w-full">
+          <Button
+            type="submit"
+            variant="secondary"
+            size="md"
+            className="max-md:w-full"
+            disabled={submitting || !email.trim()}
+          >
             {t("submit")}
           </Button>
         </form>

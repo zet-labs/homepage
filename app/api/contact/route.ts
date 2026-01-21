@@ -10,7 +10,33 @@ type Payload = {
   message?: string;
   honeypot?: string;
   timestamp?: number;
+  turnstileToken?: string;
 };
+
+type TurnstileResponse = {
+  success: boolean;
+  "error-codes"?: string[];
+};
+
+const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY || "";
+
+async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
+  if (!TURNSTILE_SECRET_KEY) return true;
+  if (!token) return false;
+
+  const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      secret: TURNSTILE_SECRET_KEY,
+      response: token,
+      remoteip: ip,
+    }),
+  });
+
+  const result = (await response.json()) as TurnstileResponse;
+  return result.success;
+}
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -43,6 +69,23 @@ export async function POST(request: Request) {
   const message = (payload.message || "").trim();
   const honeypot = (payload.honeypot || "").trim();
   const timestamp = payload.timestamp || 0;
+  const turnstileToken = payload.turnstileToken || "";
+
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-real-ip") ||
+    "";
+
+  if (TURNSTILE_SECRET_KEY) {
+    try {
+      const turnstileValid = await verifyTurnstile(turnstileToken, ip);
+      if (!turnstileValid) {
+        return NextResponse.json({ error: "Verification failed" }, { status: 403 });
+      }
+    } catch {
+      return NextResponse.json({ error: "Verification error" }, { status: 500 });
+    }
+  }
 
   if (honeypot) {
     return NextResponse.json({ error: "Invalid submission" }, { status: 400 });
@@ -64,10 +107,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid message" }, { status: 400 });
   }
 
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    request.headers.get("x-real-ip") ||
-    "";
   const userAgent = request.headers.get("user-agent") || "";
 
   try {

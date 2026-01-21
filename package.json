@@ -39,7 +39,7 @@
     "@types/react": "^19.2.9",
     "@types/react-dom": "^19.2.3",
     "eslint-plugin-react-hooks": "^7.0.1",
-    "oxfmt": "^0.24.0",
+    "oxfmt": "^0.26.0",
     "oxlint": "^1.41.0",
     "typescript": "^5.9.3"
   },

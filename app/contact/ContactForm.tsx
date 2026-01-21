@@ -1,15 +1,40 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
 import { Textarea } from "../components/ui/Textarea";
 
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        container: string | HTMLElement,
+        options: {
+          sitekey: string;
+          callback: (token: string) => void;
+          "error-callback"?: () => void;
+          "expired-callback"?: () => void;
+          size?: "normal" | "compact" | "invisible";
+          appearance?: "always" | "execute" | "interaction-only";
+          execution?: "render" | "execute";
+        },
+      ) => string;
+      execute: (container: string | HTMLElement, options?: object) => void;
+      reset: (widgetId: string) => void;
+      remove: (widgetId: string) => void;
+    };
+    onTurnstileLoad?: () => void;
+  }
+}
+
 type FormState = "idle" | "submitting" | "success" | "error";
 
 const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
 
 export default function ContactForm() {
   const t = useTranslations("contact");
@@ -23,6 +48,17 @@ export default function ContactForm() {
   const [honeypot, setHoneypot] = useState("");
   const submittingRef = useRef(false);
   const timestampRef = useRef(0);
+  const turnstileRef = useRef<HTMLDivElement>(null);
+  const turnstileWidgetId = useRef<string | null>(null);
+  const formDataRef = useRef<{
+    name: string;
+    email: string;
+    company: string;
+    reason: string;
+    message: string;
+    honeypot: string;
+    timestamp: number;
+  } | null>(null);
   const reasonOptions = t.raw("reasons.options") as string[];
 
   useEffect(() => {
@@ -30,6 +66,95 @@ export default function ContactForm() {
       timestampRef.current = Date.now();
     }
   }, []);
+
+  const submitForm = useCallback(
+    async (token: string) => {
+      const data = formDataRef.current;
+      if (!data) return;
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...data,
+            turnstileToken: token,
+          }),
+        });
+
+        if (!response.ok) {
+          setState("error");
+          return;
+        }
+
+        setName("");
+        setEmail("");
+        setCompany("");
+        setReason(t("reasons.default"));
+        setMessage("");
+        setHoneypot("");
+        timestampRef.current = Date.now();
+        setState("success");
+      } catch {
+        setState("error");
+      } finally {
+        submittingRef.current = false;
+        formDataRef.current = null;
+        if (turnstileWidgetId.current && window.turnstile) {
+          window.turnstile.reset(turnstileWidgetId.current);
+        }
+      }
+    },
+    [t],
+  );
+
+  const initTurnstile = useCallback(() => {
+    if (!window.turnstile || !turnstileRef.current || turnstileWidgetId.current) return;
+
+    turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
+      sitekey: TURNSTILE_SITE_KEY,
+      size: "normal",
+      appearance: "interaction-only",
+      execution: "execute",
+      callback: (token: string) => {
+        submitForm(token);
+      },
+      "error-callback": () => {
+        setState("error");
+        submittingRef.current = false;
+        formDataRef.current = null;
+      },
+      "expired-callback": () => {
+        if (turnstileWidgetId.current) {
+          window.turnstile?.reset(turnstileWidgetId.current);
+        }
+      },
+    });
+  }, [submitForm]);
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) return;
+
+    if (window.turnstile) {
+      initTurnstile();
+      return;
+    }
+
+    window.onTurnstileLoad = initTurnstile;
+
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad";
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+
+    return () => {
+      if (turnstileWidgetId.current && window.turnstile) {
+        window.turnstile.remove(turnstileWidgetId.current);
+      }
+      delete window.onTurnstileLoad;
+    };
+  }, [initTurnstile]);
 
   const trimmedName = name.trim();
   const trimmedEmail = email.trim();
@@ -45,7 +170,7 @@ export default function ContactForm() {
     return t("validationRequired");
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (state === "submitting" || submittingRef.current) return;
 
@@ -54,43 +179,26 @@ export default function ContactForm() {
       return;
     }
 
+    if (!turnstileWidgetId.current) {
+      setState("error");
+      return;
+    }
+
     setValidationMessage(null);
     submittingRef.current = true;
     setState("submitting");
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          company,
-          reason,
-          message,
-          honeypot,
-          timestamp: timestampRef.current,
-        }),
-      });
+    formDataRef.current = {
+      name,
+      email,
+      company,
+      reason,
+      message,
+      honeypot,
+      timestamp: timestampRef.current,
+    };
 
-      if (!response.ok) {
-        setState("error");
-        return;
-      }
-
-      setName("");
-      setEmail("");
-      setCompany("");
-      setReason(t("reasons.default"));
-      setMessage("");
-      setHoneypot("");
-      timestampRef.current = Date.now();
-      setState("success");
-    } catch {
-      setState("error");
-    } finally {
-      submittingRef.current = false;
-    }
+    window.turnstile?.execute(turnstileWidgetId.current);
   };
 
   return (
@@ -195,6 +303,8 @@ export default function ContactForm() {
         className="absolute -left-[9999px] w-px h-px opacity-0"
         aria-hidden="true"
       />
+
+      <div ref={turnstileRef} className="mt-4 flex justify-center empty:hidden" />
 
       <div className="mt-8 flex flex-col md:flex-row items-center md:justify-between gap-4 border-t border-[rgb(var(--color-foreground)/0.08)] px-4 py-5 bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.02))] rounded-2xl">
         <p className="text-xs text-[rgb(var(--color-foreground-muted)/0.7)]">

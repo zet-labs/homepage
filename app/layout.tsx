@@ -8,6 +8,7 @@ import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { SITE_URL } from "../lib/site";
 import BackgroundEffects from "./components/BackgroundEffects";
 import ConsoleEasterEgg from "./components/ConsoleEasterEgg";
+import ThemeProvider from "./components/ThemeProvider";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
@@ -32,11 +33,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang={locale} className={GeistSans.variable} suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark"){document.documentElement.setAttribute("data-theme",t)}else if(window.matchMedia("(prefers-color-scheme:light)").matches){document.documentElement.setAttribute("data-theme","light")}}catch(e){}})()`,
-          }}
-        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -45,11 +41,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
       </head>
       <body>
-        <BackgroundEffects />
-        <ConsoleEasterEgg />
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
-        <Analytics />
-        <SpeedInsights />
+        <ThemeProvider>
+          <BackgroundEffects />
+          <ConsoleEasterEgg />
+          <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   );

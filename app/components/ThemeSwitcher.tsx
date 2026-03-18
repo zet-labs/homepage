@@ -1,42 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 
 export default function ThemeSwitcher() {
   const t = useTranslations("themeSwitcher");
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const { resolvedTheme, setTheme } = useTheme();
 
-  useEffect(() => {
-    const current = document.documentElement.getAttribute("data-theme") as "light" | "dark" | null;
-    if (current) {
-      setTheme(current);
-    } else {
-      const stored = localStorage.getItem("theme") as "light" | "dark" | null;
-      if (stored) {
-        setTheme(stored);
-      } else {
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        setTheme(prefersDark ? "dark" : "light");
-      }
-    }
-  }, []);
-
-  const toggle = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    localStorage.setItem("theme", next);
-    document.documentElement.setAttribute("data-theme", next);
-  };
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
       type="button"
-      onClick={toggle}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       className="inline-flex items-center justify-center w-8 h-8 max-md:w-7 max-md:h-7 text-[rgb(var(--color-foreground)/0.6)] bg-transparent border-none cursor-pointer transition-all duration-300 opacity-60 hover:opacity-100 shrink-0"
-      aria-label={theme === "dark" ? t("toLight") : t("toDark")}
+      aria-label={isDark ? t("toLight") : t("toDark")}
     >
-      {theme === "dark" ? (
+      {isDark ? (
         <svg
           width="16"
           height="16"

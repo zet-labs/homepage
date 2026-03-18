@@ -23,6 +23,7 @@ import {
 } from "./components/Skeletons";
 import TrustedBy from "./components/TrustedBy";
 import WaitlistButton from "./components/WaitlistButton";
+import NeuralBackground from "./components/NeuralBackground";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
@@ -54,6 +55,14 @@ export default async function Home() {
     <div className="min-h-screen w-screen relative overflow-x-hidden bg-[rgb(var(--color-background-start))] flex flex-col">
       <ScrollRevealHandler />
       <Navigation />
+
+      <div
+        className="absolute inset-x-0 top-0 pointer-events-none overflow-hidden"
+        style={{ height: "100dvh", zIndex: 1 }}
+        aria-hidden="true"
+      >
+        <NeuralBackground />
+      </div>
 
       <main className="relative z-[4] flex flex-col items-center px-6 max-md:px-4 max-[480px]:px-3 flex-1">
         <section

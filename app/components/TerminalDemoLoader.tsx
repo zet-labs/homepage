@@ -11,7 +11,7 @@ const TerminalDemo = dynamic(() => import("./TerminalDemo"), {
     const headerClasses =
       "terminal-header flex items-center gap-2 px-4 py-3 border-b border-[rgb(var(--color-foreground)/0.08)] bg-[linear-gradient(90deg,rgb(var(--color-surface)/0.72),rgb(var(--color-surface)/0.6))]";
     const bodyClasses =
-      "terminal-body relative border-t border-[rgb(var(--color-foreground)/0.06)] p-5 h-[280px] max-md:p-3.5 max-md:h-[220px] max-[480px]:h-[200px]";
+      "terminal-body relative border-t border-[rgb(var(--color-foreground)/0.06)] p-5 h-[280px] max-md:p-3.5 max-md:h-[220px] max-[480px]:h-[200px] [@media(max-height:900px)]:h-[200px] [@media(max-height:800px)]:h-[180px]";
 
     return (
       <div className={containerClasses}>

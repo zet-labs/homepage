@@ -107,7 +107,7 @@ export default async function Hero() {
       </div>
 
       <div className="animate-[fade-in-up_0.6s_ease-out_0.2s_both] w-full">
-        <div className="relative mx-auto max-w-[960px]">
+        <div className="relative mx-auto max-w-[960px] [@media(max-height:900px)]:mt-6">
           <div
             className="absolute -top-2 -left-2 w-4 h-4 border-t border-l border-[rgb(var(--color-accent-indigo)/0.38)] hidden xl:block"
             aria-hidden="true"

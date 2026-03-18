@@ -95,7 +95,7 @@ export default function TerminalDemo() {
     isMac ? "ml-2" : "flex-1 text-center",
   );
   const bodyClasses =
-    "terminal-body terminal-fade relative border-t border-[rgb(var(--color-foreground)/0.06)] p-5 font-mono text-[clamp(0.66rem,1.4vw,0.85rem)] leading-[1.65] space-y-3 max-[480px]:space-y-2.5 h-[280px] max-md:p-3.5 max-md:h-[220px] max-[480px]:h-[200px] overflow-hidden text-left";
+    "terminal-body terminal-fade relative border-t border-[rgb(var(--color-foreground)/0.06)] p-5 font-mono text-[clamp(0.66rem,1.4vw,0.85rem)] leading-[1.65] space-y-3 max-[480px]:space-y-2.5 h-[280px] max-md:p-3.5 max-md:h-[220px] max-[480px]:h-[200px] [@media(max-height:900px)]:h-[200px] [@media(max-height:800px)]:h-[180px] overflow-hidden text-left";
 
   useEffect(() => {
     const platform = navigator.platform.toLowerCase();

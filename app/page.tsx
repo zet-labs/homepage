@@ -67,15 +67,15 @@ export default async function Home() {
       <main className="relative z-[4] flex flex-col items-center px-6 max-md:px-4 max-[480px]:px-3 flex-1">
         <section
           id="waitlist"
-          className="min-h-[100dvh] flex flex-col items-center justify-center py-12 w-full max-w-[1400px] relative max-md:pt-20"
+          className="min-h-[100dvh] flex flex-col items-center justify-center py-12 w-full max-w-[1400px] relative max-md:pt-20 [@media(max-height:1000px)]:min-h-0 [@media(max-height:1000px)]:justify-start [@media(max-height:1000px)]:pt-20 [@media(max-height:1000px)]:pb-6"
         >
-          <div className="text-center w-full flex flex-col items-center justify-center gap-6 max-md:gap-5">
+          <div className="text-center w-full flex flex-col items-center justify-center gap-6 max-md:gap-5 shrink-0 [@media(max-height:1050px)]:gap-4 [@media(max-height:1000px)]:gap-4">
             <Suspense fallback={<HeroSkeleton />}>
               <Hero />
             </Suspense>
             <WaitlistButton />
           </div>
-          <div className="absolute bottom-32 left-0 right-0 max-lg:static max-lg:mt-12 max-lg:mb-20">
+          <div className="w-full mt-12 mb-20 shrink-0 [@media(max-height:1000px)]:mt-6 [@media(max-height:1000px)]:mb-8">
             <Suspense fallback={<TrustedBySkeleton />}>
               <TrustedBy />
             </Suspense>

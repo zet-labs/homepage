@@ -1,13 +1,17 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 
 export default function ThemeSwitcher() {
   const t = useTranslations("themeSwitcher");
   const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const isDark = resolvedTheme === "dark";
+  useEffect(() => setMounted(true), []);
+
+  const isDark = mounted && resolvedTheme === "dark";
 
   return (
     <button
@@ -15,6 +19,7 @@ export default function ThemeSwitcher() {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="inline-flex items-center justify-center w-8 h-8 max-md:w-7 max-md:h-7 text-[rgb(var(--color-foreground)/0.6)] bg-transparent border-none cursor-pointer transition-all duration-300 opacity-60 hover:opacity-100 shrink-0"
       aria-label={isDark ? t("toLight") : t("toDark")}
+      suppressHydrationWarning
     >
       {isDark ? (
         <svg

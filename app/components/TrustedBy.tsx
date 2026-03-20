@@ -15,14 +15,14 @@ export default async function TrustedBy() {
       <p className="text-center text-[rgb(var(--color-foreground-muted))] text-xs tracking-wide uppercase opacity-40 mb-4 max-md:text-[10px] max-md:mb-2">
         {t("trustedBy")}
       </p>
-      <div className="flex items-center justify-center gap-4 max-md:gap-2">
+      <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 max-md:gap-x-2 max-md:gap-y-1">
         {companies.map(({ name, url }, index) => (
           <div key={name} className="flex items-center gap-4 max-md:gap-2">
             <a
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[rgb(var(--color-foreground-muted))] opacity-50 hover:opacity-100 transition-opacity duration-200 text-sm font-medium max-md:text-[11px]"
+              className="text-[rgb(var(--color-foreground-muted))] opacity-50 hover:opacity-100 transition-opacity duration-200 text-sm font-medium max-md:text-[11px] max-md:leading-tight"
             >
               {name}
             </a>

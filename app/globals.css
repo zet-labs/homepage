@@ -580,6 +580,16 @@ a {
     opacity 150ms ease;
 }
 
+:root[data-theme="light"] .background-blur-layer {
+  background-color: rgb(var(--color-surface) / 0.03) !important;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .background-blur-layer {
+    background-color: rgb(var(--color-surface) / 0.03) !important;
+  }
+}
+
 /* AI Agent Diagram Animations */
 .diagram-line {
   stroke-dasharray: 8 4;

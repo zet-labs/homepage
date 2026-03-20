@@ -45,13 +45,13 @@ export default async function Hero() {
 
   return (
     <div className="w-full flex flex-col items-center gap-6 max-md:gap-4 max-[480px]:gap-3">
-      <div className="relative flex flex-col items-center gap-5 max-md:gap-4 w-full">
+      <div className="relative flex flex-col items-center gap-5 max-md:gap-3.5 w-full">
         <div
-          className="absolute -top-24 -left-[18%] w-[560px] h-[380px] rounded-full bg-[radial-gradient(ellipse,rgb(99_102_241/0.16),transparent_65%)] blur-3xl pointer-events-none animate-[float_14s_ease-in-out_infinite] max-md:w-[260px] max-md:h-[220px] max-md:opacity-50"
+          className="absolute -top-24 -left-[18%] w-[560px] h-[380px] rounded-full bg-[radial-gradient(ellipse,rgb(99_102_241/0.16),transparent_65%)] blur-3xl pointer-events-none animate-[float_14s_ease-in-out_infinite] max-md:-top-10 max-md:left-1/2 max-md:w-[240px] max-md:h-[160px] max-md:-translate-x-1/2 max-md:opacity-35"
           aria-hidden="true"
         />
         <div
-          className="absolute -top-14 -right-[16%] w-[480px] h-[320px] rounded-full bg-[radial-gradient(ellipse,rgb(139_92_246/0.13),transparent_65%)] blur-3xl pointer-events-none animate-[float_18s_ease-in-out_infinite] max-md:w-[220px] max-md:h-[180px] max-md:opacity-40"
+          className="absolute -top-14 -right-[16%] w-[480px] h-[320px] rounded-full bg-[radial-gradient(ellipse,rgb(139_92_246/0.13),transparent_65%)] blur-3xl pointer-events-none animate-[float_18s_ease-in-out_infinite] max-md:hidden"
           style={{ animationDelay: "3s" }}
           aria-hidden="true"
         />
@@ -62,7 +62,7 @@ export default async function Hero() {
         />
 
         <div
-          className="flex items-center gap-3 animate-[fade-in-down_0.5s_ease-out]"
+          className="hidden md:flex items-center gap-3 animate-[fade-in-down_0.5s_ease-out]"
           aria-hidden="true"
         >
           <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgb(var(--color-accent-indigo)/0.45)]" />
@@ -74,7 +74,7 @@ export default async function Hero() {
 
         <div className="relative flex items-center gap-2.5 pl-2 pr-4 py-1.5 rounded-full border border-[rgb(var(--color-foreground)/0.12)] bg-[rgb(var(--color-surface)/0.6)] backdrop-blur-sm animate-[fade-in-down_0.6s_ease-out] overflow-hidden">
           <span
-            className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-[rgb(255_255_255/0.05)] to-transparent animate-[shimmer_5s_ease_infinite]"
+            className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-[rgb(255_255_255/0.05)] to-transparent animate-[shimmer_5s_ease_infinite] max-md:opacity-40"
             aria-hidden="true"
           />
           <span className="relative flex h-2 w-2 shrink-0">
@@ -86,18 +86,18 @@ export default async function Hero() {
           </span>
         </div>
 
-        <h1 className="hero-text-glow text-[clamp(3rem,10vw,7rem)] font-medium leading-[1.1] tracking-[-0.04em] animate-[fade-in-up_0.6s_ease-out] max-md:text-[clamp(2.2rem,11vw,3.4rem)] max-[480px]:text-[clamp(2rem,12vw,2.9rem)] font-[family-name:var(--font-geist-sans)]">
+        <h1 className="hero-text-glow text-[clamp(3rem,10vw,7rem)] font-medium leading-[1.08] tracking-[-0.04em] animate-[fade-in-up_0.6s_ease-out] max-md:max-w-[11ch] max-md:text-[clamp(2.15rem,10vw,3.15rem)] max-[480px]:text-[clamp(1.95rem,11vw,2.7rem)] font-[family-name:var(--font-geist-sans)]">
           <span className="bg-gradient-to-br from-[rgb(var(--color-hero-gradient-from))] via-[rgb(var(--color-hero-gradient-via))] to-[rgb(var(--color-hero-gradient-to))] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradient-shift_8s_ease_infinite] inline-block">
             {t("brandName")}
           </span>
         </h1>
 
-        <p className="text-[rgb(var(--color-foreground-soft)/0.8)] font-normal text-[clamp(1.1rem,2.5vw,1.5rem)] leading-[1.4] max-w-[600px] mx-auto animate-[fade-in-up_0.6s_ease-out_0.1s_both] max-md:text-[1.02rem] max-md:max-w-[92%] max-[480px]:text-[0.95rem] max-[480px]:max-w-[94%]">
+        <p className="text-[rgb(var(--color-foreground-soft)/0.8)] font-normal text-[clamp(1.1rem,2.5vw,1.5rem)] leading-[1.4] max-w-[600px] mx-auto animate-[fade-in-up_0.6s_ease-out_0.1s_both] max-md:max-w-[32rem] max-md:px-3 max-md:text-[0.98rem] max-[480px]:px-2 max-[480px]:text-[0.92rem]">
           {t("tagline")}
         </p>
 
         <div
-          className="flex items-center gap-3 w-full max-w-[220px] animate-[fade-in-up_0.6s_ease-out_0.22s_both]"
+          className="flex items-center gap-3 w-full max-w-[220px] animate-[fade-in-up_0.6s_ease-out_0.22s_both] max-md:hidden"
           aria-hidden="true"
         >
           <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[rgb(var(--color-foreground)/0.1)]" />
@@ -107,7 +107,7 @@ export default async function Hero() {
       </div>
 
       <div className="animate-[fade-in-up_0.6s_ease-out_0.2s_both] w-full">
-        <div className="relative mx-auto max-w-[960px] [@media(max-height:900px)]:mt-6">
+        <div className="relative mx-auto max-w-[960px] max-md:max-w-full [@media(max-height:900px)]:mt-6">
           <div
             className="absolute -top-2 -left-2 w-4 h-4 border-t border-l border-[rgb(var(--color-accent-indigo)/0.38)] hidden xl:block"
             aria-hidden="true"
@@ -126,7 +126,7 @@ export default async function Hero() {
           />
 
           <div
-            className="absolute inset-x-[18%] -bottom-5 h-14 bg-[radial-gradient(ellipse_at_center,rgb(99_102_241/0.38),transparent_70%)] blur-2xl pointer-events-none"
+            className="absolute inset-x-[18%] -bottom-5 h-14 bg-[radial-gradient(ellipse_at_center,rgb(99_102_241/0.38),transparent_70%)] blur-2xl pointer-events-none max-md:inset-x-[22%] max-md:-bottom-3 max-md:h-8 max-md:opacity-55"
             aria-hidden="true"
           />
 

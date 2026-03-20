@@ -32,8 +32,11 @@
     "ariaToEn": "Přepnout jazyk na angličtinu"
   },
   "themeSwitcher": {
-    "toLight": "Přepnout na světlý režim",
-    "toDark": "Přepnout na tmavý režim"
+    "cycle": "Přepnout režim motivu",
+    "light": "světlý",
+    "dark": "tmavý",
+    "system": "systém",
+    "current": "Motiv: {mode} (aktuální vzhled: {resolved})"
   },
   "meta": {
     "siteName": "Zet Labs",

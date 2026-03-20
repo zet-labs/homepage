@@ -17,27 +17,119 @@ type Node = {
 type Edge = { a: number; b: number; cpOff: number };
 type Flow = { ei: number; t: number; speed: number; fwd: boolean };
 type Ping = { ni: number; r: number; alpha: number };
-type Quality = { nodes: number; fps: number; knn: number };
+type Quality = { nodes: number; maxFps: number; idleFps: number; knn: number };
+type Branch = {
+  x: number;
+  y: number;
+  angle: number;
+  stepsLeft: number;
+  originX: number;
+  originY: number;
+};
 
 const LAYER_SCALE = [0.55, 1.0, 1.25] as const;
 const LAYER_SPEED = [0.45, 1.0, 1.55] as const;
 const LAYER_ALPHA = [0.38, 1.0, 1.15] as const;
 
-function getQuality(w: number): Quality {
-  if (w < 640) return { nodes: 5, fps: 30, knn: 2 };
-  if (w < 1024) return { nodes: 7, fps: 60, knn: 2 };
-  return { nodes: 9, fps: 60, knn: 3 };
+function getQuality(w: number, saveData: boolean): Quality {
+  if (saveData) {
+    if (w < 640) return { nodes: 4, maxFps: 20, idleFps: 12, knn: 1 };
+    if (w < 1024) return { nodes: 6, maxFps: 24, idleFps: 14, knn: 2 };
+    return { nodes: 8, maxFps: 28, idleFps: 16, knn: 2 };
+  }
+
+  if (w < 640) return { nodes: 6, maxFps: 30, idleFps: 18, knn: 2 };
+  if (w < 1024) return { nodes: 9, maxFps: 45, idleFps: 24, knn: 2 };
+  return { nodes: 12, maxFps: 60, idleFps: 30, knn: 3 };
 }
 
-function gridJitter(W: number, H: number, n: number): [number, number][] {
-  const cols = Math.round(Math.sqrt((n * W) / H));
-  const rows = Math.ceil(n / cols);
-  const cw = W / cols,
-    ch = H / rows;
+function organicBranches(W: number, H: number, n: number): [number, number][] {
+  const isMobile = W < 640;
+  const centers = isMobile
+    ? ([
+        [W * 0.24, H * 0.2],
+        [W * 0.74, H * 0.34],
+        [W * 0.36, H * 0.56],
+        [W * 0.7, H * 0.74],
+        [W * 0.22, H * 0.84],
+      ] as const)
+    : ([
+        [W * 0.18, H * 0.28],
+        [W * 0.5, H * 0.2],
+        [W * 0.78, H * 0.34],
+        [W * 0.36, H * 0.72],
+        [W * 0.72, H * 0.7],
+      ] as const);
   const pts: [number, number][] = [];
-  for (let r = 0; r < rows && pts.length < n; r++)
-    for (let c = 0; c < cols && pts.length < n; c++)
-      pts.push([(c + 0.15 + Math.random() * 0.7) * cw, (r + 0.15 + Math.random() * 0.7) * ch]);
+  const branches: Branch[] = [];
+  const seedCount = Math.min(
+    centers.length,
+    isMobile ? Math.max(3, Math.round(n / 2)) : Math.max(2, Math.round(n / 3)),
+  );
+
+  for (let i = 0; i < seedCount; i++) {
+    const [cx, cy] = centers[i];
+    pts.push([cx + (Math.random() - 0.5) * W * 0.035, cy + (Math.random() - 0.5) * H * 0.04]);
+
+    const branchFan = isMobile ? 2 : i % 2 === 0 ? 2 : 3;
+    for (let j = 0; j < branchFan; j++) {
+      const angle = (Math.PI * 2 * j) / branchFan + (Math.random() - 0.5) * 0.9;
+      branches.push({
+        x: cx,
+        y: cy,
+        angle: angle + (isMobile ? (Math.random() - 0.5) * 0.45 : 0),
+        stepsLeft: isMobile ? 1 : 1 + Math.floor(Math.random() * 2),
+        originX: cx,
+        originY: cy,
+      });
+    }
+  }
+
+  while (pts.length < n && branches.length) {
+    const branchIndex = Math.floor(Math.random() * branches.length);
+    const branch = branches[branchIndex];
+    const step =
+      Math.min(W, H) * (isMobile ? 0.12 + Math.random() * 0.05 : 0.08 + Math.random() * 0.04);
+    branch.angle += (Math.random() - 0.5) * (isMobile ? 0.48 : 0.75);
+    branch.x += Math.cos(branch.angle) * step;
+    branch.y += Math.sin(branch.angle) * step;
+
+    const x = Math.max(
+      W * 0.06,
+      Math.min(W * 0.94, branch.x + (Math.random() - 0.5) * step * 0.28),
+    );
+    const y = Math.max(
+      H * 0.08,
+      Math.min(H * 0.92, branch.y + (Math.random() - 0.5) * step * 0.32),
+    );
+    pts.push([x, y]);
+
+    if (branch.stepsLeft > 0 && Math.random() < (isMobile ? 0.26 : 0.42) && pts.length < n) {
+      branches.push({
+        x,
+        y,
+        angle: branch.angle + (Math.random() - 0.5) * (isMobile ? 0.85 : 1.35),
+        stepsLeft: branch.stepsLeft - 1,
+        originX: x,
+        originY: y,
+      });
+    }
+
+    branch.stepsLeft -= 1;
+    if (
+      branch.stepsLeft < 0 ||
+      Math.hypot(branch.x - branch.originX, branch.y - branch.originY) >
+        Math.min(W, H) * (isMobile ? 0.34 : 0.26)
+    ) {
+      branches.splice(branchIndex, 1);
+    }
+  }
+
+  while (pts.length < n) {
+    const [cx, cy] = centers[pts.length % seedCount];
+    pts.push([cx + (Math.random() - 0.5) * W * 0.08, cy + (Math.random() - 0.5) * H * 0.08]);
+  }
+
   return pts;
 }
 
@@ -54,7 +146,7 @@ function knnEdges(nodes: Node[], k: number): Edge[] {
         const key = `${Math.min(i, j)}-${Math.max(i, j)}`;
         if (!seen.has(key)) {
           seen.add(key);
-          edges.push({ a: i, b: j, cpOff: (Math.random() - 0.5) * d * 0.22 });
+          edges.push({ a: i, b: j, cpOff: (Math.random() - 0.5) * d * 0.34 });
         }
       });
   }
@@ -126,9 +218,17 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
     let edges: Edge[] = [];
     let flows: Flow[] = [];
     let pings: Ping[] = [];
-    let Q: Quality = getQuality(canvas.width);
+    const saveData =
+      "connection" in navigator &&
+      Boolean(
+        (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData,
+      );
+    let Q: Quality = getQuality(canvas.width, saveData);
     let rafId = 0;
     let lastFrame = 0;
+    let isVisible = true;
+    let isInViewport = true;
+    let running = false;
 
     function dark(): boolean {
       const t = document.documentElement.dataset.theme;
@@ -137,12 +237,35 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
       return !window.matchMedia("(prefers-color-scheme: light)").matches;
     }
 
+    function activeIntensity() {
+      let lit = 0;
+      for (const n of nodes) lit = Math.max(lit, n.lit);
+      return lit + Math.min(0.35, flows.length * 0.018) + Math.min(0.18, pings.length * 0.06);
+    }
+
+    function targetFps() {
+      return activeIntensity() > 0.22 ? Q.maxFps : Q.idleFps;
+    }
+
+    function stopLoop() {
+      if (!running) return;
+      running = false;
+      cancelAnimationFrame(rafId);
+    }
+
+    function startLoop() {
+      if (running || !isVisible || !isInViewport) return;
+      running = true;
+      lastFrame = 0;
+      rafId = requestAnimationFrame(frame);
+    }
+
     function build() {
       const W = canvas.width,
         H = canvas.height;
-      Q = getQuality(W);
+      Q = getQuality(W, saveData);
 
-      const pts = gridJitter(W, H, Q.nodes);
+      const pts = organicBranches(W, H, Q.nodes);
       nodes = pts.map(([x, y]) => {
         const layer = (Math.random() < 0.3 ? 0 : Math.random() < 0.57 ? 1 : 2) as 0 | 1 | 2;
         const sp = LAYER_SPEED[layer];
@@ -191,10 +314,12 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
     }
 
     function frame(now: number) {
+      if (!running) return;
       const W = canvas.width,
         H = canvas.height;
 
-      if (Q.fps < 60 && now - lastFrame < 1000 / Q.fps) {
+      const fps = targetFps();
+      if (fps < 60 && now - lastFrame < 1000 / fps) {
         rafId = requestAnimationFrame(frame);
         return;
       }
@@ -202,7 +327,7 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
 
       ctx.clearRect(0, 0, W, H);
       const d = dark();
-      const dm = d ? 1 : 0.55;
+      const dm = d ? 1 : 0.92;
 
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
@@ -229,15 +354,35 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
         ctx.moveTo(nodes[a].x, nodes[a].y);
         ctx.quadraticCurveTo(cpx, cpy, nodes[b].x, nodes[b].y);
       }
-      ctx.strokeStyle = d ? "rgba(130,145,255,0.028)" : "rgba(80,95,220,0.015)";
-      ctx.lineWidth = 0.45;
+      ctx.strokeStyle = d ? "rgba(130,145,255,0.028)" : "rgba(92,110,235,0.032)";
+      ctx.lineWidth = d ? 0.45 : 0.55;
       ctx.stroke();
+
+      // Synapse emphasis around active or hub-connected paths.
+      ctx.beginPath();
+      let hasActiveEdges = false;
+      for (const { a, b, cpOff } of edges) {
+        const activity =
+          Math.max(nodes[a].lit, nodes[b].lit) +
+          (nodes[a].isHub || nodes[b].isHub ? 0.08 : 0) +
+          (nodes[a].layer === 2 || nodes[b].layer === 2 ? 0.04 : 0);
+        if (activity < 0.1) continue;
+        const { cpx, cpy } = edgeCp(nodes[a], nodes[b], cpOff);
+        ctx.moveTo(nodes[a].x, nodes[a].y);
+        ctx.quadraticCurveTo(cpx, cpy, nodes[b].x, nodes[b].y);
+        hasActiveEdges = true;
+      }
+      if (hasActiveEdges) {
+        ctx.strokeStyle = d ? "rgba(165,175,255,0.06)" : "rgba(106,124,240,0.085)";
+        ctx.lineWidth = d ? 0.8 : 0.95;
+        ctx.stroke();
+      }
 
       // Node glows — back-to-front (nodes already sorted by layer)
       for (const n of nodes) {
         const s = (n.isHub ? 34 : 22) + n.lit * 14;
         ctx.globalAlpha =
-          ((n.isHub ? 0.04 : 0.022) + n.lit * 0.06) * LAYER_ALPHA[n.layer] * (d ? 1 : 0.4);
+          ((n.isHub ? 0.04 : 0.022) + n.lit * 0.06) * LAYER_ALPHA[n.layer] * (d ? 1 : 0.78);
         ctx.drawImage(n.isHub ? hubGlow : nodeGlow, n.x - s, n.y - s, s * 2, s * 2);
       }
       ctx.globalAlpha = 1;
@@ -253,28 +398,28 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
         ctx.strokeStyle = n.isHub
           ? d
             ? `rgba(175,145,255,${ringA})`
-            : `rgba(120,80,220,${ringA * 0.6})`
+            : `rgba(112,86,232,${ringA * 0.92})`
           : d
             ? `rgba(140,155,255,${ringA})`
-            : `rgba(80,100,220,${ringA * 0.6})`;
-        ctx.lineWidth = 0.65;
+            : `rgba(78,104,235,${ringA * 0.92})`;
+        ctx.lineWidth = d ? 0.65 : 0.8;
         ctx.stroke();
 
-        const a = (0.4 + pulse * 0.12 + n.lit * 0.25) * (d ? 0.32 : 0.18) * la;
+        const a = (0.4 + pulse * 0.12 + n.lit * 0.25) * (d ? 0.32 : 0.27) * la;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r * (n.isHub ? 1.55 : 1) * (1 + n.lit * 0.25), 0, Math.PI * 2);
         ctx.fillStyle = n.isHub
           ? d
             ? `rgba(200,185,255,${a})`
-            : `rgba(100,70,200,${a})`
+            : `rgba(112,84,228,${a})`
           : d
             ? `rgba(185,195,255,${a})`
-            : `rgba(80,95,210,${a})`;
+            : `rgba(86,108,226,${a})`;
         ctx.fill();
         if (n.isHub) {
           ctx.beginPath();
           ctx.arc(n.x, n.y, n.r * 0.45, 0, Math.PI * 2);
-          ctx.fillStyle = d ? `rgba(220,210,255,${a * 0.65})` : `rgba(140,100,240,${a * 0.5})`;
+          ctx.fillStyle = d ? `rgba(220,210,255,${a * 0.65})` : `rgba(136,96,240,${a * 0.72})`;
           ctx.fill();
         }
       }
@@ -293,8 +438,8 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
         ctx.arc(n.x, n.y, p.r, 0, Math.PI * 2);
         ctx.strokeStyle = d
           ? `rgba(175,150,255,${p.alpha * dm * 0.45})`
-          : `rgba(120,80,220,${p.alpha * dm * 0.25})`;
-        ctx.lineWidth = 0.8;
+          : `rgba(124,88,232,${p.alpha * dm * 0.44})`;
+        ctx.lineWidth = d ? 0.8 : 0.95;
         ctx.stroke();
         return true;
       });
@@ -328,7 +473,7 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
           ctx.moveTo(tp.x + tr, tp.y);
           ctx.arc(tp.x, tp.y, tr, 0, Math.PI * 2);
         }
-        ctx.fillStyle = d ? "rgba(130,155,255,0.025)" : "rgba(80,100,220,0.014)";
+        ctx.fillStyle = d ? "rgba(130,155,255,0.025)" : "rgba(92,112,235,0.026)";
         ctx.fill();
 
         // Tight comet trail
@@ -339,16 +484,16 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
           ctx.moveTo(tp.x + tr, tp.y);
           ctx.arc(tp.x, tp.y, tr, 0, Math.PI * 2);
         }
-        ctx.fillStyle = d ? "rgba(160,180,255,0.055)" : "rgba(80,100,220,0.03)";
+        ctx.fillStyle = d ? "rgba(160,180,255,0.055)" : "rgba(92,112,235,0.06)";
         ctx.fill();
 
-        ctx.globalAlpha = d ? 0.13 : 0.07;
+        ctx.globalAlpha = d ? 0.13 : 0.14;
         ctx.drawImage(flowGlow, p.x - 13, p.y - 13, 26, 26);
         ctx.globalAlpha = 1;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
-        ctx.fillStyle = d ? "rgba(220,232,255,0.45)" : "rgba(90,110,230,0.32)";
+        ctx.fillStyle = d ? "rgba(220,232,255,0.45)" : "rgba(102,124,242,0.52)";
         ctx.fill();
       }
 
@@ -371,21 +516,33 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
     }
 
     function onVisibility() {
-      if (document.hidden) {
-        cancelAnimationFrame(rafId);
-      } else {
-        lastFrame = 0;
-        rafId = requestAnimationFrame(frame);
-      }
+      isVisible = !document.hidden;
+      if (!isVisible) stopLoop();
+      else startLoop();
     }
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewport = entry?.isIntersecting ?? true;
+        if (!isInViewport) stopLoop();
+        else startLoop();
+      },
+      {
+        root: null,
+        threshold: 0,
+        rootMargin: "20% 0px 20% 0px",
+      },
+    );
+
     resize();
+    observer.observe(canvas);
     window.addEventListener("resize", resize);
     document.addEventListener("visibilitychange", onVisibility);
-    rafId = requestAnimationFrame(frame);
+    startLoop();
 
     return () => {
-      cancelAnimationFrame(rafId);
+      observer.disconnect();
+      stopLoop();
       window.removeEventListener("resize", resize);
       document.removeEventListener("visibilitychange", onVisibility);
     };

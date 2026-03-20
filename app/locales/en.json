@@ -32,8 +32,11 @@
     "ariaToEn": "Switch language to English"
   },
   "themeSwitcher": {
-    "toLight": "Switch to light mode",
-    "toDark": "Switch to dark mode"
+    "cycle": "Cycle theme mode",
+    "light": "light",
+    "dark": "dark",
+    "system": "system",
+    "current": "Theme: {mode} (current appearance: {resolved})"
   },
   "meta": {
     "siteName": "Zet Labs",

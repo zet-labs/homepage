@@ -75,7 +75,7 @@ export default async function Home() {
             </Suspense>
             <WaitlistButton />
           </div>
-          <div className="w-full mt-12 mb-20 shrink-0 [@media(max-height:1000px)]:mt-6 [@media(max-height:1000px)]:mb-8">
+          <div className="w-full mt-12 mb-20 shrink-0 max-md:mt-8 max-md:mb-0 [@media(max-height:1000px)]:mt-6 [@media(max-height:1000px)]:mb-8">
             <Suspense fallback={<TrustedBySkeleton />}>
               <TrustedBy />
             </Suspense>

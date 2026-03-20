@@ -25,7 +25,7 @@ export default function ScrollIndicator() {
     <button
       type="button"
       onClick={scrollDown}
-      className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center justify-center cursor-pointer transition-opacity duration-500 ${visible ? "opacity-70 hover:opacity-100" : "opacity-0 pointer-events-none"}`}
+      className={`flex items-center justify-center cursor-pointer transition-opacity duration-500 md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 max-md:relative max-md:mt-4 ${visible ? "opacity-70 hover:opacity-100" : "opacity-0 pointer-events-none"}`}
     >
       <span className="md:hidden inline-flex items-center gap-2 rounded-full border border-[rgb(var(--color-foreground)/0.25)] bg-[rgb(var(--color-foreground)/0.06)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[rgb(var(--color-foreground)/0.75)]">
         {t("explore")}

@@ -54,6 +54,31 @@ export function ModelsSkeleton() {
   );
 }
 
+export function ModelsJourneySkeleton() {
+  return (
+    <div className="mx-auto w-full max-w-[1180px]">
+      <div className="flex flex-col gap-6 pb-12 max-md:gap-5 max-md:pb-10 md:gap-8 md:pb-16">
+        <Shimmer className="h-3 w-36 max-md:w-32" />
+        <Shimmer className="h-14 w-full max-w-lg rounded-lg max-md:h-12" />
+        <Shimmer className="h-20 w-full max-w-2xl rounded-lg max-md:h-16" />
+        <Shimmer className="h-52 w-full rounded-[22px] max-md:h-56 md:h-48 md:rounded-[28px]" />
+      </div>
+      <div className="flex flex-col gap-20 max-md:gap-16 md:gap-36">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="grid gap-8 max-md:gap-7 md:grid-cols-2 md:gap-10">
+            <div className="flex flex-col gap-3 max-md:gap-2.5 md:gap-4">
+              <Shimmer className="h-7 w-3/4 rounded-md max-md:h-6" />
+              <Shimmer className="h-5 w-full rounded-md" />
+              <Shimmer className="h-20 w-full rounded-md max-md:h-16" />
+            </div>
+            <Shimmer className="h-56 rounded-[22px] max-md:h-52 md:h-64 md:rounded-[28px]" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function TrustedBySkeleton() {
   return (
     <section className="w-full max-w-[600px] mx-auto">

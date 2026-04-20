@@ -10,7 +10,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 
 const navItems = [
   { key: "services", href: "#services" },
-  { key: "models", href: "#models" },
+  { key: "models", href: "/models" },
   { key: "contact", href: "/contact" },
   { key: "jobs", href: "/jobs" },
 ];
@@ -24,7 +24,6 @@ export default function Navigation() {
   const menuLabel = menuOpen ? t("nav.closeMenu") : t("nav.openMenu");
 
   const scrollToId = (id: string) => {
-    if (typeof window === "undefined") return;
     const element = document.getElementById(id);
     if (!element) return;
     const offset = 72;
@@ -171,7 +170,6 @@ export default function Navigation() {
                 setMenuOpen(false);
               }}
               className="inline-flex items-center justify-center text-sm font-medium px-4 h-8 rounded-full bg-[rgb(var(--color-accent-indigo))] !text-white hover:bg-[rgb(var(--color-accent-purple))] transition-colors duration-200 max-md:text-xs max-md:px-3 max-md:h-7"
-              style={{ color: "white" }}
             >
               {t("joinWaitlist")}
             </a>

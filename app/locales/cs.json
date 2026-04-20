@@ -61,6 +61,10 @@
     "terms": {
       "title": "Podmínky služby | Zet Labs",
       "description": "Podmínky a pravidla používání webu Zet Labs a waitlistu."
+    },
+    "models": {
+      "title": "Modely | Zet Labs",
+      "description": "Optimalizováno in-house pro rychlost a spolehlivost. Nano, Flow a One — inference laděná pro reálné workloady."
     }
   },
   "contact": {
@@ -356,6 +360,73 @@
       "desc": "Náš nejsilnější model. State-of-the-art reasoning, hluboká doménová expertíza, komplexní řešení problémů. Když úkol vyžaduje to nejlepší.",
       "bestFor": ["Komplexní reasoning", "Doménová expertíza", "Rozhodování s vysokou mírou rizika"]
     }
+  },
+  "modelsPage": {
+    "heroEyebrow": "Od vývoje po provoz",
+    "heroTitle": "Od edge k vrcholu",
+    "heroLead": "Tři kalibry, jedna trajektorie: přítomnost tam, kde se svět dotýká křemíku, pohyb když má práce běžet sama, a úsudek když stačí jen ta nejlepší odpověď.",
+    "railTitle": "Výstup",
+    "railLead": "Tři kapitoly. Stejný stack. Vyberte vstupní bod.",
+    "nanoPhase": "I · Přítomnost",
+    "flowPhase": "II · Pohyb",
+    "onePhase": "III · Vrchol",
+    "bridgeNanoToFlow": "Když přítomnost předá orchestraci—a latenci nahradí exekuce.",
+    "bridgeFlowToOne": "Když autonomie narazí na sázky—a stack chce hloubku, ne jen rychlost.",
+    "ctaWaitlist": "Přidat se na waitlist",
+    "tierLabel": "Stupeň",
+    "nanoLatticeFoot": "Jeden model. Každý povrch. Pod 100 ms.",
+    "nanoDevices": ["Telefon", "Notebook", "Edge"],
+    "flowDiagramFoot": "nástroje · paměť · API",
+    "meridian": {
+      "label": "Trajektorie",
+      "title": "Jedna rodina. Tři odpovědi.",
+      "caption": "Stejný základ, vytvarovaný pro tři odlišné okamžiky — čip ve vaší ruce, práci, která běží sama, a odpověď, kterou unese jen hloubka.",
+      "legendLeft": "Edge",
+      "legendMid": "Orchestrace",
+      "legendRight": "Vrchol"
+    },
+    "specs": {
+      "title": "Ve zkratce",
+      "context": "Kontext",
+      "latency": "První token",
+      "host": "Běží na"
+    },
+    "nanoSpecs": {
+      "context": "Krátce a jasně",
+      "latency": "Okamžitě",
+      "host": "Zařízení, prohlížeč, edge"
+    },
+    "flowSpecs": {
+      "context": "Dlouhý horizont",
+      "latency": "Rychle",
+      "host": "Self-host, on-prem, cloud"
+    },
+    "oneSpecs": {
+      "context": "Na délku knihy",
+      "latency": "Promyslí a odpoví",
+      "host": "Dedikovaný hardware"
+    },
+    "oneStrata": [
+      "Přečíst celé zadání",
+      "Uvažovat nad precedenty",
+      "Navrhnout, kritizovat, přepsat",
+      "Odevzdat promyšlenou odpověď"
+    ],
+    "lineage": {
+      "kicker": "Společná linie",
+      "title": "Jeden genom, tři formy",
+      "body": "Každý model sdílí stejné jádro — in-house tokenizér, kurátorský trénovací korpus a jednotný evaluační harness. Divergence přichází až později: kvantizace a destilace u Nano, post-trénink pro nástroje a long-horizon RL u Flow, husté mixture-of-experts uvažování u One.",
+      "pillars": [
+        { "tag": "Tokenizér", "value": "Sjednocený" },
+        { "tag": "Korpus", "value": "Kurátorský" },
+        { "tag": "Eval harness", "value": "Sdílený" },
+        { "tag": "Bezpečnostní vrstva", "value": "Společná" }
+      ]
+    },
+    "outroKicker": "Co přichází dál",
+    "outroTitle": "Trajektorie pokračuje.",
+    "outroBody": "Nano-Plus pro multimodální edge. Flow s agentickými tool-servery. One s nativním vizuálním reasoningem. Další vydání jsou už v pipelině.",
+    "ctaSecondary": "Poradíme, co vybrat"
   },
   "footer": {
     "copyright": "© 2026 Zet Labs",

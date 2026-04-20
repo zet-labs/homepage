@@ -42,10 +42,11 @@ export default function ScrollRevealHandler() {
     let observer: IntersectionObserver | null = null;
     const revealTimeout = setTimeout(() => {
       observer = new IntersectionObserver(
-        (entries) => {
+        (entries, obs) => {
           for (const entry of entries) {
             if (entry.isIntersecting) {
               entry.target.classList.add("revealed");
+              obs.unobserve(entry.target);
             }
           }
         },

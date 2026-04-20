@@ -61,6 +61,10 @@
     "terms": {
       "title": "Terms of Service | Zet Labs",
       "description": "Terms and conditions for using the Zet Labs website and waitlist."
+    },
+    "models": {
+      "title": "Models | Zet Labs",
+      "description": "Optimized in-house for speed and reliability. Nano, Flow, and One — inference tuned for real-world workloads."
     }
   },
   "contact": {
@@ -356,6 +360,73 @@
       "desc": "Our most powerful model. State-of-the-art reasoning, deep domain expertise, complex problem solving. When the task demands the best, this is it.",
       "bestFor": ["Complex reasoning", "Domain expert tasks", "High-stakes decisions"]
     }
+  },
+  "modelsPage": {
+    "heroEyebrow": "End-to-end",
+    "heroTitle": "From the edge to the apex",
+    "heroLead": "Three calibers, one trajectory: presence where the world meets silicon, motion when work must run itself, and judgment when only the best answer counts.",
+    "railTitle": "Ascent",
+    "railLead": "Three chapters. Same stack. Pick where you land.",
+    "nanoPhase": "I · Presence",
+    "flowPhase": "II · Motion",
+    "onePhase": "III · Apex",
+    "bridgeNanoToFlow": "When presence hands off to orchestration—and latency gives way to execution.",
+    "bridgeFlowToOne": "When autonomy meets stakes—and the stack demands depth, not just speed.",
+    "ctaWaitlist": "Join the waitlist",
+    "tierLabel": "Scale",
+    "nanoLatticeFoot": "One model. Every surface. Sub-100ms.",
+    "nanoDevices": ["Phone", "Laptop", "Edge"],
+    "flowDiagramFoot": "tools · memory · APIs",
+    "meridian": {
+      "label": "The trajectory",
+      "title": "One family. Three answers.",
+      "caption": "The same foundation, shaped for three distinct moments — the chip in your hand, the work running itself, the answer that only depth can reach.",
+      "legendLeft": "Edge",
+      "legendMid": "Orchestration",
+      "legendRight": "Apex"
+    },
+    "specs": {
+      "title": "At a glance",
+      "context": "Context",
+      "latency": "First token",
+      "host": "Runs on"
+    },
+    "nanoSpecs": {
+      "context": "Short and decisive",
+      "latency": "Instant",
+      "host": "Device, browser, edge"
+    },
+    "flowSpecs": {
+      "context": "Long-horizon",
+      "latency": "Fast",
+      "host": "Self-host, on-prem, cloud"
+    },
+    "oneSpecs": {
+      "context": "Book-length",
+      "latency": "Thinks, then answers",
+      "host": "Dedicated hardware"
+    },
+    "oneStrata": [
+      "Read the full brief",
+      "Reason across precedents",
+      "Draft, critique, revise",
+      "Deliver a considered answer"
+    ],
+    "lineage": {
+      "kicker": "Shared lineage",
+      "title": "One genome, three expressions",
+      "body": "Every model inherits the same core — our in-house tokenizer, a curated training corpus, and a uniform evaluation harness. The divergence happens downstream: quantization and distillation for Nano, tool-aware post-training and long-horizon RL for Flow, dense mixture-of-experts reasoning for One.",
+      "pillars": [
+        { "tag": "Tokenizer", "value": "Unified" },
+        { "tag": "Corpus", "value": "Curated" },
+        { "tag": "Eval harness", "value": "Shared" },
+        { "tag": "Safety layer", "value": "Common" }
+      ]
+    },
+    "outroKicker": "What comes next",
+    "outroTitle": "The trajectory continues.",
+    "outroBody": "Nano-Plus for multimodal edge. Flow with agentic tool-servers. One with native vision reasoning. The next releases are already in the pipeline.",
+    "ctaSecondary": "Talk to us about fit"
   },
   "footer": {
     "copyright": "© 2026 Zet Labs",

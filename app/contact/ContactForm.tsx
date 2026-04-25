@@ -1,34 +1,34 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { Button } from "../components/ui/Button";
-import { Input } from "../components/ui/Input";
-import { Textarea } from "../components/ui/Textarea";
-import { useTurnstile } from "../../lib/useTurnstile";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Button } from '../components/ui/Button';
+import { Input } from '../components/ui/Input';
+import { Textarea } from '../components/ui/Textarea';
+import { useTurnstile } from '../../lib/useTurnstile';
 
-type FormState = "idle" | "submitting" | "success" | "error";
+type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
 const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '';
 const TURNSTILE_RENDER_OPTIONS = {
-  size: "normal",
-  appearance: "interaction-only",
-  execution: "execute",
+  size: 'normal',
+  appearance: 'interaction-only',
+  execution: 'execute',
 } as const;
 
 export default function ContactForm() {
-  const t = useTranslations("contact");
-  const [state, setState] = useState<FormState>("idle");
+  const t = useTranslations('contact');
+  const [state, setState] = useState<FormState>('idle');
   const [validationMessage, setValidationMessage] = useState<string | null>(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [company, setCompany] = useState("");
-  const [reason, setReason] = useState(t("reasons.default"));
-  const [message, setMessage] = useState("");
-  const [honeypot, setHoneypot] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
+  const [reason, setReason] = useState(t('reasons.default'));
+  const [message, setMessage] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const submittingRef = useRef(false);
   const timestampRef = useRef(0);
   const resetTurnstileRef = useRef<() => void>(() => {});
@@ -41,7 +41,7 @@ export default function ContactForm() {
     honeypot: string;
     timestamp: number;
   } | null>(null);
-  const reasonOptions = t.raw("reasons.options") as string[];
+  const reasonOptions = t.raw('reasons.options') as string[];
 
   useEffect(() => {
     if (timestampRef.current === 0) {
@@ -55,9 +55,9 @@ export default function ContactForm() {
       if (!data) return;
 
       try {
-        const response = await fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             ...data,
             turnstileToken: token,
@@ -65,20 +65,20 @@ export default function ContactForm() {
         });
 
         if (!response.ok) {
-          setState("error");
+          setState('error');
           return;
         }
 
-        setName("");
-        setEmail("");
-        setCompany("");
-        setReason(t("reasons.default"));
-        setMessage("");
-        setHoneypot("");
+        setName('');
+        setEmail('');
+        setCompany('');
+        setReason(t('reasons.default'));
+        setMessage('');
+        setHoneypot('');
         timestampRef.current = Date.now();
-        setState("success");
+        setState('success');
       } catch {
-        setState("error");
+        setState('error');
       } finally {
         submittingRef.current = false;
         formDataRef.current = null;
@@ -100,7 +100,7 @@ export default function ContactForm() {
     renderOptions: TURNSTILE_RENDER_OPTIONS,
     onSuccess: submitForm,
     onError: () => {
-      setState("error");
+      setState('error');
       submittingRef.current = false;
       formDataRef.current = null;
     },
@@ -118,15 +118,15 @@ export default function ContactForm() {
   const emailInvalid = Boolean(validationMessage) && !isValidEmail(trimmedEmail);
 
   const getValidationMessage = () => {
-    if (trimmedName.length < 2) return t("validationName");
-    if (!isValidEmail(trimmedEmail)) return t("validationEmail");
-    if (trimmedMessage.length < 10) return t("validationMessage");
-    return t("validationRequired");
+    if (trimmedName.length < 2) return t('validationName');
+    if (!isValidEmail(trimmedEmail)) return t('validationEmail');
+    if (trimmedMessage.length < 10) return t('validationMessage');
+    return t('validationRequired');
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (state === "submitting" || submittingRef.current) return;
+    if (state === 'submitting' || submittingRef.current) return;
 
     if (!isValid) {
       setValidationMessage(getValidationMessage());
@@ -134,13 +134,13 @@ export default function ContactForm() {
     }
 
     if (turnstileFailed) {
-      setState("error");
+      setState('error');
       return;
     }
 
     setValidationMessage(null);
     submittingRef.current = true;
-    setState("submitting");
+    setState('submitting');
 
     formDataRef.current = {
       name,
@@ -156,7 +156,7 @@ export default function ContactForm() {
     if (!executed) {
       submittingRef.current = false;
       formDataRef.current = null;
-      setState("error");
+      setState('error');
     }
   };
 
@@ -170,18 +170,18 @@ export default function ContactForm() {
       <div className="grid md:grid-cols-2 gap-4">
         <div className="flex flex-col gap-2">
           <label className="text-xs uppercase tracking-[0.2em] text-[rgb(var(--color-foreground-muted)/0.7)]">
-            {t("nameLabel")}
+            {t('nameLabel')}
           </label>
           <Input
             value={name}
             onChange={(event) => setName(event.target.value)}
-            placeholder={t("namePlaceholder")}
+            placeholder={t('namePlaceholder')}
             required
           />
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-xs uppercase tracking-[0.2em] text-[rgb(var(--color-foreground-muted)/0.7)]">
-            {t("emailLabel")}
+            {t('emailLabel')}
           </label>
           <Input
             type="email"
@@ -190,12 +190,12 @@ export default function ContactForm() {
               setEmail(event.target.value);
               setValidationMessage(null);
             }}
-            placeholder={t("emailPlaceholder")}
+            placeholder={t('emailPlaceholder')}
             required
             className={
               emailInvalid
-                ? "border-rose-500/60 focus:border-rose-500/70 focus:shadow-[0_0_0_3px_rgba(244,63,94,0.2)]"
-                : ""
+                ? 'border-rose-500/60 focus:border-rose-500/70 focus:shadow-[0_0_0_3px_rgba(244,63,94,0.2)]'
+                : ''
             }
           />
         </div>
@@ -204,7 +204,7 @@ export default function ContactForm() {
       <div className="grid md:grid-cols-2 gap-4 mt-4">
         <div className="flex flex-col gap-2">
           <label className="text-xs uppercase tracking-[0.2em] text-[rgb(var(--color-foreground-muted)/0.7)]">
-            {t("companyLabel")}
+            {t('companyLabel')}
           </label>
           <Input
             value={company}
@@ -212,12 +212,12 @@ export default function ContactForm() {
               setCompany(event.target.value);
               setValidationMessage(null);
             }}
-            placeholder={t("companyPlaceholder")}
+            placeholder={t('companyPlaceholder')}
           />
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-xs uppercase tracking-[0.2em] text-[rgb(var(--color-foreground-muted)/0.7)]">
-            {t("reasonLabel")}
+            {t('reasonLabel')}
           </label>
           <select
             value={reason}
@@ -238,7 +238,7 @@ export default function ContactForm() {
 
       <div className="flex flex-col gap-2 mt-4">
         <label className="text-xs uppercase tracking-[0.2em] text-[rgb(var(--color-foreground-muted)/0.7)]">
-          {t("messageLabel")}
+          {t('messageLabel')}
         </label>
         <Textarea
           value={message}
@@ -246,7 +246,7 @@ export default function ContactForm() {
             setMessage(event.target.value);
             setValidationMessage(null);
           }}
-          placeholder={t("messagePlaceholder")}
+          placeholder={t('messagePlaceholder')}
           rows={6}
           required
         />
@@ -267,13 +267,13 @@ export default function ContactForm() {
 
       <div className="mt-8 flex flex-col md:flex-row items-center md:justify-between gap-4 border-t border-[rgb(var(--color-foreground)/0.08)] px-4 py-5 bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.02))] rounded-2xl">
         <p className="text-xs text-[rgb(var(--color-foreground-muted)/0.7)]">
-          {t("privacyNote")}{" "}
+          {t('privacyNote')}{' '}
           <Link
             href="/privacy"
             prefetch
             className="text-[rgb(var(--color-accent-indigo))] hover:opacity-80"
           >
-            {t("privacyLink")}
+            {t('privacyLink')}
           </Link>
         </p>
         <div className="flex flex-col items-center md:items-end gap-2">
@@ -281,20 +281,20 @@ export default function ContactForm() {
             type="submit"
             size="md"
             withGlowEffect
-            disabled={state === "submitting" || turnstileFailed}
+            disabled={state === 'submitting' || turnstileFailed}
           >
-            {state === "submitting" ? (
+            {state === 'submitting' ? (
               <span className="inline-flex items-center gap-2">
                 <span className="h-3.5 w-3.5 animate-spin rounded-full border border-[rgb(var(--color-foreground)/0.35)] border-t-transparent" />
-                {t("submitting")}
+                {t('submitting')}
               </span>
             ) : (
-              t("submit")
+              t('submit')
             )}
           </Button>
-          {state === "submitting" && !turnstileReady && (
+          {state === 'submitting' && !turnstileReady && (
             <span className="text-[10px] uppercase tracking-[0.2em] text-[rgb(var(--color-foreground-muted)/0.7)]">
-              {t("verificationLoading")}
+              {t('verificationLoading')}
             </span>
           )}
         </div>
@@ -305,14 +305,14 @@ export default function ContactForm() {
           {validationMessage}
         </p>
       )}
-      {state === "success" && (
+      {state === 'success' && (
         <p className="mt-4 text-sm rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-emerald-200">
-          {t("success")}
+          {t('success')}
         </p>
       )}
-      {state === "error" && (
+      {state === 'error' && (
         <p className="mt-4 text-sm rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-rose-200">
-          {turnstileFailed ? t("verificationError") : t("error")}
+          {turnstileFailed ? t('verificationError') : t('error')}
         </p>
       )}
     </form>

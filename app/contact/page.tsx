@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { Suspense } from "react";
-import Footer from "../components/Footer";
-import Navigation from "../components/Navigation";
-import { FooterSkeleton } from "../components/Skeletons";
-import ContactForm from "./ContactForm";
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { Suspense } from 'react';
+import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
+import { FooterSkeleton } from '../components/Skeletons';
+import ContactForm from './ContactForm';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
-  const title = t("meta.contact.title");
-  const description = t("meta.contact.description");
+  const title = t('meta.contact.title');
+  const description = t('meta.contact.description');
 
   return {
     title,
@@ -17,12 +17,12 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: "/contact",
-      type: "website",
-      siteName: t("meta.siteName"),
+      url: '/contact',
+      type: 'website',
+      siteName: t('meta.siteName'),
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title,
       description,
     },
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ContactPage() {
-  const t = await getTranslations("contact");
+  const t = await getTranslations('contact');
 
   return (
     <div className="min-h-screen w-screen relative overflow-x-hidden bg-[rgb(var(--color-background-start))] flex flex-col">
@@ -40,17 +40,17 @@ export default async function ContactPage() {
         <section className="w-full max-w-[980px]">
           <div className="text-center mb-10">
             <h1 className="text-[clamp(2.4rem,6vw,4rem)] font-medium leading-[1.1] tracking-[-0.04em] font-[family-name:var(--font-geist-sans)]">
-              {t("title")}
+              {t('title')}
             </h1>
             <p className="text-[rgb(var(--color-foreground-soft)/0.85)] text-[clamp(1rem,2.2vw,1.2rem)] max-w-[720px] mx-auto mt-4">
-              {t("subtitle")}
+              {t('subtitle')}
             </p>
           </div>
 
           <ContactForm />
 
           <div className="mt-6 text-center text-xs text-[rgb(var(--color-foreground-muted)/0.7)]">
-            {t("responseTime")}
+            {t('responseTime')}
           </div>
         </section>
       </main>

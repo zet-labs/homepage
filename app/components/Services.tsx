@@ -1,9 +1,9 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations } from 'next-intl/server';
 
 const services = [
-  { key: "research", number: "01" },
-  { key: "agentic", number: "02" },
-  { key: "solutions", number: "03" },
+  { key: 'research', number: '01' },
+  { key: 'agentic', number: '02' },
+  { key: 'solutions', number: '03' },
 ];
 
 export default async function Services() {
@@ -13,7 +13,7 @@ export default async function Services() {
     <section className="w-full max-w-[1000px] mx-auto reveal-on-scroll">
       <div className="text-center mb-12 max-md:mb-10">
         <h2 className="text-[rgb(var(--color-foreground))] text-4xl font-light tracking-tight mb-3 max-md:text-3xl font-[family-name:var(--font-geist-sans)]">
-          {t("services.title")}
+          {t('services.title')}
         </h2>
         <div className="w-16 h-px mx-auto bg-gradient-to-r from-transparent via-[rgb(var(--color-accent-indigo))] to-transparent" />
       </div>

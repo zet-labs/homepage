@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 type Node = {
   x: number;
@@ -171,7 +171,7 @@ function edgeCp(na: Node, nb: Node, off: number) {
 function makeSprite(size: number, stops: [number, string][]): OffscreenCanvas {
   const oc = new OffscreenCanvas(size, size);
   const cx = size / 2;
-  const c = oc.getContext("2d")!;
+  const c = oc.getContext('2d')!;
   const gr = c.createRadialGradient(cx, cx, 0, cx, cx, cx);
   for (const [p, col] of stops) gr.addColorStop(p, col);
   c.fillStyle = gr;
@@ -187,31 +187,31 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const _canvas = canvasRef.current;
     if (!_canvas) return;
-    const _ctx = _canvas.getContext("2d");
+    const _ctx = _canvas.getContext('2d');
     if (!_ctx) return;
     const canvas: HTMLCanvasElement = _canvas;
     const ctx: CanvasRenderingContext2D = _ctx;
 
     const nodeGlow = makeSprite(120, [
-      [0, "rgba(99,102,241,1)"],
-      [0.35, "rgba(99,102,241,0.35)"],
-      [0.7, "rgba(99,102,241,0.08)"],
-      [1, "rgba(99,102,241,0)"],
+      [0, 'rgba(99,102,241,1)'],
+      [0.35, 'rgba(99,102,241,0.35)'],
+      [0.7, 'rgba(99,102,241,0.08)'],
+      [1, 'rgba(99,102,241,0)'],
     ]);
     const hubGlow = makeSprite(160, [
-      [0, "rgba(139,92,246,1)"],
-      [0.35, "rgba(120,100,255,0.4)"],
-      [0.7, "rgba(99,102,241,0.1)"],
-      [1, "rgba(99,102,241,0)"],
+      [0, 'rgba(139,92,246,1)'],
+      [0.35, 'rgba(120,100,255,0.4)'],
+      [0.7, 'rgba(99,102,241,0.1)'],
+      [1, 'rgba(99,102,241,0)'],
     ]);
     const flowGlow = makeSprite(56, [
-      [0, "rgba(180,210,255,1)"],
-      [0.35, "rgba(130,160,255,0.5)"],
-      [1, "rgba(99,102,241,0)"],
+      [0, 'rgba(180,210,255,1)'],
+      [0.35, 'rgba(130,160,255,0.5)'],
+      [1, 'rgba(99,102,241,0)'],
     ]);
 
     let nodes: Node[] = [];
@@ -219,7 +219,7 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
     let flows: Flow[] = [];
     let pings: Ping[] = [];
     const saveData =
-      "connection" in navigator &&
+      'connection' in navigator &&
       Boolean(
         (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData,
       );
@@ -232,9 +232,9 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
 
     function dark(): boolean {
       const t = document.documentElement.dataset.theme;
-      if (t === "light") return false;
-      if (t === "dark") return true;
-      return !window.matchMedia("(prefers-color-scheme: light)").matches;
+      if (t === 'light') return false;
+      if (t === 'dark') return true;
+      return !window.matchMedia('(prefers-color-scheme: light)').matches;
     }
 
     function activeIntensity() {
@@ -329,8 +329,8 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
       const d = dark();
       const dm = d ? 1 : 0.92;
 
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
 
       for (const n of nodes) {
         n.x += n.vx;
@@ -354,7 +354,7 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
         ctx.moveTo(nodes[a].x, nodes[a].y);
         ctx.quadraticCurveTo(cpx, cpy, nodes[b].x, nodes[b].y);
       }
-      ctx.strokeStyle = d ? "rgba(130,145,255,0.028)" : "rgba(92,110,235,0.032)";
+      ctx.strokeStyle = d ? 'rgba(130,145,255,0.028)' : 'rgba(92,110,235,0.032)';
       ctx.lineWidth = d ? 0.45 : 0.55;
       ctx.stroke();
 
@@ -373,7 +373,7 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
         hasActiveEdges = true;
       }
       if (hasActiveEdges) {
-        ctx.strokeStyle = d ? "rgba(165,175,255,0.06)" : "rgba(106,124,240,0.085)";
+        ctx.strokeStyle = d ? 'rgba(165,175,255,0.06)' : 'rgba(106,124,240,0.085)';
         ctx.lineWidth = d ? 0.8 : 0.95;
         ctx.stroke();
       }
@@ -473,7 +473,7 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
           ctx.moveTo(tp.x + tr, tp.y);
           ctx.arc(tp.x, tp.y, tr, 0, Math.PI * 2);
         }
-        ctx.fillStyle = d ? "rgba(130,155,255,0.025)" : "rgba(92,112,235,0.026)";
+        ctx.fillStyle = d ? 'rgba(130,155,255,0.025)' : 'rgba(92,112,235,0.026)';
         ctx.fill();
 
         // Tight comet trail
@@ -484,7 +484,7 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
           ctx.moveTo(tp.x + tr, tp.y);
           ctx.arc(tp.x, tp.y, tr, 0, Math.PI * 2);
         }
-        ctx.fillStyle = d ? "rgba(160,180,255,0.055)" : "rgba(92,112,235,0.06)";
+        ctx.fillStyle = d ? 'rgba(160,180,255,0.055)' : 'rgba(92,112,235,0.06)';
         ctx.fill();
 
         ctx.globalAlpha = d ? 0.13 : 0.14;
@@ -493,7 +493,7 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
-        ctx.fillStyle = d ? "rgba(220,232,255,0.45)" : "rgba(102,124,242,0.52)";
+        ctx.fillStyle = d ? 'rgba(220,232,255,0.45)' : 'rgba(102,124,242,0.52)';
         ctx.fill();
       }
 
@@ -530,21 +530,21 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
       {
         root: null,
         threshold: 0,
-        rootMargin: "20% 0px 20% 0px",
+        rootMargin: '20% 0px 20% 0px',
       },
     );
 
     resize();
     observer.observe(canvas);
-    window.addEventListener("resize", resize);
-    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', onVisibility);
     startLoop();
 
     return () => {
       observer.disconnect();
       stopLoop();
-      window.removeEventListener("resize", resize);
-      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener('resize', resize);
+      document.removeEventListener('visibilitychange', onVisibility);
     };
   }, []);
 
@@ -552,11 +552,11 @@ export default function NeuralBackground({ style }: { style?: React.CSSPropertie
     <canvas
       ref={canvasRef}
       style={{
-        position: "absolute",
+        position: 'absolute',
         inset: 0,
-        width: "100%",
-        height: "100%",
-        pointerEvents: "none",
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
         ...style,
       }}
       aria-hidden="true"

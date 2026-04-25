@@ -1,8 +1,8 @@
-import { initBotId } from "botid/client/core";
+import { initBotId } from 'botid/client/core';
 
 initBotId({
   protect: [
-    { path: "/api/waitlist", method: "POST" },
-    { path: "/api/contact", method: "POST" },
+    { path: '/api/waitlist', method: 'POST' },
+    { path: '/api/contact', method: 'POST' },
   ],
 });

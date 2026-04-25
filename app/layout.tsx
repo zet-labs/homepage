@@ -1,26 +1,26 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages, getTranslations } from "next-intl/server";
-import { SITE_URL } from "../lib/site";
-import BackgroundEffects from "./components/BackgroundEffects";
-import ConsoleEasterEgg from "./components/ConsoleEasterEgg";
-import ThemeProvider from "./components/ThemeProvider";
+import './globals.css';
+import type { Metadata } from 'next';
+import { GeistSans } from 'geist/font/sans';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages, getTranslations } from 'next-intl/server';
+import { SITE_URL } from '../lib/site';
+import BackgroundEffects from './components/BackgroundEffects';
+import ConsoleEasterEgg from './components/ConsoleEasterEgg';
+import ThemeProvider from './components/ThemeProvider';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
 
   return {
-    title: t("meta.defaultTitle"),
-    description: t("meta.defaultDescription"),
+    title: t('meta.defaultTitle'),
+    description: t('meta.defaultDescription'),
     metadataBase: new URL(SITE_URL),
     icons: {
       icon: [
-        { url: "/favicon.ico", sizes: "any" },
-        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/favicon.svg', type: 'image/svg+xml' },
       ],
     },
   };

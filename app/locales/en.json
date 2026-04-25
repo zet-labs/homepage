@@ -383,7 +383,13 @@
       "caption": "The same foundation, shaped for three distinct moments — the chip in your hand, the work running itself, the answer that only depth can reach.",
       "legendLeft": "Edge",
       "legendMid": "Orchestration",
-      "legendRight": "Apex"
+      "legendRight": "Apex",
+      "axisCapability": "CAPABILITY",
+      "nanoTag": "SPEED · EDGE",
+      "flowTag": "+ TOOL ORCHESTRATION",
+      "oneTag": "NO CEILING",
+      "stepChange": "STEP CHANGE",
+      "journeyLine": "Instant presence at the edge. Fast, reliable tool orchestration at scale. Then a step change — One, where frontier capability has no ceiling."
     },
     "specs": {
       "title": "At a glance",

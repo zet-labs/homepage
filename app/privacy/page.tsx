@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { Suspense } from "react";
-import Footer from "../components/Footer";
-import Navigation from "../components/Navigation";
-import { FooterSkeleton } from "../components/Skeletons";
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { Suspense } from 'react';
+import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
+import { FooterSkeleton } from '../components/Skeletons';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
-  const title = t("meta.privacy.title");
-  const description = t("meta.privacy.description");
+  const title = t('meta.privacy.title');
+  const description = t('meta.privacy.description');
 
   return {
     title,
@@ -16,12 +16,12 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: "/privacy",
-      type: "website",
-      siteName: t("meta.siteName"),
+      url: '/privacy',
+      type: 'website',
+      siteName: t('meta.siteName'),
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title,
       description,
     },
@@ -32,28 +32,28 @@ export default async function PrivacyPage() {
   const t = await getTranslations();
   const sections = [
     {
-      title: t("legal.privacy.sections.data.title"),
-      body: t.raw("legal.privacy.sections.data.body") as string[],
+      title: t('legal.privacy.sections.data.title'),
+      body: t.raw('legal.privacy.sections.data.body') as string[],
     },
     {
-      title: t("legal.privacy.sections.use.title"),
-      body: t.raw("legal.privacy.sections.use.body") as string[],
+      title: t('legal.privacy.sections.use.title'),
+      body: t.raw('legal.privacy.sections.use.body') as string[],
     },
     {
-      title: t("legal.privacy.sections.sharing.title"),
-      body: t.raw("legal.privacy.sections.sharing.body") as string[],
+      title: t('legal.privacy.sections.sharing.title'),
+      body: t.raw('legal.privacy.sections.sharing.body') as string[],
     },
     {
-      title: t("legal.privacy.sections.security.title"),
-      body: t.raw("legal.privacy.sections.security.body") as string[],
+      title: t('legal.privacy.sections.security.title'),
+      body: t.raw('legal.privacy.sections.security.body') as string[],
     },
     {
-      title: t("legal.privacy.sections.choices.title"),
-      body: t.raw("legal.privacy.sections.choices.body") as string[],
+      title: t('legal.privacy.sections.choices.title'),
+      body: t.raw('legal.privacy.sections.choices.body') as string[],
     },
     {
-      title: t("legal.privacy.sections.contact.title"),
-      body: [t("legal.privacy.sections.contact.body")],
+      title: t('legal.privacy.sections.contact.title'),
+      body: [t('legal.privacy.sections.contact.body')],
     },
   ];
 
@@ -65,18 +65,18 @@ export default async function PrivacyPage() {
         <section className="py-28 w-full max-w-[900px] max-md:py-20">
           <div className="mb-10">
             <p className="text-xs tracking-[0.3em] uppercase text-[rgb(var(--color-foreground-muted)/0.6)] mb-4">
-              {t("legal.privacy.kicker")}
+              {t('legal.privacy.kicker')}
             </p>
             <h1 className="text-[rgb(var(--color-foreground))] text-5xl font-medium tracking-tight max-md:text-4xl font-[family-name:var(--font-geist-sans)]">
-              {t("legal.privacy.title")}
+              {t('legal.privacy.title')}
             </h1>
             <p className="text-[rgb(var(--color-foreground-muted)/0.7)] text-sm mt-3">
-              {t("legal.privacy.updated")}
+              {t('legal.privacy.updated')}
             </p>
           </div>
 
           <p className="text-[rgb(var(--color-foreground-soft)/0.85)] text-base leading-relaxed max-w-[760px] mb-10">
-            {t("legal.privacy.intro")}
+            {t('legal.privacy.intro')}
           </p>
 
           <div className="space-y-10">

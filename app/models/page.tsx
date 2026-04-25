@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
-import { getTranslations } from "next-intl/server";
-import Footer from "../components/Footer";
-import Navigation from "../components/Navigation";
-import ScrollRevealHandler from "../components/ScrollRevealHandler";
-import { FooterSkeleton, ModelsJourneySkeleton } from "../components/Skeletons";
-import ModelsJourney from "./ModelsJourney";
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
+import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
+import ScrollRevealHandler from '../components/ScrollRevealHandler';
+import { FooterSkeleton, ModelsJourneySkeleton } from '../components/Skeletons';
+import ModelsJourney from './ModelsJourney';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
-  const title = t("meta.models.title");
-  const description = t("meta.models.description");
+  const title = t('meta.models.title');
+  const description = t('meta.models.description');
 
   return {
     title,
@@ -18,12 +18,12 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: "/models",
-      type: "website",
-      siteName: t("meta.siteName"),
+      url: '/models',
+      type: 'website',
+      siteName: t('meta.siteName'),
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title,
       description,
     },

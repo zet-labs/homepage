@@ -1,5 +1,5 @@
-import { getTranslations } from "next-intl/server";
-import TerminalDemoLoader from "./TerminalDemoLoader";
+import { getTranslations } from 'next-intl/server';
+import TerminalDemoLoader from './TerminalDemoLoader';
 
 function SparkBars({ className }: { className?: string }) {
   const heights = [5, 9, 4, 13, 7, 15, 10, 14];
@@ -32,7 +32,7 @@ function FloatCard({
 }) {
   return (
     <div
-      className={`hidden xl:flex flex-col gap-1 px-3.5 py-3 rounded-xl border border-[rgb(var(--color-foreground)/0.09)] bg-[rgb(var(--color-surface)/0.68)] backdrop-blur-md shadow-[0_8px_32px_rgb(0_0_0/0.22),inset_0_1px_0_rgb(255_255_255/0.06)] overflow-hidden ${className ?? ""}`}
+      className={`hidden xl:flex flex-col gap-1 px-3.5 py-3 rounded-xl border border-[rgb(var(--color-foreground)/0.09)] bg-[rgb(var(--color-surface)/0.68)] backdrop-blur-md shadow-[0_8px_32px_rgb(0_0_0/0.22),inset_0_1px_0_rgb(255_255_255/0.06)] overflow-hidden ${className ?? ''}`}
     >
       <div className={`absolute inset-x-0 top-0 h-px ${topAccentClass}`} aria-hidden="true" />
       {children}
@@ -52,12 +52,12 @@ export default async function Hero() {
         />
         <div
           className="absolute -top-14 -right-[16%] w-[480px] h-[320px] rounded-full bg-[radial-gradient(ellipse,rgb(139_92_246/0.13),transparent_65%)] blur-3xl pointer-events-none animate-[float_18s_ease-in-out_infinite] max-md:hidden"
-          style={{ animationDelay: "3s" }}
+          style={{ animationDelay: '3s' }}
           aria-hidden="true"
         />
         <div
           className="absolute top-28 left-1/2 -translate-x-1/2 w-[640px] h-[190px] rounded-full bg-[radial-gradient(ellipse,rgb(59_130_246/0.08),transparent_65%)] blur-3xl pointer-events-none animate-[float_22s_ease-in-out_infinite] max-md:hidden"
-          style={{ animationDelay: "7s" }}
+          style={{ animationDelay: '7s' }}
           aria-hidden="true"
         />
 
@@ -82,18 +82,18 @@ export default async function Hero() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
           </span>
           <span className="relative text-[rgb(var(--color-foreground-muted)/0.72)] text-[0.72rem] tracking-[0.16em] uppercase font-medium max-md:text-[0.68rem]">
-            {t("labBadge")}
+            {t('labBadge')}
           </span>
         </div>
 
         <h1 className="hero-text-glow text-[clamp(3rem,10vw,7rem)] font-medium leading-[1.08] tracking-[-0.04em] animate-[fade-in-up_0.6s_ease-out] max-md:max-w-[11ch] max-md:text-[clamp(2.15rem,10vw,3.15rem)] max-[480px]:text-[clamp(1.95rem,11vw,2.7rem)] font-[family-name:var(--font-geist-sans)]">
           <span className="bg-gradient-to-br from-[rgb(var(--color-hero-gradient-from))] via-[rgb(var(--color-hero-gradient-via))] to-[rgb(var(--color-hero-gradient-to))] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradient-shift_8s_ease_infinite] inline-block">
-            {t("brandName")}
+            {t('brandName')}
           </span>
         </h1>
 
         <p className="text-[rgb(var(--color-foreground-soft)/0.8)] font-normal text-[clamp(1.1rem,2.5vw,1.5rem)] leading-[1.4] max-w-[600px] mx-auto animate-[fade-in-up_0.6s_ease-out_0.1s_both] max-md:max-w-[32rem] max-md:px-3 max-md:text-[0.98rem] max-[480px]:px-2 max-[480px]:text-[0.92rem]">
-          {t("tagline")}
+          {t('tagline')}
         </p>
 
         <div

@@ -1,42 +1,42 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
-import { Button } from "./ui/Button";
-import { Input } from "./ui/Input";
-import { useTurnstile } from "../../lib/useTurnstile";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
+import { Button } from './ui/Button';
+import { Input } from './ui/Input';
+import { useTurnstile } from '../../lib/useTurnstile';
 
-type State = "button" | "input" | "submitted" | "error";
+type State = 'button' | 'input' | 'submitted' | 'error';
 
 type WaitlistButtonProps = {
-  variant?: "primary" | "secondary";
-  size?: "sm" | "md" | "lg";
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
   withGlowEffect?: boolean;
 };
 
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '';
 const TURNSTILE_RENDER_OPTIONS = {
-  size: "compact",
-  appearance: "interaction-only",
-  execution: "execute",
+  size: 'compact',
+  appearance: 'interaction-only',
+  execution: 'execute',
 } as const;
 
 export default function WaitlistButton({
-  variant = "primary",
-  size = "lg",
+  variant = 'primary',
+  size = 'lg',
   withGlowEffect = true,
 }: WaitlistButtonProps) {
   const t = useTranslations();
   const locale = useLocale();
-  const language = locale === "cs" ? "cs" : "en";
-  const [state, setState] = useState<State>("button");
-  const [email, setEmail] = useState("");
-  const [honeypot, setHoneypot] = useState("");
+  const language = locale === 'cs' ? 'cs' : 'en';
+  const [state, setState] = useState<State>('button');
+  const [email, setEmail] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const resetTurnstileRef = useRef<() => void>(() => {});
   const formDataRef = useRef<{
     email: string;
-    language: "cs" | "en";
+    language: 'cs' | 'en';
     honeypot: string;
     timestamp: number;
   } | null>(null);
@@ -53,7 +53,7 @@ export default function WaitlistButton({
   };
 
   useEffect(() => {
-    if (state === "input" && timestampRef.current === 0) {
+    if (state === 'input' && timestampRef.current === 0) {
       timestampRef.current = Date.now();
     }
   }, [state]);
@@ -63,9 +63,9 @@ export default function WaitlistButton({
     if (!data) return;
 
     try {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...data,
           turnstileToken: token,
@@ -73,13 +73,13 @@ export default function WaitlistButton({
       });
 
       if (!response.ok) {
-        setState("error");
+        setState('error');
         return;
       }
 
-      setState("submitted");
+      setState('submitted');
     } catch {
-      setState("error");
+      setState('error');
     } finally {
       setSubmitting(false);
       formDataRef.current = null;
@@ -94,11 +94,11 @@ export default function WaitlistButton({
     reset: resetTurnstile,
   } = useTurnstile({
     siteKey: TURNSTILE_SITE_KEY,
-    enabled: state === "input",
+    enabled: state === 'input',
     renderOptions: TURNSTILE_RENDER_OPTIONS,
     onSuccess: submitForm,
     onError: () => {
-      setState("error");
+      setState('error');
       setSubmitting(false);
       formDataRef.current = null;
     },
@@ -112,7 +112,7 @@ export default function WaitlistButton({
     e.preventDefault();
     if (submitting) return;
     if (turnstileFailed) {
-      setState("error");
+      setState('error');
       return;
     }
 
@@ -128,47 +128,47 @@ export default function WaitlistButton({
       if (!executed) {
         setSubmitting(false);
         formDataRef.current = null;
-        setState("error");
+        setState('error');
       }
     });
   };
 
   useEffect(() => {
-    if (state === "submitted" || state === "error") {
+    if (state === 'submitted' || state === 'error') {
       const timer = setTimeout(() => {
-        setState("button");
-        setEmail("");
+        setState('button');
+        setEmail('');
       }, 5000);
       return () => clearTimeout(timer);
     }
   }, [state]);
 
   useEffect(() => {
-    if (state === "input") {
+    if (state === 'input') {
       focusInput();
     }
   }, [state]);
 
   useEffect(() => {
     const handleOpen = () => {
-      setState("input");
+      setState('input');
       setTimeout(() => focusInput(), 0);
     };
 
-    window.addEventListener("open-waitlist", handleOpen);
-    return () => window.removeEventListener("open-waitlist", handleOpen);
+    window.addEventListener('open-waitlist', handleOpen);
+    return () => window.removeEventListener('open-waitlist', handleOpen);
   }, []);
 
   const messageClass =
-    "text-sm font-light text-[rgb(var(--color-foreground-soft)/0.75)] tracking-[0.02em] animate-[fade-in-up_0.6s_ease-out] text-center";
+    'text-sm font-light text-[rgb(var(--color-foreground-soft)/0.75)] tracking-[0.02em] animate-[fade-in-up_0.6s_ease-out] text-center';
 
   return (
     <div className="min-h-[5.5rem] flex items-center justify-center">
-      {state === "submitted" && <div className={messageClass}>{t("thankYou")}</div>}
+      {state === 'submitted' && <div className={messageClass}>{t('thankYou')}</div>}
 
-      {state === "error" && <div className={messageClass}>{t("error")}</div>}
+      {state === 'error' && <div className={messageClass}>{t('error')}</div>}
 
-      {state === "input" && (
+      {state === 'input' && (
         <form
           className="flex gap-3 items-center animate-[fade-in-up_0.4s_ease-out] max-md:flex-col max-md:gap-2"
           onSubmit={handleSubmit}
@@ -188,7 +188,7 @@ export default function WaitlistButton({
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder={t("emailPlaceholder")}
+            placeholder={t('emailPlaceholder')}
             required
             ref={inputRef}
           />
@@ -202,23 +202,23 @@ export default function WaitlistButton({
             {submitting ? (
               <span className="inline-flex items-center gap-2">
                 <span className="h-3.5 w-3.5 animate-spin rounded-full border border-[rgb(var(--color-foreground)/0.35)] border-t-transparent" />
-                {t("submitting")}
+                {t('submitting')}
               </span>
             ) : (
-              t("submit")
+              t('submit')
             )}
           </Button>
         </form>
       )}
 
-      {state === "button" && (
+      {state === 'button' && (
         <Button
           size={size}
           variant={variant}
           withGlowEffect={withGlowEffect}
-          onClick={() => setState("input")}
+          onClick={() => setState('input')}
         >
-          {t("joinWaitlist")}
+          {t('joinWaitlist')}
         </Button>
       )}
     </div>

@@ -46,7 +46,15 @@ function HtmlGlyph({ model }: { model: ModelId }) {
   if (kind === 'ring') {
     return (
       <>
-        <circle cx="12" cy="12" r="8.25" fill="none" stroke={accent} strokeOpacity="0.14" strokeWidth="1" />
+        <circle
+          cx="12"
+          cy="12"
+          r="8.25"
+          fill="none"
+          stroke={accent}
+          strokeOpacity="0.14"
+          strokeWidth="1"
+        />
         <circle
           cx="12"
           cy="12"
@@ -57,7 +65,14 @@ function HtmlGlyph({ model }: { model: ModelId }) {
           strokeLinecap="round"
           style={{ filter: 'drop-shadow(0 0 6px rgb(var(--color-accent-indigo) / 0.48))' }}
         />
-        <circle cx="12" cy="12" r="5.65" fill="none" stroke="rgb(255 255 255 / 0.22)" strokeWidth="0.45" />
+        <circle
+          cx="12"
+          cy="12"
+          r="5.65"
+          fill="none"
+          stroke="rgb(255 255 255 / 0.22)"
+          strokeWidth="0.45"
+        />
       </>
     );
   }
@@ -87,7 +102,13 @@ export type ModelGlyphProps = {
 /**
  * Vector marks aligned with the homepage models strip: Nano ◆, Flow ○, One △.
  */
-export function ModelGlyph({ model, size = 'md', className = '', title, ...rest }: ModelGlyphProps) {
+export function ModelGlyph({
+  model,
+  size = 'md',
+  className = '',
+  title,
+  ...rest
+}: ModelGlyphProps) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -160,7 +181,15 @@ export function SvgModelGlyph({ model, cx, cy, scale = 1, idPrefix }: SvgGlyphPr
   if (kind === 'ring') {
     return (
       <g transform={t}>
-        <circle cx="12" cy="12" r="8.25" fill="none" stroke={accent} strokeOpacity="0.15" strokeWidth="0.9" />
+        <circle
+          cx="12"
+          cy="12"
+          r="8.25"
+          fill="none"
+          stroke={accent}
+          strokeOpacity="0.15"
+          strokeWidth="0.9"
+        />
         <circle
           cx="12"
           cy="12"
@@ -171,7 +200,14 @@ export function SvgModelGlyph({ model, cx, cy, scale = 1, idPrefix }: SvgGlyphPr
           strokeLinecap="round"
           style={{ filter: 'drop-shadow(0 0 4px rgb(var(--color-accent-indigo) / 0.38))' }}
         />
-        <circle cx="12" cy="12" r="5.65" fill="none" stroke="rgb(255 255 255 / 0.2)" strokeWidth="0.42" />
+        <circle
+          cx="12"
+          cy="12"
+          r="5.65"
+          fill="none"
+          stroke="rgb(255 255 255 / 0.2)"
+          strokeWidth="0.42"
+        />
       </g>
     );
   }

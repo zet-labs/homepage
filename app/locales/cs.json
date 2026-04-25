@@ -383,7 +383,13 @@
       "caption": "Stejný základ, vytvarovaný pro tři odlišné okamžiky — čip ve vaší ruce, práci, která běží sama, a odpověď, kterou unese jen hloubka.",
       "legendLeft": "Edge",
       "legendMid": "Orchestrace",
-      "legendRight": "Vrchol"
+      "legendRight": "Vrchol",
+      "axisCapability": "VÝKON",
+      "nanoTag": "RYCHLOST · EDGE",
+      "flowTag": "+ ORCHESTRACE NÁSTROJŮ",
+      "oneTag": "BEZ STROPU",
+      "stepChange": "SKOK VPŘED",
+      "journeyLine": "Okamžitá přítomnost na edge. Rychlá, spolehlivá orchestrace nástrojů. Pak skok vpřed — One, kde frontier výkon nezná strop."
     },
     "specs": {
       "title": "Ve zkratce",

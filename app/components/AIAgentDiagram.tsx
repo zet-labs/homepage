@@ -1,40 +1,40 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations } from 'next-intl/server';
 
 // Input sources (left side)
 const inputSources = [
-  { id: "email", color: "#F97316", icon: "mail" },
-  { id: "chat", color: "#A855F7", icon: "chat" },
-  { id: "calendar", color: "#3B82F6", icon: "calendar" },
-  { id: "docs", color: "#10B981", icon: "docs" },
-  { id: "forms", color: "#EC4899", icon: "forms" },
+  { id: 'email', color: '#F97316', icon: 'mail' },
+  { id: 'chat', color: '#A855F7', icon: 'chat' },
+  { id: 'calendar', color: '#3B82F6', icon: 'calendar' },
+  { id: 'docs', color: '#10B981', icon: 'docs' },
+  { id: 'forms', color: '#EC4899', icon: 'forms' },
 ];
 
 // Output systems (right side) with their colors for lines
 const outputSystems = [
-  { id: "crm", color: "#3B82F6", icon: "users" },
-  { id: "warehouse", color: "#F97316", icon: "warehouse" },
-  { id: "ledger", color: "#10B981", icon: "ledger" },
-  { id: "database", color: "#06B6D4", icon: "database" },
+  { id: 'crm', color: '#3B82F6', icon: 'users' },
+  { id: 'warehouse', color: '#F97316', icon: 'warehouse' },
+  { id: 'ledger', color: '#10B981', icon: 'ledger' },
+  { id: 'database', color: '#06B6D4', icon: 'database' },
 ];
 
 function InputIcon({ type, color }: { type: string; color: string }) {
   const iconStyle = { stroke: color };
 
   switch (type) {
-    case "mail":
+    case 'mail':
       return (
         <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" style={iconStyle} strokeWidth="2">
           <rect x="2" y="4" width="20" height="16" rx="2" />
           <path d="M22 6L12 13L2 6" />
         </svg>
       );
-    case "chat":
+    case 'chat':
       return (
         <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" style={iconStyle} strokeWidth="2">
           <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
         </svg>
       );
-    case "calendar":
+    case 'calendar':
       return (
         <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" style={iconStyle} strokeWidth="2">
           <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -43,7 +43,7 @@ function InputIcon({ type, color }: { type: string; color: string }) {
           <line x1="3" y1="10" x2="21" y2="10" />
         </svg>
       );
-    case "docs":
+    case 'docs':
       return (
         <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" style={iconStyle} strokeWidth="2">
           <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
@@ -52,7 +52,7 @@ function InputIcon({ type, color }: { type: string; color: string }) {
           <line x1="16" y1="17" x2="8" y2="17" />
         </svg>
       );
-    case "forms":
+    case 'forms':
       return (
         <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" style={iconStyle} strokeWidth="2">
           <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -70,7 +70,7 @@ function OutputIcon({ type, color }: { type: string; color: string }) {
   const iconStyle = { stroke: color };
 
   switch (type) {
-    case "users":
+    case 'users':
       return (
         <svg
           viewBox="0 0 24 24"
@@ -85,7 +85,7 @@ function OutputIcon({ type, color }: { type: string; color: string }) {
           <path d="M16 3.13a4 4 0 010 7.75" />
         </svg>
       );
-    case "warehouse":
+    case 'warehouse':
       return (
         <svg
           viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ function OutputIcon({ type, color }: { type: string; color: string }) {
           <rect x="6" y="14" width="12" height="4" />
         </svg>
       );
-    case "ledger":
+    case 'ledger':
       return (
         <svg
           viewBox="0 0 24 24"
@@ -115,7 +115,7 @@ function OutputIcon({ type, color }: { type: string; color: string }) {
           <line x1="9" y1="3" x2="9" y2="21" />
         </svg>
       );
-    case "database":
+    case 'database':
       return (
         <svg
           viewBox="0 0 24 24"
@@ -144,13 +144,13 @@ export default async function AIAgentDiagram() {
     <section className="w-full max-w-[1100px] mx-auto reveal-on-scroll py-16 max-md:py-12">
       <div className="text-center mb-16 max-md:mb-12">
         <span className="inline-block mb-4 text-xs font-medium tracking-[0.2em] uppercase text-[rgb(var(--color-accent-indigo))]">
-          {t("diagram.subtitle")}
+          {t('diagram.subtitle')}
         </span>
         <h2 className="text-[rgb(var(--color-foreground))] text-5xl font-medium tracking-tight mb-4 max-md:text-4xl font-[family-name:var(--font-geist-sans)]">
-          {t("diagram.title")}
+          {t('diagram.title')}
         </h2>
         <p className="text-[rgb(var(--color-foreground-muted)/0.7)] text-lg max-w-[600px] mx-auto max-md:text-base">
-          {t("diagram.description")}
+          {t('diagram.description')}
         </p>
         <div className="w-24 h-px mx-auto mt-6 bg-gradient-to-r from-transparent via-[rgb(var(--color-accent-indigo))] to-transparent" />
       </div>
@@ -197,18 +197,18 @@ export default async function AIAgentDiagram() {
                   strokeWidth="1"
                 />
                 <g transform={`translate(98, ${yPos - 8})`}>
-                  {source.icon === "mail" && (
+                  {source.icon === 'mail' && (
                     <g stroke={source.color} strokeWidth="1.5" fill="none">
                       <rect x="0" y="2" width="24" height="19" rx="2" />
                       <path d="M24 4L12 13L0 4" />
                     </g>
                   )}
-                  {source.icon === "chat" && (
+                  {source.icon === 'chat' && (
                     <g stroke={source.color} strokeWidth="1.5" fill="none">
                       <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
                     </g>
                   )}
-                  {source.icon === "calendar" && (
+                  {source.icon === 'calendar' && (
                     <g stroke={source.color} strokeWidth="1.5" fill="none">
                       <rect x="1" y="3" width="22" height="20" rx="2" />
                       <line x1="17" y1="0" x2="17" y2="5" />
@@ -216,7 +216,7 @@ export default async function AIAgentDiagram() {
                       <line x1="1" y1="10" x2="23" y2="10" />
                     </g>
                   )}
-                  {source.icon === "docs" && (
+                  {source.icon === 'docs' && (
                     <g stroke={source.color} strokeWidth="1.5" fill="none">
                       <path d="M14 0H4a2 2 0 00-2 2v20a2 2 0 002 2h16a2 2 0 002-2V8z" />
                       <polyline points="14,0 14,8 22,8" />
@@ -224,7 +224,7 @@ export default async function AIAgentDiagram() {
                       <line x1="16" y1="17" x2="8" y2="17" />
                     </g>
                   )}
-                  {source.icon === "forms" && (
+                  {source.icon === 'forms' && (
                     <g stroke={source.color} strokeWidth="1.5" fill="none">
                       <rect x="1" y="1" width="22" height="22" rx="2" />
                       <line x1="7" y1="8" x2="17" y2="8" />
@@ -298,7 +298,7 @@ export default async function AIAgentDiagram() {
             fontWeight="600"
             letterSpacing="0.1em"
           >
-            {t("diagram.agentLabel")}
+            {t('diagram.agentLabel')}
           </text>
 
           {/* Right connector lines (agent to outputs) - Bezier curves */}
@@ -353,7 +353,7 @@ export default async function AIAgentDiagram() {
                 />
                 {/* Icon */}
                 <g transform={`translate(812, ${yPos - 14})`}>
-                  {system.icon === "users" && (
+                  {system.icon === 'users' && (
                     <g stroke={system.color} strokeWidth="1.3" fill="none">
                       <path d="M17 28v-2a5 5 0 00-5-5H6a5 5 0 00-5 5v2" />
                       <circle cx="9" cy="9" r="5" />
@@ -361,7 +361,7 @@ export default async function AIAgentDiagram() {
                       <path d="M19 3a5 5 0 010 10" />
                     </g>
                   )}
-                  {system.icon === "warehouse" && (
+                  {system.icon === 'warehouse' && (
                     <g stroke={system.color} strokeWidth="1.3" fill="none">
                       <path d="M30 11V28a3 3 0 01-3 3H5a3 3 0 01-3-3V11a3 3 0 011.9-2.8l11-4.4a3 3 0 012.2 0l11 4.4A3 3 0 0130 11z" />
                       <line x1="8" y1="18" x2="8" y2="31" />
@@ -369,7 +369,7 @@ export default async function AIAgentDiagram() {
                       <rect x="8" y="18" width="16" height="6" />
                     </g>
                   )}
-                  {system.icon === "ledger" && (
+                  {system.icon === 'ledger' && (
                     <g stroke={system.color} strokeWidth="1.3" fill="none">
                       <rect x="2" y="2" width="28" height="28" rx="3" />
                       <line x1="2" y1="12" x2="30" y2="12" />
@@ -377,7 +377,7 @@ export default async function AIAgentDiagram() {
                       <line x1="12" y1="2" x2="12" y2="30" />
                     </g>
                   )}
-                  {system.icon === "database" && (
+                  {system.icon === 'database' && (
                     <g stroke={system.color} strokeWidth="1.3" fill="none">
                       <ellipse cx="16" cy="6" rx="13" ry="4" />
                       <path d="M29 16c0 2.2-5.8 4-13 4s-13-1.8-13-4" />
@@ -409,7 +409,7 @@ export default async function AIAgentDiagram() {
             fontWeight="500"
             letterSpacing="0.15em"
           >
-            {t("diagram.inputsLabel")}
+            {t('diagram.inputsLabel')}
           </text>
           <text
             x="880"
@@ -420,7 +420,7 @@ export default async function AIAgentDiagram() {
             fontWeight="500"
             letterSpacing="0.15em"
           >
-            {t("diagram.outputsLabel")}
+            {t('diagram.outputsLabel')}
           </text>
         </svg>
       </div>
@@ -430,7 +430,7 @@ export default async function AIAgentDiagram() {
         {/* Input sources - horizontal */}
         <div>
           <div className="text-xs font-medium text-[rgb(var(--color-foreground-muted)/0.6)] uppercase tracking-wider text-center mb-3">
-            {t("diagram.inputsLabel")}
+            {t('diagram.inputsLabel')}
           </div>
           <div className="flex items-center gap-3 p-3 rounded-full bg-gradient-to-b from-[rgb(var(--color-surface)/0.6)] to-[rgb(var(--color-surface)/0.2)] border border-[rgb(var(--color-foreground)/0.1)] backdrop-blur-xl">
             {inputSources.map((source) => (
@@ -479,7 +479,7 @@ export default async function AIAgentDiagram() {
           </div>
           <div className="text-center mt-2">
             <span className="text-xs font-semibold text-[rgb(var(--color-foreground-muted)/0.8)] uppercase tracking-wider">
-              {t("diagram.agentLabel")}
+              {t('diagram.agentLabel')}
             </span>
           </div>
         </div>
@@ -490,7 +490,7 @@ export default async function AIAgentDiagram() {
         {/* Output systems - grid */}
         <div>
           <div className="text-xs font-medium text-[rgb(var(--color-foreground-muted)/0.6)] uppercase tracking-wider text-center mb-3">
-            {t("diagram.outputsLabel")}
+            {t('diagram.outputsLabel')}
           </div>
           <div className="grid grid-cols-2 gap-4">
             {outputSystems.map((system) => (

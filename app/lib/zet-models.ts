@@ -28,8 +28,7 @@ export const ZET_MODELS: ZetModel[] = [
     icon: 'diamond',
     tier: 'S',
     color: 'rgb(var(--color-accent-blue))',
-    gradientClass:
-      'from-[rgb(var(--color-accent-blue))] to-[rgb(var(--color-accent-indigo))]',
+    gradientClass: 'from-[rgb(var(--color-accent-blue))] to-[rgb(var(--color-accent-indigo))]',
     nodeGlow: '0 0 12px 2px rgb(var(--color-accent-blue) / 0.1)',
   },
   {
@@ -37,8 +36,7 @@ export const ZET_MODELS: ZetModel[] = [
     icon: 'ring',
     tier: 'M',
     color: 'rgb(var(--color-accent-indigo))',
-    gradientClass:
-      'from-[rgb(var(--color-accent-indigo))] to-[rgb(var(--color-accent-purple))]',
+    gradientClass: 'from-[rgb(var(--color-accent-indigo))] to-[rgb(var(--color-accent-purple))]',
     nodeGlow: '0 0 12px 2px rgb(var(--color-accent-indigo) / 0.1)',
   },
   {
@@ -46,8 +44,7 @@ export const ZET_MODELS: ZetModel[] = [
     icon: 'triangle',
     tier: 'L',
     color: 'rgb(var(--color-accent-purple))',
-    gradientClass:
-      'from-[rgb(var(--color-accent-purple))] to-[rgb(var(--color-accent-pink))]',
+    gradientClass: 'from-[rgb(var(--color-accent-purple))] to-[rgb(var(--color-accent-pink))]',
     nodeGlow: '0 0 12px 2px rgb(var(--color-accent-purple) / 0.1)',
   },
 ];

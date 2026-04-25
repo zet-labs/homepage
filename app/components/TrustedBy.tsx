@@ -1,10 +1,10 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations } from 'next-intl/server';
 
 const companies = [
-  { name: "Flying Rat Studio", url: "https://flying-rat.studio" },
-  { name: "Elixeum", url: "https://elixeum.com" },
-  { name: "Alutech Bohemia", url: "https://www.alutechbohemia.cz/" },
-  { name: "ČVUT UCEEB", url: "https://www.uceeb.cz/" },
+  { name: 'Flying Rat Studio', url: 'https://flying-rat.studio' },
+  { name: 'Elixeum', url: 'https://elixeum.com' },
+  { name: 'Alutech Bohemia', url: 'https://www.alutechbohemia.cz/' },
+  { name: 'ČVUT UCEEB', url: 'https://www.uceeb.cz/' },
 ];
 
 export default async function TrustedBy() {
@@ -13,7 +13,7 @@ export default async function TrustedBy() {
   return (
     <section className="w-full max-w-[600px] mx-auto reveal-on-scroll revealed">
       <p className="text-center text-[rgb(var(--color-foreground-muted))] text-xs tracking-wide uppercase opacity-40 mb-4 max-md:text-[10px] max-md:mb-2">
-        {t("trustedBy")}
+        {t('trustedBy')}
       </p>
       <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 max-md:gap-x-2 max-md:gap-y-1">
         {companies.map(({ name, url }, index) => (
@@ -28,7 +28,7 @@ export default async function TrustedBy() {
             </a>
             {index < companies.length - 1 && (
               <span className="text-[rgb(var(--color-foreground-muted))] opacity-30 text-xs max-md:text-[10px]">
-                {t("common.separator")}
+                {t('common.separator')}
               </span>
             )}
           </div>

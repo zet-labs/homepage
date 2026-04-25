@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
-import { SITE_EMAIL, SITE_EMAIL_JOBS } from "../../lib/site";
+import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { SITE_EMAIL, SITE_EMAIL_JOBS } from '../../lib/site';
 
 type Job = {
   id: string;
@@ -10,17 +10,17 @@ type Job = {
   formalTitle: string;
   seniority: string;
   location: string;
-  category: "ai-ml" | "frontend-backend";
+  category: 'ai-ml' | 'frontend-backend';
   summary: string;
   responsibilities: string[];
   requirements: string[];
 };
 
 export default function JobsPageClient() {
-  const t = useTranslations("jobs");
-  const common = useTranslations("common");
-  const roles = t.raw("roles") as Job[];
-  const stack = t.raw("stack") as {
+  const t = useTranslations('jobs');
+  const common = useTranslations('common');
+  const roles = t.raw('roles') as Job[];
+  const stack = t.raw('stack') as {
     kicker: string;
     title: string;
     subtitle: string;
@@ -42,12 +42,12 @@ export default function JobsPageClient() {
 
   useEffect(() => {
     const syncFromHash = () => {
-      const id = window.location.hash.replace("#", "").trim();
+      const id = window.location.hash.replace('#', '').trim();
       setActiveId(id || null);
     };
     syncFromHash();
-    window.addEventListener("hashchange", syncFromHash);
-    return () => window.removeEventListener("hashchange", syncFromHash);
+    window.addEventListener('hashchange', syncFromHash);
+    return () => window.removeEventListener('hashchange', syncFromHash);
   }, []);
 
   return (
@@ -55,11 +55,11 @@ export default function JobsPageClient() {
       <section className="w-full max-w-[1100px]">
         <div className="flex flex-col items-center text-center mb-10">
           <h1 className="text-[clamp(2.4rem,6vw,4rem)] font-medium leading-[1.1] tracking-[-0.04em] font-[family-name:var(--font-geist-sans)]">
-            {t("heroTitle")}
+            {t('heroTitle')}
           </h1>
 
           <p className="text-[rgb(var(--color-foreground-soft)/0.85)] text-[clamp(1rem,2.2vw,1.2rem)] max-w-[720px] mt-4">
-            {t("heroSubtitle")}
+            {t('heroSubtitle')}
           </p>
         </div>
 
@@ -68,7 +68,7 @@ export default function JobsPageClient() {
             <span className="inline-flex items-center gap-2 max-md:w-full max-md:justify-center max-md:min-w-0">
               <span className="w-2 h-2 rounded-full bg-white/90 shadow-[0_0_10px_rgb(255_255_255/0.8)]" />
               <span className="block max-md:truncate max-md:max-w-full max-md:min-w-0">
-                {t("status")}
+                {t('status')}
               </span>
             </span>
           </div>
@@ -121,8 +121,8 @@ export default function JobsPageClient() {
 
         <div className="mt-10 flex flex-col gap-12">
           {[
-            { key: "frontend-backend", title: t("categories.frontendBackend") },
-            { key: "ai-ml", title: t("categories.aiMl") },
+            { key: 'frontend-backend', title: t('categories.frontendBackend') },
+            { key: 'ai-ml', title: t('categories.aiMl') },
           ].map((group) => {
             const items = roles.filter((role) => role.category === group.key);
             if (items.length === 0) return null;
@@ -142,8 +142,8 @@ export default function JobsPageClient() {
                       id={job.id}
                       className={`relative overflow-hidden rounded-[24px] border border-[rgb(var(--color-foreground)/0.08)] bg-[radial-gradient(1000px_circle_at_10%_-20%,rgb(var(--color-accent-indigo)/0.1),transparent_45%),radial-gradient(800px_circle_at_100%_0%,rgb(var(--color-accent-purple)/0.1),transparent_55%),linear-gradient(160deg,rgb(var(--color-surface)/0.6)_0%,rgb(var(--color-surface)/0.25)_55%,rgb(var(--color-surface)/0.12)_100%)] backdrop-blur-2xl p-7 md:p-9 shadow-[0_24px_70px_rgb(0_0_0/0.28)] shadow-[inset_0_1px_0_rgb(255_255_255/0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[rgb(var(--color-foreground)/0.2)] hover:shadow-[0_32px_90px_rgb(0_0_0/0.36)] ${
                         activeId === job.id
-                          ? "border-[rgb(var(--color-accent-indigo)/0.5)] shadow-[0_34px_100px_rgb(99_102_241/0.28)]"
-                          : ""
+                          ? 'border-[rgb(var(--color-accent-indigo)/0.5)] shadow-[0_34px_100px_rgb(99_102_241/0.28)]'
+                          : ''
                       }`}
                     >
                       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(800px_circle_at_20%_-15%,rgb(var(--color-accent-indigo)/0.16),transparent_55%),radial-gradient(700px_circle_at_90%_0%,rgb(var(--color-accent-purple)/0.14),transparent_55%)] opacity-80" />
@@ -176,13 +176,13 @@ export default function JobsPageClient() {
                         <div className="grid md:grid-cols-[1.1fr_1fr] gap-10">
                           <div className="space-y-3">
                             <h4 className="text-[11px] font-semibold tracking-[0.24em] uppercase text-[rgb(var(--color-foreground-muted)/0.75)]">
-                              {t("sections.responsibilities")}
+                              {t('sections.responsibilities')}
                             </h4>
                             <ul className="space-y-3 text-[rgb(var(--color-foreground)/0.9)] text-[0.9rem] leading-relaxed">
                               {job.responsibilities.map((item) => (
                                 <li key={item} className="flex gap-2">
                                   <span className="text-[rgb(var(--color-accent-indigo))]">
-                                    {common("separator")}
+                                    {common('separator')}
                                   </span>
                                   <span>{item}</span>
                                 </li>
@@ -192,13 +192,13 @@ export default function JobsPageClient() {
 
                           <div className="space-y-3">
                             <h4 className="text-[11px] font-semibold tracking-[0.24em] uppercase text-[rgb(var(--color-foreground-muted)/0.75)]">
-                              {t("sections.requirements")}
+                              {t('sections.requirements')}
                             </h4>
                             <ul className="space-y-3 text-[rgb(var(--color-foreground)/0.9)] text-[0.9rem] leading-relaxed">
                               {job.requirements.map((item) => (
                                 <li key={item} className="flex gap-2">
                                   <span className="text-[rgb(var(--color-accent-purple))]">
-                                    {common("separator")}
+                                    {common('separator')}
                                   </span>
                                   <span>{item}</span>
                                 </li>
@@ -213,14 +213,14 @@ export default function JobsPageClient() {
                             onClick={() => handleCopy(job.id)}
                             className={`inline-flex items-center justify-center w-10 h-10 rounded-full border text-[rgb(var(--color-foreground))] transition-all duration-200 shrink-0 cursor-pointer ${
                               copiedId === job.id
-                                ? "border-[rgb(16_185_129/0.9)] bg-[rgb(16_185_129/0.2)] text-[rgb(16_185_129)] shadow-[0_0_18px_rgb(16_185_129/0.45)]"
-                                : "border-[rgb(var(--color-foreground)/0.25)] bg-[rgb(var(--color-surface)/0.35)] hover:border-[rgb(var(--color-foreground)/0.4)] hover:bg-[rgb(var(--color-foreground)/0.08)]"
+                                ? 'border-[rgb(16_185_129/0.9)] bg-[rgb(16_185_129/0.2)] text-[rgb(16_185_129)] shadow-[0_0_18px_rgb(16_185_129/0.45)]'
+                                : 'border-[rgb(var(--color-foreground)/0.25)] bg-[rgb(var(--color-surface)/0.35)] hover:border-[rgb(var(--color-foreground)/0.4)] hover:bg-[rgb(var(--color-foreground)/0.08)]'
                             }`}
                             aria-label={
-                              copiedId === job.id ? t("actions.copied") : t("actions.copyLink")
+                              copiedId === job.id ? t('actions.copied') : t('actions.copyLink')
                             }
                             title={
-                              copiedId === job.id ? t("actions.copied") : t("actions.copyLink")
+                              copiedId === job.id ? t('actions.copied') : t('actions.copyLink')
                             }
                           >
                             {copiedId === job.id ? (
@@ -255,9 +255,9 @@ export default function JobsPageClient() {
                           <a
                             href={`mailto:${SITE_EMAIL_JOBS}?subject=${encodeURIComponent(job.title)}`}
                             className="inline-flex items-center justify-center px-4 h-10 rounded-full text-[13px] font-semibold whitespace-nowrap bg-[linear-gradient(135deg,rgb(var(--color-accent-indigo)),rgb(var(--color-accent-purple)))] !text-white border border-[rgb(var(--color-foreground)/0.18)] shadow-[0_12px_28px_rgb(var(--color-accent-indigo)/0.35),0_0_32px_rgb(var(--color-accent-purple)/0.22)] hover:shadow-[0_14px_34px_rgb(var(--color-accent-indigo)/0.4),0_0_40px_rgb(var(--color-accent-purple)/0.26)] hover:-translate-y-[1px] transition-all duration-200 shrink-0"
-                            style={{ color: "white" }}
+                            style={{ color: 'white' }}
                           >
-                            {t("actions.apply")}
+                            {t('actions.apply')}
                           </a>
                         </div>
                       </div>
@@ -273,15 +273,15 @@ export default function JobsPageClient() {
       <section className="w-full max-w-[1100px] mt-20">
         <div className="rounded-3xl border border-[rgb(var(--color-foreground)/0.08)] bg-[rgb(var(--color-surface)/0.3)] backdrop-blur-xl p-8 md:p-10 text-center shadow-[inset_0_1px_0_rgb(255_255_255/0.08)]">
           <h3 className="text-xl md:text-2xl font-semibold text-[rgb(var(--color-foreground))]">
-            {t("footer.title")}
+            {t('footer.title')}
           </h3>
-          <p className="text-[rgb(var(--color-foreground-soft)/0.85)] mt-3">{t("footer.body")}</p>
+          <p className="text-[rgb(var(--color-foreground-soft)/0.85)] mt-3">{t('footer.body')}</p>
           <a
             href={`mailto:${SITE_EMAIL}`}
             className="inline-flex items-center justify-center mt-5 px-6 h-11 rounded-full bg-[rgb(var(--color-accent-indigo))] !text-white text-sm font-semibold hover:bg-[rgb(var(--color-accent-purple))] transition-colors"
-            style={{ color: "white" }}
+            style={{ color: 'white' }}
           >
-            {t("footer.cta")}
+            {t('footer.cta')}
           </a>
         </div>
       </section>

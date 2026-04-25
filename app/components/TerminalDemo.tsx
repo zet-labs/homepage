@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
-import { cn } from "../../lib/cn";
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { cn } from '../../lib/cn';
 
-const SCENARIOS = ["docs", "code", "data", "email", "supply", "finance"] as const;
+const SCENARIOS = ['docs', 'code', 'data', 'email', 'supply', 'finance'] as const;
 const PROMPT_DELAY = 600;
 const THINKING_DELAY = 1500;
 const RESULT_START = 2500;
@@ -85,22 +85,22 @@ export default function TerminalDemo() {
   );
 
   const containerClasses =
-    "w-full max-w-[700px] mx-auto mt-10 max-lg:max-w-[640px] max-md:mt-5 max-md:max-w-full";
+    'w-full max-w-[700px] mx-auto mt-10 max-lg:max-w-[640px] max-md:mt-5 max-md:max-w-full';
   const shellClasses =
-    "terminal-shell rounded-2xl overflow-hidden border border-[rgb(var(--color-foreground)/0.12)] bg-[rgb(var(--color-surface)/0.45)] backdrop-blur-3xl shadow-[0_20px_70px_rgb(0_0_0/0.35),inset_0_1px_0_rgb(255_255_255/0.08)] max-md:rounded-[22px] max-md:border-[rgb(var(--color-foreground)/0.08)] max-md:bg-[rgb(var(--color-surface)/0.72)] max-md:shadow-[0_18px_40px_rgb(0_0_0/0.22)]";
+    'terminal-shell rounded-2xl overflow-hidden border border-[rgb(var(--color-foreground)/0.12)] bg-[rgb(var(--color-surface)/0.45)] backdrop-blur-3xl shadow-[0_20px_70px_rgb(0_0_0/0.35),inset_0_1px_0_rgb(255_255_255/0.08)] max-md:rounded-[22px] max-md:border-[rgb(var(--color-foreground)/0.08)] max-md:bg-[rgb(var(--color-surface)/0.72)] max-md:shadow-[0_18px_40px_rgb(0_0_0/0.22)]';
   const headerClasses =
-    "terminal-header flex items-center gap-2 px-4 py-3 border-b border-[rgb(var(--color-foreground)/0.08)] bg-[linear-gradient(90deg,rgb(var(--color-surface)/0.72),rgb(var(--color-surface)/0.6))] max-md:px-3 max-md:py-2.5";
+    'terminal-header flex items-center gap-2 px-4 py-3 border-b border-[rgb(var(--color-foreground)/0.08)] bg-[linear-gradient(90deg,rgb(var(--color-surface)/0.72),rgb(var(--color-surface)/0.6))] max-md:px-3 max-md:py-2.5';
   const headerTitleClasses = cn(
-    "text-[rgb(var(--color-foreground-muted)/0.55)] text-[0.78rem] font-mono tracking-[0.04em]",
-    isMac ? "ml-2" : "flex-1 text-center",
+    'text-[rgb(var(--color-foreground-muted)/0.55)] text-[0.78rem] font-mono tracking-[0.04em]',
+    isMac ? 'ml-2' : 'flex-1 text-center',
   );
   const bodyClasses =
-    "terminal-body terminal-fade relative border-t border-[rgb(var(--color-foreground)/0.06)] p-5 font-mono text-[clamp(0.66rem,1.4vw,0.85rem)] leading-[1.65] space-y-3 max-[480px]:space-y-2 h-[280px] max-md:p-3.5 max-md:h-[212px] max-md:text-[0.74rem] max-[480px]:h-[188px] max-[480px]:text-[0.7rem] [@media(max-height:900px)]:h-[200px] [@media(max-height:800px)]:h-[180px] overflow-hidden text-left";
+    'terminal-body terminal-fade relative border-t border-[rgb(var(--color-foreground)/0.06)] p-5 font-mono text-[clamp(0.66rem,1.4vw,0.85rem)] leading-[1.65] space-y-3 max-[480px]:space-y-2 h-[280px] max-md:p-3.5 max-md:h-[212px] max-md:text-[0.74rem] max-[480px]:h-[188px] max-[480px]:text-[0.7rem] [@media(max-height:900px)]:h-[200px] [@media(max-height:800px)]:h-[180px] overflow-hidden text-left';
 
   useEffect(() => {
     const platform = navigator.platform.toLowerCase();
     const userAgent = navigator.userAgent.toLowerCase();
-    const isMacOS = platform.includes("mac") || userAgent.includes("mac");
+    const isMacOS = platform.includes('mac') || userAgent.includes('mac');
     setIsMac(isMacOS);
   }, []);
 
@@ -136,7 +136,7 @@ export default function TerminalDemo() {
       <div className={shellClasses}>
         <div className={headerClasses}>
           {isMac ? <MacControls /> : <span className="flex-1" />}
-          <span className={headerTitleClasses}>{t("demo.terminalTitle")}</span>
+          <span className={headerTitleClasses}>{t('demo.terminalTitle')}</span>
           {isMac ? null : <WindowsControls />}
         </div>
 
@@ -145,27 +145,27 @@ export default function TerminalDemo() {
           style={{
             fontFamily:
               'ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-            backgroundImage: "var(--terminal-bg-image)",
-            backgroundSize: "var(--terminal-bg-size)",
-            backgroundRepeat: "var(--terminal-bg-repeat)",
+            backgroundImage: 'var(--terminal-bg-image)',
+            backgroundSize: 'var(--terminal-bg-size)',
+            backgroundRepeat: 'var(--terminal-bg-repeat)',
           }}
         >
           <div className="flex items-start gap-2">
             <span className="text-[rgb(var(--color-accent-indigo))] shrink-0">
-              {t("demo.promptSymbol")}
+              {t('demo.promptSymbol')}
             </span>
             <span
-              className={`text-[rgb(var(--color-foreground)/0.9)] ${stage === 0 ? "typing-cursor" : ""}`}
+              className={`text-[rgb(var(--color-foreground)/0.9)] ${stage === 0 ? 'typing-cursor' : ''}`}
             >
-              {stage >= 1 ? t(`demo.${scenario}.prompt`) : ""}
+              {stage >= 1 ? t(`demo.${scenario}.prompt`) : ''}
             </span>
           </div>
 
           <div
-            className={`flex items-start gap-2 transition-opacity duration-300 ${stage >= 2 ? "opacity-100" : "opacity-0"}`}
+            className={`flex items-start gap-2 transition-opacity duration-300 ${stage >= 2 ? 'opacity-100' : 'opacity-0'}`}
           >
             <span className="text-[rgb(var(--color-accent-purple))] shrink-0">
-              {t("demo.thinkingSymbol")}
+              {t('demo.thinkingSymbol')}
             </span>
             <span className="text-[rgb(var(--color-foreground-muted)/0.6)] italic">
               {t(`demo.${scenario}.thinking`)}
@@ -175,16 +175,16 @@ export default function TerminalDemo() {
           {results.map((result, index) => (
             <div
               key={`${scenario}-result-${index}`}
-              className={`flex items-start gap-2 transition-opacity duration-300 ${stage >= 3 + index ? "opacity-100" : "opacity-0"}`}
+              className={`flex items-start gap-2 transition-opacity duration-300 ${stage >= 3 + index ? 'opacity-100' : 'opacity-0'}`}
             >
               <span className="text-[rgb(var(--color-accent-blue))] shrink-0">
-                {index === 0 ? t("demo.resultPrimarySymbol") : t("demo.resultSecondarySymbol")}
+                {index === 0 ? t('demo.resultPrimarySymbol') : t('demo.resultSecondarySymbol')}
               </span>
               <span
                 className={
                   index === results.length - 1
-                    ? "text-emerald-400"
-                    : "text-[rgb(var(--color-foreground)/0.85)]"
+                    ? 'text-emerald-400'
+                    : 'text-[rgb(var(--color-foreground)/0.85)]'
                 }
               >
                 {result}

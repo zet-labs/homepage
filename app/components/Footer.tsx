@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { getTranslations } from "next-intl/server";
-import { SITE_EMAIL } from "../../lib/site";
+import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
+import { SITE_EMAIL } from '../../lib/site';
 
 function GitHubIcon() {
   return (
@@ -43,28 +43,28 @@ export default async function Footer() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgb(var(--color-foreground)/0.12)] to-transparent" />
       <div className="flex items-center justify-between gap-6 max-md:flex-col max-md:gap-4">
         <span className="text-[rgb(var(--color-foreground-muted))] text-xs tracking-wide opacity-60 max-md:order-3">
-          {t("footer.copyright")}
+          {t('footer.copyright')}
         </span>
 
         <div className="flex items-center gap-3 text-[rgb(var(--color-foreground-muted))] text-xs opacity-60 max-md:order-1 max-md:flex-col max-md:gap-2">
           <span className="text-center whitespace-nowrap opacity-70 max-md:whitespace-normal">
-            {t("footer.tagline")}
+            {t('footer.tagline')}
           </span>
-          <span className="opacity-30 max-md:hidden">{t("common.separator")}</span>
+          <span className="opacity-30 max-md:hidden">{t('common.separator')}</span>
           <Link
             href="/privacy"
             prefetch
             className="hover:opacity-100 transition-opacity duration-200"
           >
-            {t("footer.privacy")}
+            {t('footer.privacy')}
           </Link>
-          <span className="opacity-30 max-md:hidden">{t("common.separator")}</span>
+          <span className="opacity-30 max-md:hidden">{t('common.separator')}</span>
           <Link
             href="/terms"
             prefetch
             className="hover:opacity-100 transition-opacity duration-200"
           >
-            {t("footer.terms")}
+            {t('footer.terms')}
           </Link>
         </div>
 
@@ -74,7 +74,7 @@ export default async function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="w-9 h-9 rounded-full flex items-center justify-center text-[rgb(var(--color-foreground-muted))] opacity-70 hover:opacity-100 hover:bg-[rgb(var(--color-foreground)/0.06)] transition-all duration-200"
-            aria-label={t("footer.github")}
+            aria-label={t('footer.github')}
           >
             <GitHubIcon />
           </a>
@@ -83,14 +83,14 @@ export default async function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="w-9 h-9 rounded-full flex items-center justify-center text-[rgb(var(--color-foreground-muted))] opacity-70 hover:opacity-100 hover:bg-[rgb(var(--color-foreground)/0.06)] transition-all duration-200"
-            aria-label={t("footer.twitterAria")}
+            aria-label={t('footer.twitterAria')}
           >
             <XIcon />
           </a>
           <a
             href={`mailto:${SITE_EMAIL}`}
             className="w-9 h-9 rounded-full flex items-center justify-center text-[rgb(var(--color-foreground-muted))] opacity-70 hover:opacity-100 hover:bg-[rgb(var(--color-foreground)/0.06)] transition-all duration-200"
-            aria-label={t("footer.email")}
+            aria-label={t('footer.email')}
           >
             <MailIcon />
           </a>

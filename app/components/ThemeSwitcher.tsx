@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
-import { useTranslations } from "next-intl";
+import { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
+import { useTranslations } from 'next-intl';
 
-const themeOrder = ["system", "light", "dark"] as const;
+const themeOrder = ['system', 'light', 'dark'] as const;
 
 export default function ThemeSwitcher() {
-  const t = useTranslations("themeSwitcher");
+  const t = useTranslations('themeSwitcher');
   const { resolvedTheme, setTheme, theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
-  const activeTheme = themeOrder.includes((theme ?? "system") as (typeof themeOrder)[number])
+  const activeTheme = themeOrder.includes((theme ?? 'system') as (typeof themeOrder)[number])
     ? (theme as (typeof themeOrder)[number])
-    : "system";
+    : 'system';
 
   const cycleTheme = () => {
     const nextIndex = (themeOrder.indexOf(activeTheme) + 1) % themeOrder.length;
@@ -28,7 +28,7 @@ export default function ThemeSwitcher() {
         type="button"
         disabled
         className="inline-flex items-center justify-center w-8 h-8 max-md:w-7 max-md:h-7 text-[rgb(var(--color-foreground)/0.6)] bg-transparent border-none opacity-60 shrink-0"
-        aria-label={t("cycle")}
+        aria-label={t('cycle')}
       >
         <svg
           width="16"
@@ -52,14 +52,14 @@ export default function ThemeSwitcher() {
       type="button"
       onClick={cycleTheme}
       className="inline-flex items-center justify-center w-8 h-8 max-md:w-7 max-md:h-7 text-[rgb(var(--color-foreground)/0.6)] bg-transparent border-none cursor-pointer transition-all duration-300 opacity-60 hover:opacity-100 shrink-0"
-      aria-label={t("cycle")}
-      title={t("current", {
+      aria-label={t('cycle')}
+      title={t('current', {
         mode:
-          activeTheme === "system" ? t("system") : activeTheme === "light" ? t("light") : t("dark"),
-        resolved: resolvedTheme === "dark" ? t("dark") : t("light"),
+          activeTheme === 'system' ? t('system') : activeTheme === 'light' ? t('light') : t('dark'),
+        resolved: resolvedTheme === 'dark' ? t('dark') : t('light'),
       })}
     >
-      {activeTheme === "system" ? (
+      {activeTheme === 'system' ? (
         <svg
           width="16"
           height="16"
@@ -75,7 +75,7 @@ export default function ThemeSwitcher() {
           <path d="M8 20h8" />
           <path d="M12 16v4" />
         </svg>
-      ) : activeTheme === "dark" ? (
+      ) : activeTheme === 'dark' ? (
         <svg
           width="16"
           height="16"

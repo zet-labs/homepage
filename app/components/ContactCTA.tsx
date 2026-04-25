@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 
 export default async function ContactCTA() {
   const t = await getTranslations();
@@ -12,22 +12,22 @@ export default async function ContactCTA() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="max-w-[640px] text-left">
             <p className="text-xs uppercase tracking-[0.3em] text-[rgb(var(--color-foreground-muted)/0.6)] mb-3">
-              {t("contactCta.kicker")}
+              {t('contactCta.kicker')}
             </p>
             <h3 className="text-[rgb(var(--color-foreground))] text-3xl font-semibold tracking-tight max-md:text-2xl font-[family-name:var(--font-geist-sans)]">
-              {t("contactCta.title")}
+              {t('contactCta.title')}
             </h3>
             <p className="text-[rgb(var(--color-foreground-muted)/0.8)] text-sm mt-3">
-              {t("contactCta.subtitle")}
+              {t('contactCta.subtitle')}
             </p>
           </div>
           <Link
             href="/contact"
             prefetch
             className="inline-flex items-center justify-center px-6 h-11 rounded-full text-sm font-semibold bg-[rgb(var(--color-accent-indigo))] !text-white hover:bg-[rgb(var(--color-accent-purple))] transition-colors"
-            style={{ color: "white" }}
+            style={{ color: 'white' }}
           >
-            {t("contactCta.button")}
+            {t('contactCta.button')}
           </Link>
         </div>
       </div>

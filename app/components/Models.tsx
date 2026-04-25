@@ -1,27 +1,27 @@
-import { getTranslations } from "next-intl/server";
-import { ZET_MODELS } from "@/app/lib/zet-models";
-import { ModelGlyph } from "./ModelGlyph";
+import { getTranslations } from 'next-intl/server';
+import { ZET_MODELS } from '@/app/lib/zet-models';
+import { ModelGlyph } from './ModelGlyph';
 
 type ModelsProps = {
   /** Use on `/models` so the page has a single document-level heading. */
-  headingLevel?: "h1" | "h2";
+  headingLevel?: 'h1' | 'h2';
 };
 
-export default async function Models({ headingLevel = "h2" }: ModelsProps) {
+export default async function Models({ headingLevel = 'h2' }: ModelsProps) {
   const t = await getTranslations();
-  const TitleTag = headingLevel === "h1" ? "h1" : "h2";
+  const TitleTag = headingLevel === 'h1' ? 'h1' : 'h2';
 
   return (
     <section className="w-full max-w-[1100px] mx-auto reveal-on-scroll">
       <div className="text-center mb-16 max-md:mb-12">
         <span className="inline-block mb-4 text-xs font-medium tracking-[0.2em] uppercase text-[rgb(var(--color-accent-purple))]">
-          {t("models.subtitle")}
+          {t('models.subtitle')}
         </span>
         <TitleTag className="text-[rgb(var(--color-foreground))] text-5xl font-medium tracking-tight mb-4 max-md:text-4xl font-[family-name:var(--font-geist-sans)]">
-          {t("models.title")}
+          {t('models.title')}
         </TitleTag>
         <p className="text-[rgb(var(--color-foreground-muted)/0.7)] text-lg max-w-[500px] mx-auto max-md:text-base">
-          {t("models.description")}
+          {t('models.description')}
         </p>
         <div className="w-24 h-px mx-auto mt-6 bg-gradient-to-r from-transparent via-[rgb(var(--color-accent-purple))] to-transparent" />
       </div>
@@ -72,7 +72,7 @@ export default async function Models({ headingLevel = "h2" }: ModelsProps) {
 
                 <div className="mt-5">
                   <span className="block text-[11px] uppercase tracking-[0.22em] font-semibold text-[rgb(var(--color-foreground-muted)/0.6)] mb-2">
-                    {t("models.bestForTitle")}
+                    {t('models.bestForTitle')}
                   </span>
                   <div className="flex flex-col gap-2">
                     {(t.raw(`models.${id}.bestFor`) as string[]).map((item) => (

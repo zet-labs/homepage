@@ -1,17 +1,17 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
-import { getTranslations } from "next-intl/server";
-import BottomCTA from "./components/BottomCTA";
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
-import Models from "./components/Models";
-import Navigation from "./components/Navigation";
-import ContactCTA from "./components/ContactCTA";
-import ScrollIndicator from "./components/ScrollIndicator";
-import ScrollRevealHandler from "./components/ScrollRevealHandler";
-import SecurityBadges from "./components/SecurityBadges";
-import Services from "./components/Services";
-import AIAgentDiagram from "./components/AIAgentDiagram";
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
+import BottomCTA from './components/BottomCTA';
+import Footer from './components/Footer';
+import Hero from './components/Hero';
+import Models from './components/Models';
+import Navigation from './components/Navigation';
+import ContactCTA from './components/ContactCTA';
+import ScrollIndicator from './components/ScrollIndicator';
+import ScrollRevealHandler from './components/ScrollRevealHandler';
+import SecurityBadges from './components/SecurityBadges';
+import Services from './components/Services';
+import AIAgentDiagram from './components/AIAgentDiagram';
 import {
   BottomCTASkeleton,
   FooterSkeleton,
@@ -20,15 +20,15 @@ import {
   SecurityBadgesSkeleton,
   ServicesSkeleton,
   TrustedBySkeleton,
-} from "./components/Skeletons";
-import TrustedBy from "./components/TrustedBy";
-import WaitlistButton from "./components/WaitlistButton";
-import NeuralBackground from "./components/NeuralBackground";
+} from './components/Skeletons';
+import TrustedBy from './components/TrustedBy';
+import WaitlistButton from './components/WaitlistButton';
+import NeuralBackground from './components/NeuralBackground';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
-  const title = t("meta.home.title");
-  const description = t("meta.home.description");
+  const title = t('meta.home.title');
+  const description = t('meta.home.description');
 
   return {
     title,
@@ -36,12 +36,12 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: "/",
-      type: "website",
-      siteName: t("meta.siteName"),
+      url: '/',
+      type: 'website',
+      siteName: t('meta.siteName'),
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title,
       description,
     },
@@ -49,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const t = await getTranslations("responsible");
+  const t = await getTranslations('responsible');
 
   return (
     <div className="min-h-screen w-screen relative overflow-x-hidden bg-[rgb(var(--color-background-start))] flex flex-col">
@@ -58,7 +58,7 @@ export default async function Home() {
 
       <div
         className="absolute inset-x-0 top-0 pointer-events-none overflow-hidden"
-        style={{ height: "100dvh", zIndex: 1 }}
+        style={{ height: '100dvh', zIndex: 1 }}
         aria-hidden="true"
       >
         <NeuralBackground />
@@ -110,26 +110,26 @@ export default async function Home() {
             <div className="relative grid gap-10 md:grid-cols-[0.95fr_1.05fr]">
               <div className="flex flex-col gap-5">
                 <span className="w-fit rounded-full border border-[rgb(16_185_129/0.5)] bg-[rgb(16_185_129/0.12)] px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.28em] text-[rgb(16_185_129)]">
-                  {t("kicker")}
+                  {t('kicker')}
                 </span>
                 <h2 className="text-[rgb(var(--color-foreground))] text-2xl md:text-3xl font-semibold tracking-tight">
-                  {t("title")}
+                  {t('title')}
                 </h2>
                 <p className="text-[rgb(var(--color-foreground-soft)/0.9)] text-[1rem] md:text-[1.05rem] max-w-[520px]">
-                  {t("subtitle")}
+                  {t('subtitle')}
                 </p>
               </div>
               <div className="flex flex-col gap-5">
-                {(t.raw("principles") as { title: string; body: string }[]).map(
+                {(t.raw('principles') as { title: string; body: string }[]).map(
                   (item, index, list) => (
                     <div key={item.title} className="group relative flex gap-4">
                       <div className="flex flex-col items-center">
                         <span className="text-[11px] font-semibold tracking-[0.2em] text-[rgb(16_185_129)]">
-                          {String(index + 1).padStart(2, "0")}
+                          {String(index + 1).padStart(2, '0')}
                         </span>
                         <span
                           className={`mt-3 w-px flex-1 bg-[linear-gradient(180deg,rgba(16,185,129,0.55),rgba(59,130,246,0.12))] ${
-                            index === list.length - 1 ? "opacity-0" : "opacity-100"
+                            index === list.length - 1 ? 'opacity-0' : 'opacity-100'
                           }`}
                           aria-hidden="true"
                         />

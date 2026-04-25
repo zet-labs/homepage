@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
+import { useCallback, useEffect, useRef, useState, type RefObject } from 'react';
 
 declare global {
   interface Window {
@@ -10,11 +10,11 @@ declare global {
         options: {
           sitekey: string;
           callback: (token: string) => void;
-          "error-callback"?: () => void;
-          "expired-callback"?: () => void;
-          size?: "normal" | "compact" | "invisible";
-          appearance?: "always" | "execute" | "interaction-only";
-          execution?: "render" | "execute";
+          'error-callback'?: () => void;
+          'expired-callback'?: () => void;
+          size?: 'normal' | 'compact' | 'invisible';
+          appearance?: 'always' | 'execute' | 'interaction-only';
+          execution?: 'render' | 'execute';
         },
       ) => string;
       execute: (container: string | HTMLElement, options?: object) => void;
@@ -26,9 +26,9 @@ declare global {
 }
 
 type TurnstileRenderOptions = {
-  size?: "normal" | "compact" | "invisible";
-  appearance?: "always" | "execute" | "interaction-only";
-  execution?: "render" | "execute";
+  size?: 'normal' | 'compact' | 'invisible';
+  appearance?: 'always' | 'execute' | 'interaction-only';
+  execution?: 'render' | 'execute';
 };
 
 type UseTurnstileOptions = {
@@ -54,7 +54,7 @@ type UseTurnstileResult = {
 let turnstileScriptPromise: Promise<void> | null = null;
 
 function loadTurnstileScript(): Promise<void> {
-  if (typeof window === "undefined") return Promise.resolve();
+  if (typeof window === 'undefined') return Promise.resolve();
   if (window.turnstile) return Promise.resolve();
   if (turnstileScriptPromise) return turnstileScriptPromise;
 
@@ -74,9 +74,9 @@ function loadTurnstileScript(): Promise<void> {
       return;
     }
 
-    const script = document.createElement("script");
+    const script = document.createElement('script');
     script.src =
-      "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=__turnstileOnload&render=explicit";
+      'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=__turnstileOnload&render=explicit';
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
@@ -160,8 +160,8 @@ export function useTurnstile({
       callback: (token: string) => {
         onSuccessRef.current(token);
       },
-      "error-callback": handleError,
-      "expired-callback": handleExpired,
+      'error-callback': handleError,
+      'expired-callback': handleExpired,
       ...renderOptions,
     });
     setReady(true);

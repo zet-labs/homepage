@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
-import { getTranslations } from "next-intl/server";
-import Footer from "../components/Footer";
-import Navigation from "../components/Navigation";
-import { FooterSkeleton } from "../components/Skeletons";
-import JobsPageClient from "./JobsPageClient";
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
+import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
+import { FooterSkeleton } from '../components/Skeletons';
+import JobsPageClient from './JobsPageClient';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
-  const title = t("meta.jobs.title");
-  const description = t("meta.jobs.description");
+  const title = t('meta.jobs.title');
+  const description = t('meta.jobs.description');
 
   return {
     title,
@@ -17,12 +17,12 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: "/jobs",
-      type: "website",
-      siteName: t("meta.siteName"),
+      url: '/jobs',
+      type: 'website',
+      siteName: t('meta.siteName'),
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title,
       description,
     },

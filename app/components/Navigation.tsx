@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { type MouseEvent, useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
-import { cn } from "../../lib/cn";
-import LanguageSwitcher from "./LanguageSwitcher";
-import ThemeSwitcher from "./ThemeSwitcher";
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { type MouseEvent, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { cn } from '../../lib/cn';
+import LanguageSwitcher from './LanguageSwitcher';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const navItems = [
-  { key: "services", href: "#services" },
-  { key: "models", href: "/models" },
-  { key: "contact", href: "/contact" },
-  { key: "jobs", href: "/jobs" },
+  { key: 'services', href: '#services' },
+  { key: 'models', href: '/models' },
+  { key: 'contact', href: '/contact' },
+  { key: 'jobs', href: '/jobs' },
 ];
 
 export default function Navigation() {
@@ -21,27 +21,27 @@ export default function Navigation() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuLabel = menuOpen ? t("nav.closeMenu") : t("nav.openMenu");
+  const menuLabel = menuOpen ? t('nav.closeMenu') : t('nav.openMenu');
 
   const scrollToId = (id: string) => {
     const element = document.getElementById(id);
     if (!element) return;
     const offset = 72;
     const top = element.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: "smooth" });
+    window.scrollTo({ top, behavior: 'smooth' });
   };
 
   const handleAnchorClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (!href.startsWith("#")) return;
+    if (!href.startsWith('#')) return;
     event.preventDefault();
 
-    if (pathname !== "/") {
+    if (pathname !== '/') {
       router.push(`/${href}`);
       setMenuOpen(false);
       return;
     }
 
-    scrollToId(href.replace("#", ""));
+    scrollToId(href.replace('#', ''));
     setMenuOpen(false);
   };
 
@@ -52,45 +52,45 @@ export default function Navigation() {
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
     const handleResize = () => setMenuOpen(false);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [menuOpen]);
 
   useEffect(() => {
     if (!menuOpen) return;
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === 'Escape') setMenuOpen(false);
     };
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
   }, [menuOpen]);
 
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-[10] transition-all duration-300 border-b",
+        'fixed top-0 left-0 right-0 z-[10] transition-all duration-300 border-b',
         scrolled
-          ? "bg-[rgb(var(--color-background-start)/0.45)] backdrop-blur-2xl backdrop-saturate-200 border-[rgb(var(--color-foreground)/0.08)] shadow-[0_12px_40px_rgb(0_0_0/0.25)] shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]"
-          : "bg-transparent border-transparent",
+          ? 'bg-[rgb(var(--color-background-start)/0.45)] backdrop-blur-2xl backdrop-saturate-200 border-[rgb(var(--color-foreground)/0.08)] shadow-[0_12px_40px_rgb(0_0_0/0.25)] shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]'
+          : 'bg-transparent border-transparent',
       )}
     >
       <div
         className={cn(
-          "absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgb(var(--color-foreground)/0.2)] to-transparent transition-opacity duration-300",
-          scrolled ? "opacity-70" : "opacity-0",
+          'absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgb(var(--color-foreground)/0.2)] to-transparent transition-opacity duration-300',
+          scrolled ? 'opacity-70' : 'opacity-0',
         )}
       />
       <div
         className={cn(
-          "pointer-events-none absolute inset-0 rounded-b-2xl bg-[radial-gradient(circle_at_top,rgb(var(--color-foreground)/0.08),transparent_55%)] transition-opacity duration-300",
-          scrolled ? "opacity-100" : "opacity-0",
+          'pointer-events-none absolute inset-0 rounded-b-2xl bg-[radial-gradient(circle_at_top,rgb(var(--color-foreground)/0.08),transparent_55%)] transition-opacity duration-300',
+          scrolled ? 'opacity-100' : 'opacity-0',
         )}
       />
       <div className="max-w-[1200px] mx-auto px-6 max-md:px-4 h-14 flex items-center justify-between">
@@ -126,13 +126,13 @@ export default function Navigation() {
               />
             </svg>
           </span>
-          {t("brandName")}
+          {t('brandName')}
         </Link>
 
         <div className="flex items-center gap-6 max-md:gap-3">
           <div className="flex items-center gap-6 max-md:hidden">
             {navItems.map(({ key, href }) =>
-              href.startsWith("#") ? (
+              href.startsWith('#') ? (
                 <a
                   key={key}
                   href={href}
@@ -160,18 +160,18 @@ export default function Navigation() {
               href="#waitlist"
               onClick={(event) => {
                 event.preventDefault();
-                if (pathname !== "/") {
-                  router.push("/#waitlist");
+                if (pathname !== '/') {
+                  router.push('/#waitlist');
                   setMenuOpen(false);
                   return;
                 }
-                scrollToId("waitlist");
-                setTimeout(() => window.dispatchEvent(new Event("open-waitlist")), 250);
+                scrollToId('waitlist');
+                setTimeout(() => window.dispatchEvent(new Event('open-waitlist')), 250);
                 setMenuOpen(false);
               }}
               className="inline-flex items-center justify-center text-sm font-medium px-4 h-8 rounded-full bg-[rgb(var(--color-accent-indigo))] !text-white hover:bg-[rgb(var(--color-accent-purple))] transition-colors duration-200 max-md:text-xs max-md:px-3 max-md:h-7"
             >
-              {t("joinWaitlist")}
+              {t('joinWaitlist')}
             </a>
             <div className="flex items-center gap-1">
               <ThemeSwitcher />
@@ -216,7 +216,7 @@ export default function Navigation() {
         <div className="md:hidden px-4 pb-4 pt-3 border-t border-[rgb(var(--color-foreground)/0.06)] bg-[rgb(var(--color-background-start)/0.5)] backdrop-blur-2xl shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]">
           <div className="flex flex-col gap-3">
             {navItems.map(({ key, href }) =>
-              href.startsWith("#") ? (
+              href.startsWith('#') ? (
                 <a
                   key={key}
                   href={href}

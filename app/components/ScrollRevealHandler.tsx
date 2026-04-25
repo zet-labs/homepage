@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export default function ScrollRevealHandler() {
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const hash = window.location.hash;
     let hashTimeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -13,26 +13,26 @@ export default function ScrollRevealHandler() {
         const element = document.querySelector(hash);
         if (element) {
           element.scrollIntoView({
-            behavior: prefersReducedMotion ? "auto" : "smooth",
-            block: "start",
+            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            block: 'start',
           });
         }
 
-        if (hash === "#waitlist") {
-          window.dispatchEvent(new Event("open-waitlist"));
+        if (hash === '#waitlist') {
+          window.dispatchEvent(new Event('open-waitlist'));
         }
       }, 100);
     } else {
-      if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
       }
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }
 
     if (prefersReducedMotion) {
-      const elements = document.querySelectorAll(".reveal-on-scroll");
+      const elements = document.querySelectorAll('.reveal-on-scroll');
       for (const el of elements) {
-        el.classList.add("revealed");
+        el.classList.add('revealed');
       }
       return () => {
         if (hashTimeout) clearTimeout(hashTimeout);
@@ -45,15 +45,15 @@ export default function ScrollRevealHandler() {
         (entries, obs) => {
           for (const entry of entries) {
             if (entry.isIntersecting) {
-              entry.target.classList.add("revealed");
+              entry.target.classList.add('revealed');
               obs.unobserve(entry.target);
             }
           }
         },
-        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' },
       );
 
-      const elements = document.querySelectorAll(".reveal-on-scroll");
+      const elements = document.querySelectorAll('.reveal-on-scroll');
       for (const el of elements) {
         observer.observe(el);
       }

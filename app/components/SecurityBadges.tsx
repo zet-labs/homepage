@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations } from 'next-intl/server';
 
 function ShieldIcon() {
   return (
@@ -32,7 +32,7 @@ function CheckIcon() {
   );
 }
 
-const badges = [{ key: "soc2" }, { key: "gdpr" }, { key: "encrypted" }];
+const badges = [{ key: 'soc2' }, { key: 'gdpr' }, { key: 'encrypted' }];
 
 export default async function SecurityBadges() {
   const t = await getTranslations();
@@ -46,7 +46,7 @@ export default async function SecurityBadges() {
             className="flex items-center gap-2 text-[rgb(var(--color-foreground-muted))] opacity-50 text-xs max-md:text-[10px]"
           >
             <span className="text-[rgb(var(--color-accent-indigo))]">
-              {key === "encrypted" ? <ShieldIcon /> : <CheckIcon />}
+              {key === 'encrypted' ? <ShieldIcon /> : <CheckIcon />}
             </span>
             <span>{t(`security.${key}`)}</span>
           </div>

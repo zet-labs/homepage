@@ -28,6 +28,12 @@ function Meridian({
   legendMid,
   legendRight,
   names,
+  axisLabel,
+  nanoTag,
+  flowTag,
+  oneTag,
+  stepChangeLabel,
+  journeyLine,
 }: {
   label: string;
   title: string;
@@ -36,6 +42,12 @@ function Meridian({
   legendMid: string;
   legendRight: string;
   names: { nano: string; flow: string; one: string };
+  axisLabel: string;
+  nanoTag: string;
+  flowTag: string;
+  oneTag: string;
+  stepChangeLabel: string;
+  journeyLine: string;
 }) {
   return (
     <section className="reveal-on-scroll relative mx-auto w-full max-w-[1180px] pt-12 pb-20 max-[480px]:pt-10 max-[480px]:pb-16 md:pt-28 md:pb-48 lg:pb-56">
@@ -63,16 +75,30 @@ function Meridian({
         />
 
         <svg
-          viewBox="0 0 1200 360"
-          className="relative block h-[min(42vh,320px)] w-full max-[480px]:h-[min(36vh,260px)]"
+          viewBox="0 0 1200 395"
+          className="relative block h-[min(50vh,380px)] w-full max-[480px]:h-[min(42vh,290px)]"
           aria-hidden
         >
           <defs>
             <linearGradient id="meridian-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgb(var(--color-accent-blue))" stopOpacity="0.34" />
-              <stop offset="50%" stopColor="rgb(var(--color-accent-indigo))" stopOpacity="0.38" />
-              <stop offset="100%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.4" />
+              <stop offset="0%" stopColor="rgb(var(--color-accent-blue))" stopOpacity="0.62" />
+              <stop offset="42%" stopColor="rgb(var(--color-accent-indigo))" stopOpacity="0.78" />
+              <stop offset="100%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.94" />
             </linearGradient>
+            <linearGradient id="meridian-glow-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgb(var(--color-accent-blue))" stopOpacity="0.18" />
+              <stop offset="42%" stopColor="rgb(var(--color-accent-indigo))" stopOpacity="0.28" />
+              <stop offset="100%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.38" />
+            </linearGradient>
+            <linearGradient id="meridian-area" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgb(var(--color-accent-blue))" stopOpacity="0.06" />
+              <stop offset="42%" stopColor="rgb(var(--color-accent-indigo))" stopOpacity="0.1" />
+              <stop offset="100%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.17" />
+            </linearGradient>
+            <radialGradient id="one-bloom" cx="82%" cy="18%" r="55%">
+              <stop offset="0%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.1" />
+              <stop offset="100%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0" />
+            </radialGradient>
             <radialGradient id="node-blue" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="rgb(var(--color-accent-blue))" stopOpacity="0.85" />
               <stop offset="70%" stopColor="rgb(var(--color-accent-blue))" stopOpacity="0.05" />
@@ -84,56 +110,173 @@ function Meridian({
               <stop offset="100%" stopColor="rgb(var(--color-accent-indigo))" stopOpacity="0" />
             </radialGradient>
             <radialGradient id="node-purple" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.9" />
-              <stop offset="70%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.05" />
+              <stop offset="0%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.92" />
+              <stop offset="65%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.06" />
               <stop offset="100%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0" />
             </radialGradient>
           </defs>
 
+          {/* One-zone ambient bloom */}
+          <rect x="0" y="0" width="1200" height="395" fill="url(#one-bloom)" />
+
+          {/* Subtle horizontal gridlines — "marketing chart" feel */}
+          {([72, 138, 204, 270, 336] as number[]).map((gy) => (
+            <line
+              key={gy}
+              x1="48"
+              y1={gy}
+              x2="1152"
+              y2={gy}
+              stroke="rgb(var(--color-foreground))"
+              strokeOpacity="0.035"
+              strokeWidth="0.6"
+            />
+          ))}
+
+          {/* Y-axis spine */}
+          <line
+            x1="48"
+            y1="48"
+            x2="48"
+            y2="345"
+            stroke="rgb(var(--color-foreground))"
+            strokeOpacity="0.055"
+            strokeWidth="0.75"
+          />
+
+          {/* Y-axis label */}
+          <text
+            x="16"
+            y="197"
+            textAnchor="middle"
+            fontSize="9"
+            fontWeight="500"
+            fill="rgb(var(--color-foreground-muted))"
+            fillOpacity="0.28"
+            letterSpacing="0.18em"
+            transform="rotate(-90 16 197)"
+            style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
+          >
+            {axisLabel}
+          </text>
+
+          {/* Area fill under the curve */}
+          <path
+            d="M 148 300 C 248 300, 338 262, 445 256 C 532 251, 652 106, 1065 92 L 1065 348 L 148 348 Z"
+            fill="url(#meridian-area)"
+          />
+
+          {/* Flow baseline dashed — shows "plateau" before the leap */}
+          <line
+            x1="445"
+            y1="256"
+            x2="1148"
+            y2="256"
+            stroke="rgb(var(--color-accent-indigo))"
+            strokeOpacity="0.12"
+            strokeWidth="0.7"
+            strokeDasharray="4 9"
+          />
+
+          {/* Leap bracket — vertical bar on the far right showing the delta */}
+          <line
+            x1="1138"
+            y1="256"
+            x2="1138"
+            y2="92"
+            stroke="rgb(var(--color-accent-purple))"
+            strokeOpacity="0.2"
+            strokeWidth="0.75"
+          />
+          <line
+            x1="1128"
+            y1="256"
+            x2="1148"
+            y2="256"
+            stroke="rgb(var(--color-accent-purple))"
+            strokeOpacity="0.2"
+            strokeWidth="0.75"
+          />
+          <line
+            x1="1128"
+            y1="92"
+            x2="1148"
+            y2="92"
+            stroke="rgb(var(--color-accent-purple))"
+            strokeOpacity="0.2"
+            strokeWidth="0.75"
+          />
+          <text
+            x="1158"
+            y="178"
+            fontSize="13"
+            fontWeight="600"
+            fill="rgb(var(--color-accent-purple))"
+            fillOpacity="0.42"
+            style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
+          >
+            ∞
+          </text>
+
+          {/* Glow pass for the curve (wide, blurred via opacity trick) */}
+          <path
+            d="M 148 300 C 248 300, 338 262, 445 256 C 532 251, 652 106, 1065 92"
+            fill="none"
+            stroke="url(#meridian-glow-stroke)"
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.55"
+          />
+
+          {/* Node halos */}
           <circle
-            cx="130"
-            cy="268"
-            r="46"
+            cx="148"
+            cy="300"
+            r="48"
             fill="url(#node-blue)"
             className="node-halo"
             style={{ animationDelay: '0.4s' }}
           />
           <circle
-            cx="620"
-            cy="150"
-            r="56"
+            cx="445"
+            cy="256"
+            r="58"
             fill="url(#node-indigo)"
             className="node-halo"
             style={{ animationDelay: '1.6s' }}
           />
           <circle
-            cx="1070"
-            cy="62"
-            r="74"
+            cx="1065"
+            cy="92"
+            r="88"
             fill="url(#node-purple)"
             className="node-halo"
             style={{ animationDelay: '2.8s' }}
           />
 
-          {/* Path above halos so it reads through the center node; stroke kept soft */}
+          {/* Main curve */}
           <path
             className="meridian-path"
-            d="M 130 268 C 390 218, 510 178, 620 150 S 872 68, 1070 62"
+            d="M 148 300 C 248 300, 338 262, 445 256 C 532 251, 652 106, 1065 92"
             fill="none"
             stroke="url(#meridian-stroke)"
-            strokeWidth="0.72"
+            strokeWidth="1.9"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
 
-          <SvgModelGlyph idPrefix="meridian" model="nano" cx={130} cy={268} scale={0.44} />
-          <SvgModelGlyph idPrefix="meridian" model="flow" cx={620} cy={150} scale={0.56} />
-          <SvgModelGlyph idPrefix="meridian" model="one" cx={1070} cy={62} scale={0.68} />
+          {/* Model glyphs */}
+          <SvgModelGlyph idPrefix="meridian" model="nano" cx={148} cy={300} scale={0.82} />
+          <SvgModelGlyph idPrefix="meridian" model="flow" cx={445} cy={256} scale={0.98} />
+          <SvgModelGlyph idPrefix="meridian" model="one" cx={1065} cy={92} scale={1.18} />
 
+          {/* Labels and capability tags */}
           <g fontFamily="var(--font-geist-sans), system-ui, sans-serif">
+            {/* Nano */}
             <text
-              x="130"
-              y="332"
+              x="148"
+              y="352"
               textAnchor="middle"
               fontSize="13"
               fontWeight="500"
@@ -143,8 +286,22 @@ function Meridian({
               {names.nano}
             </text>
             <text
-              x="620"
-              y="204"
+              x="148"
+              y="368"
+              textAnchor="middle"
+              fontSize="9"
+              fontWeight="500"
+              fill="rgb(var(--color-accent-blue))"
+              fillOpacity="0.62"
+              letterSpacing="0.12em"
+            >
+              {nanoTag}
+            </text>
+
+            {/* Flow */}
+            <text
+              x="445"
+              y="293"
               textAnchor="middle"
               fontSize="14"
               fontWeight="500"
@@ -154,18 +311,84 @@ function Meridian({
               {names.flow}
             </text>
             <text
-              x="1070"
-              y="22"
+              x="445"
+              y="308"
+              textAnchor="middle"
+              fontSize="9"
+              fontWeight="500"
+              fill="rgb(var(--color-accent-indigo))"
+              fillOpacity="0.72"
+              letterSpacing="0.1em"
+            >
+              {flowTag}
+            </text>
+
+            {/* One */}
+            <text
+              x="1065"
+              y="50"
               textAnchor="middle"
               fontSize="15"
-              fontWeight="500"
+              fontWeight="600"
               fill="rgb(var(--color-foreground))"
-              letterSpacing="-0.01em"
+              letterSpacing="-0.02em"
             >
               {names.one}
             </text>
+            <text
+              x="1065"
+              y="68"
+              textAnchor="middle"
+              fontSize="9.5"
+              fontWeight="700"
+              fill="rgb(var(--color-accent-purple))"
+              fillOpacity="0.84"
+              letterSpacing="0.18em"
+            >
+              {oneTag}
+            </text>
           </g>
+
+          {/* Callout badge — drawn last so it sits on top of the curve and glow */}
+          <rect
+            x="668"
+            y="128"
+            width="98"
+            height="24"
+            rx="12"
+            fill="rgb(var(--color-surface))"
+            fillOpacity="1"
+          />
+          <rect
+            x="668"
+            y="128"
+            width="98"
+            height="24"
+            rx="12"
+            fill="rgb(var(--color-accent-purple))"
+            fillOpacity="0.12"
+            stroke="rgb(var(--color-accent-purple))"
+            strokeOpacity="0.5"
+            strokeWidth="0.9"
+          />
+          <text
+            x="717"
+            y="140"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize="9"
+            fontWeight="700"
+            fill="rgb(var(--color-accent-purple))"
+            letterSpacing="0.16em"
+            style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
+          >
+            {stepChangeLabel}
+          </text>
         </svg>
+
+        <p className="border-t border-[rgb(var(--color-foreground)/0.05)] px-5 py-4 text-center text-[11px] leading-[1.65] text-[rgb(var(--color-foreground-muted)/0.62)] max-[480px]:px-4 max-[480px]:py-3 sm:px-8 md:px-14 md:py-5 md:text-[12px]">
+          {journeyLine}
+        </p>
 
         <div className="flex flex-col gap-3 border-t border-[rgb(var(--color-foreground)/0.06)] px-5 py-5 text-[11px] text-[rgb(var(--color-foreground-muted)/0.72)] max-[480px]:gap-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4 sm:px-8 sm:py-7 sm:text-[12px] md:px-14 md:py-8">
           <span className="inline-flex min-h-[2.75rem] items-center gap-2.5 sm:min-h-0">
@@ -727,9 +950,7 @@ function OneMonolith({
 }) {
   const n = strata.length;
   return (
-    <div
-      className="one-flagship-card relative isolate w-full overflow-hidden rounded-[22px] border border-[rgb(var(--color-accent-purple)/0.12)] bg-[linear-gradient(168deg,rgb(var(--color-accent-purple)/0.07)_0%,rgb(var(--color-surface)/0.72)_18%,rgb(var(--color-background-start)/0.92)_45%,rgb(var(--color-background-start))_100%),radial-gradient(90%_70%_at_100%_0%,rgb(var(--color-accent-pink)/0.06),transparent_55%)] shadow-[0_32px_80px_rgb(0_0_0/0.22),0_48px_100px_-48px_rgb(var(--color-accent-purple)/0.18),inset_0_1px_0_rgb(255_255_255/0.05)] backdrop-blur-[2px] [background-clip:padding-box] md:rounded-[32px]"
-    >
+    <div className="one-flagship-card relative isolate w-full overflow-hidden rounded-[22px] border border-[rgb(var(--color-accent-purple)/0.12)] bg-[linear-gradient(168deg,rgb(var(--color-accent-purple)/0.07)_0%,rgb(var(--color-surface)/0.72)_18%,rgb(var(--color-background-start)/0.92)_45%,rgb(var(--color-background-start))_100%),radial-gradient(90%_70%_at_100%_0%,rgb(var(--color-accent-pink)/0.06),transparent_55%)] shadow-[0_32px_80px_rgb(0_0_0/0.22),0_48px_100px_-48px_rgb(var(--color-accent-purple)/0.18),inset_0_1px_0_rgb(255_255_255/0.05)] backdrop-blur-[2px] [background-clip:padding-box] md:rounded-[32px]">
       {/* Brand-tinted fields — purple + pink drift */}
       <div
         className="one-ambient-field pointer-events-none absolute -left-[22%] top-1/2 h-[min(125%,540px)] w-[min(145%,660px)] -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_52%_58%_at_48%_48%,rgb(var(--color-accent-purple)/0.26),rgb(var(--color-accent-indigo)/0.06)_52%,transparent_72%)] blur-3xl"
@@ -762,17 +983,47 @@ function OneMonolith({
               >
                 <defs>
                   <radialGradient id="one-core-bloom" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.32" />
-                    <stop offset="42%" stopColor="rgb(var(--color-accent-pink))" stopOpacity="0.12" />
-                    <stop offset="100%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0" />
+                    <stop
+                      offset="0%"
+                      stopColor="rgb(var(--color-accent-purple))"
+                      stopOpacity="0.32"
+                    />
+                    <stop
+                      offset="42%"
+                      stopColor="rgb(var(--color-accent-pink))"
+                      stopOpacity="0.12"
+                    />
+                    <stop
+                      offset="100%"
+                      stopColor="rgb(var(--color-accent-purple))"
+                      stopOpacity="0"
+                    />
                   </radialGradient>
                   <linearGradient id="one-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="rgb(var(--color-accent-purple))" stopOpacity="0.72" />
-                    <stop offset="48%" stopColor="rgb(var(--color-accent-pink))" stopOpacity="0.55" />
-                    <stop offset="100%" stopColor="rgb(var(--color-accent-indigo))" stopOpacity="0.45" />
+                    <stop
+                      offset="0%"
+                      stopColor="rgb(var(--color-accent-purple))"
+                      stopOpacity="0.72"
+                    />
+                    <stop
+                      offset="48%"
+                      stopColor="rgb(var(--color-accent-pink))"
+                      stopOpacity="0.55"
+                    />
+                    <stop
+                      offset="100%"
+                      stopColor="rgb(var(--color-accent-indigo))"
+                      stopOpacity="0.45"
+                    />
                   </linearGradient>
                 </defs>
-                <circle cx="120" cy="120" r="52" fill="url(#one-core-bloom)" className="one-core-bloom" />
+                <circle
+                  cx="120"
+                  cy="120"
+                  r="52"
+                  fill="url(#one-core-bloom)"
+                  className="one-core-bloom"
+                />
                 <circle
                   cx="120"
                   cy="120"
@@ -839,32 +1090,35 @@ function OneMonolith({
             </p>
             <div className="relative">
               <ol className="relative m-0 list-none p-0">
-              {strata.map((row, i) => {
-                const last = i === n - 1;
-                return (
-                  <li key={`${i}-${row}`} className="one-step-row relative flex gap-4 pb-8 last:pb-0 max-[480px]:gap-3.5 max-[480px]:pb-7 md:gap-5 md:pb-9">
-                    {!last && (
-                      <span
-                        className="one-step-connector pointer-events-none absolute left-2 top-[21px] z-0 h-[calc(100%-21px)] w-px -translate-x-1/2 overflow-hidden bg-[linear-gradient(180deg,rgb(var(--color-accent-indigo)/0.35),rgb(var(--color-accent-purple)/0.55),rgb(var(--color-accent-pink)/0.4),rgb(var(--color-accent-purple)/0.35))] shadow-[0_0_10px_rgb(var(--color-accent-purple)/0.22)]"
-                        aria-hidden
-                      />
-                    )}
-                    <div className="relative z-[1] mt-[5px] flex h-4 w-4 shrink-0 items-center justify-center">
-                      <span
-                        className={
-                          last
-                            ? 'one-step-dot one-step-dot--final h-2 w-2 rounded-full bg-gradient-to-br from-[rgb(var(--color-accent-purple))] to-[rgb(var(--color-accent-pink))] shadow-[0_0_0_4px_rgb(var(--color-background-start)),0_0_22px_rgb(var(--color-accent-purple)/0.5),0_0_12px_rgb(var(--color-accent-pink)/0.25)]'
-                            : 'one-step-dot h-2 w-2 rounded-full border border-[rgb(var(--color-accent-purple)/0.45)] bg-[rgb(var(--color-background-start))] shadow-[0_0_0_4px_rgb(var(--color-background-start)),0_0_14px_rgb(var(--color-accent-purple)/0.18)]'
-                        }
-                        aria-hidden
-                      />
-                    </div>
-                    <p className="one-step-copy m-0 min-w-0 max-w-[42ch] text-[0.94rem] leading-[1.65] tracking-[-0.012em] text-[rgb(var(--color-foreground-soft)/0.9)] max-[480px]:text-[0.9rem] md:text-[1.02rem] md:leading-[1.58]">
-                      {row}
-                    </p>
-                  </li>
-                );
-              })}
+                {strata.map((row, i) => {
+                  const last = i === n - 1;
+                  return (
+                    <li
+                      key={`${i}-${row}`}
+                      className="one-step-row relative flex gap-4 pb-8 last:pb-0 max-[480px]:gap-3.5 max-[480px]:pb-7 md:gap-5 md:pb-9"
+                    >
+                      {!last && (
+                        <span
+                          className="one-step-connector pointer-events-none absolute left-2 top-[21px] z-0 h-[calc(100%-21px)] w-px -translate-x-1/2 overflow-hidden bg-[linear-gradient(180deg,rgb(var(--color-accent-indigo)/0.35),rgb(var(--color-accent-purple)/0.55),rgb(var(--color-accent-pink)/0.4),rgb(var(--color-accent-purple)/0.35))] shadow-[0_0_10px_rgb(var(--color-accent-purple)/0.22)]"
+                          aria-hidden
+                        />
+                      )}
+                      <div className="relative z-[1] mt-[5px] flex h-4 w-4 shrink-0 items-center justify-center">
+                        <span
+                          className={
+                            last
+                              ? 'one-step-dot one-step-dot--final h-2 w-2 rounded-full bg-gradient-to-br from-[rgb(var(--color-accent-purple))] to-[rgb(var(--color-accent-pink))] shadow-[0_0_0_4px_rgb(var(--color-background-start)),0_0_22px_rgb(var(--color-accent-purple)/0.5),0_0_12px_rgb(var(--color-accent-pink)/0.25)]'
+                              : 'one-step-dot h-2 w-2 rounded-full border border-[rgb(var(--color-accent-purple)/0.45)] bg-[rgb(var(--color-background-start))] shadow-[0_0_0_4px_rgb(var(--color-background-start)),0_0_14px_rgb(var(--color-accent-purple)/0.18)]'
+                          }
+                          aria-hidden
+                        />
+                      </div>
+                      <p className="one-step-copy m-0 min-w-0 max-w-[42ch] text-[0.94rem] leading-[1.65] tracking-[-0.012em] text-[rgb(var(--color-foreground-soft)/0.9)] max-[480px]:text-[0.9rem] md:text-[1.02rem] md:leading-[1.58]">
+                        {row}
+                      </p>
+                    </li>
+                  );
+                })}
               </ol>
             </div>
           </div>
@@ -939,7 +1193,11 @@ function Lineage({
         </div>
 
         <div className="relative overflow-hidden rounded-[22px] border border-[rgb(var(--color-foreground)/0.08)] bg-[radial-gradient(80%_60%_at_20%_0%,rgb(var(--color-accent-indigo)/0.09),transparent_65%),linear-gradient(180deg,rgb(var(--color-surface)/0.5),rgb(var(--color-surface)/0.1))] p-6 max-[480px]:p-5 sm:p-8 md:rounded-[28px] md:p-14 lg:p-16">
-          <svg viewBox="0 0 600 284" className="h-auto w-full min-h-[180px] max-[480px]:min-h-[160px] sm:min-h-[210px]" aria-hidden>
+          <svg
+            viewBox="0 0 600 284"
+            className="h-auto w-full min-h-[180px] max-[480px]:min-h-[160px] sm:min-h-[210px]"
+            aria-hidden
+          >
             {/* Gradients in SVG <stop> often fail to resolve CSS variables in WebKit — use direct stroke on the spine */}
             <circle
               cx="300"
@@ -1016,7 +1274,13 @@ function Lineage({
                   stroke="rgb(var(--color-foreground) / 0.07)"
                   strokeWidth="1"
                 />
-                <SvgModelGlyph idPrefix={`lineage-${n.label}`} model={n.model} cx={n.x} cy={232} scale={1.05} />
+                <SvgModelGlyph
+                  idPrefix={`lineage-${n.label}`}
+                  model={n.model}
+                  cx={n.x}
+                  cy={232}
+                  scale={1.05}
+                />
                 <text
                   x={n.x}
                   y="264"
@@ -1123,6 +1387,12 @@ export default async function ModelsJourney() {
         legendMid={tp('meridian.legendMid')}
         legendRight={tp('meridian.legendRight')}
         names={names}
+        axisLabel={tp('meridian.axisCapability')}
+        nanoTag={tp('meridian.nanoTag')}
+        flowTag={tp('meridian.flowTag')}
+        oneTag={tp('meridian.oneTag')}
+        stepChangeLabel={tp('meridian.stepChange')}
+        journeyLine={tp('meridian.journeyLine')}
       />
 
       {/* Journey sections */}

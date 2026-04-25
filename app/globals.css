@@ -1012,7 +1012,11 @@ a {
       rgb(var(--color-accent-pink) / 0.06) 52%,
       transparent 88%
     ),
-    radial-gradient(ellipse 100% 55% at 18% 0%, rgb(var(--color-accent-indigo) / 0.06), transparent 52%);
+    radial-gradient(
+      ellipse 100% 55% at 18% 0%,
+      rgb(var(--color-accent-indigo) / 0.06),
+      transparent 52%
+    );
   animation: one-flagship-sheen 16s cubic-bezier(0.45, 0, 0.18, 1) infinite;
 }
 
@@ -1297,7 +1301,6 @@ a {
   #one.reveal-on-scroll.revealed .one-step-dot--final {
     animation: none !important;
   }
-
 
   #one.reveal-on-scroll .one-step-copy {
     opacity: 1;

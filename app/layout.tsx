@@ -31,7 +31,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={GeistSans.variable} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={GeistSans.variable}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -76,6 +76,7 @@ function Meridian({
 
         <svg
           viewBox="0 0 1200 395"
+          preserveAspectRatio="none"
           className="relative block h-[min(50vh,380px)] w-full max-[480px]:h-[min(42vh,290px)]"
           aria-hidden
         >
